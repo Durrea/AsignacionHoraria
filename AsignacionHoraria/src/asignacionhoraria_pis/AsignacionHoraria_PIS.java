@@ -24,12 +24,12 @@ public class AsignacionHoraria_PIS {
         
         CargueDatos c = new CargueDatos();
         c.CargarDatos();
-        ArrayList<InfoMaterias> materias = c.getMaterias();
+        ArrayList<InfoMaterias> materias = c.CargarDatosMaterias();
         ArrayList<InfoDocente> docentes = c.getDocentes();
         //materias = c.CargarDatosMaterias();
-        for (int i = 0; i < c.getMaterias().size(); i++) 
+        for (int i = 0; i < materias.size(); i++) 
         {
-            System.out.println(c.getMaterias().get(i).getNombreMateria()+""+materias.get(i).getPosDocente());
+            System.out.println(materias.get(i).getNombreMateria()+""+materias.get(i).getPosDocente());
         }
         /*for (int i = 0; i < docentes.size(); i++) 
         {

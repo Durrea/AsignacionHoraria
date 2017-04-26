@@ -20,8 +20,6 @@ import java.util.logging.Logger;
  */
 public class CargueDatos {
     
-    private FileReader file;
-    private BufferedReader buffer;
     private ArrayList<InfoDocente> docentes;
     private ArrayList<InfoMaterias> materias;
     
@@ -32,6 +30,8 @@ public class CargueDatos {
     }
     public ArrayList CargarDatosProfesor()
     {
+        FileReader file;
+        BufferedReader buffer;
         ArrayList<InfoDocente> docs = new ArrayList();
         try {
             String linea;
@@ -51,6 +51,8 @@ public class CargueDatos {
     }
     public ArrayList CargarDatosMaterias()
     {
+        FileReader file;
+        BufferedReader buffer;
         ArrayList<InfoMaterias> mats = new ArrayList();
         try {
             String linea;
@@ -70,6 +72,8 @@ public class CargueDatos {
     }
     public void CargarDatos()
     {
+        FileReader file;
+        BufferedReader buffer;
         this.docentes = CargarDatosProfesor();
         this.materias = CargarDatosMaterias();
         try{
