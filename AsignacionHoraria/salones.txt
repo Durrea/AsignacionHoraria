@@ -1,0 +1,13 @@
+1;Salon Teorico 1;40;T
+2;Salon Teorico 2;40;T
+3;Salon Teorico 3;40;T
+4;Salon Teorico 4;40;T
+5;Salon Teorico 5;40;T
+6;Salon Teorico 6;40;T
+7;L1;18;L
+8;L2;18;L
+9;Sala 1;20;P
+10;Sala 2;25;P
+11;Sala 4;18;P
+12;Sala 332;18;P
+13;Sala 333;18;P
