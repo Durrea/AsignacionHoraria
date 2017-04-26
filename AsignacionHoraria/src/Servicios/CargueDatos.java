@@ -94,10 +94,10 @@ public class CargueDatos {
                             {
                                 this.docentes.get(i).getAsignaturas().add(this.materias.get(j));
                                 this.materias.get(j).setPosDocente(i);
-                                j = this.materias.size();
+                                //j = this.materias.size();
                             }
                         }
-                        i = this.docentes.size();
+                        //i = this.docentes.size();
                     }
                 }
             }

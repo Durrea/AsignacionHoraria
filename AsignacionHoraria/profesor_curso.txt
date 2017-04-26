@@ -1,104 +1,104 @@
-PIS;Introducción a la PIS;A;ANA MARIA CHIMUNJA
+PIS;Introducciï¿½n a la PIS;A;ANA MARIA CHIMUNJA
 PIS;Ecuaciones Diferenciales Ordinarias;D;ANA MILENA PLAZA BUITRAGO
-PIS;Investigación de Operaciones;A;ARIEL EDMUNDO PABON BURBANO
-PIS;Formación ciudadana (para primer semestre);A;BIBIANA EDIVEY CASTRO FRANCO
-PIS;Análisis Numérico;A;CARLOS ALBERTO ARDILA ALBARRACIN
+PIS;Investigaciï¿½n de Operaciones;A;ARIEL EDMUNDO PABON BURBANO
+PIS;Formaciï¿½n ciudadana;A;BIBIANA EDIVEY CASTRO FRANCO
+PIS;Anï¿½lisis Numï¿½rico;A;CARLOS ALBERTO ARDILA ALBARRACIN
 PIS;Calidad de Software;B;CARLOS ALBERTO ARDILA ALBARRACIN
-PIS;Ingeniería de Software I;A;CARLOS ALBERTO ARDILA ALBARRACIN
-PIS;Laboratorio de Ingeniería de Software I;A;CARLOS ALBERTO ARDILA ALBARRACIN
+PIS;Ingenierï¿½a de Software I;A;CARLOS ALBERTO ARDILA ALBARRACIN
+PIS;Laboratorio de Ingenierï¿½a de Software I;A;CARLOS ALBERTO ARDILA ALBARRACIN
 PIS;Laboratorio de Bases de Datos I;B;CARLOS ERNESTO MAYA VALLEJO
-PIS;Laboratorio de Estructuras de Datos I  ESTE GRUPO SE CANCELA;C;CARLOS ERNESTO MAYA VALLEJO
+PIS;Laboratorio de Estructuras de Datos I;C;CARLOS ERNESTO MAYA VALLEJO
 PIS;Vibraciones y Ondas;D;CAROL JULIETH AGUILAR PAZ
 PIS;Vibraciones y Ondas;E;CAROL JULIETH AGUILAR PAZ
-PIS;Metodología de la Investigación;A;CAROLINA   GONZALEZ SERRANO
-PIS;Laboratorio de Ingeniería de Software II;A;CESAR JESUS PARDO CALVACHE
-PIS;Teoría de la Computación;A;CESAR JESUS PARDO CALVACHE
+PIS;Metodologï¿½a de la Investigaciï¿½n;A;CAROLINA GONZALEZ SERRANO
+PIS;Laboratorio de Ingenierï¿½a de Software II;A;CESAR JESUS PARDO CALVACHE
+PIS;Teorï¿½a de la Computaciï¿½n;A;CESAR JESUS PARDO CALVACHE
 PIS;Lectura y Escritura;R;CLAUDIA LUCIA HURTADO ALEGRIA
 PIS;Laboratorio de Estructuras de Datos I;B;DANIEL EDUARDO PAZ PERAFAN
 PIS;Laboratorio de Sistemas Distribuidos;A;DANIEL EDUARDO PAZ PERAFAN
-PIS;Laboratorio de Sistemas Distribuidos SE CANCELA ESTE GRUPO;B;DANIEL EDUARDO PAZ PERAFAN
+PIS;Laboratorio de Sistemas Distribuidos;B;DANIEL EDUARDO PAZ PERAFAN
 PIS;Sistemas Distribuidos;B;DANIEL EDUARDO PAZ PERAFAN
-PIS;Arquitectura Computacional;A;DARIO FERNANDO CHAMORRO VELA,IVAN EDUARDO HERNANDEZ DELGADO,FERNANDO APARICIO URBANO MOLANO
-PIS;Bases de Datos II  - Nuevo curso;B;EDWIN FERNEY CALDON PIZO
+PIS;Arquitectura Computacional;A;DARIO FERNANDO CHAMORRO VELA
+PIS;Bases de Datos II;B;EDWIN FERNEY CALDON PIZO
 PIS;Laboratorio de Estructuras de Datos II;B;EDWIN FERNEY CALDON PIZO
-PIS;Laboratorio de Mecánica;FA;ELIANA MARGARITA AGUILAR LARRARTE
-PIS;Laboratorio de Mecánica;FB;ELIANA MARGARITA AGUILAR LARRARTE
+PIS;Laboratorio de Mecï¿½nica;FA;ELIANA MARGARITA AGUILAR LARRARTE
+PIS;Laboratorio de Mecï¿½nica;FB;ELIANA MARGARITA AGUILAR LARRARTE
 PIS;Inteligencia Artificial;A;EMBER UBEIMAR MARTINEZ FLOR
-PIS;Programación Orientada a Objetos;C;EMBER UBEIMAR MARTINEZ FLOR
-PIS;Laboratorio de Sistemas Operativos;A;ERWIN   MEZA VEGA
-PIS;Laboratorio de Sistemas Operativos;B;ERWIN   MEZA VEGA
-PIS;Sistemas Operativos;A;ERWIN   MEZA VEGA
-PIS;Redes;A;FULVIO YESID VIVAS CANTERO,EMIGDIO ANDRES LARA SILVA
-PIS;Redes;B;FULVIO YESID VIVAS CANTERO,P1,EMIGDIO ANDRES LARA SILVA
-PIS;Álgebra Lineal;FD;GUSTAVO ADOLFO GOMEZ AGREDO
-PIS;Álgebra Lineal;J;JAIME   TOBAR MUÑOZ
-PIS;Introducción a la Informática;D;JHON EDER MASSO DAZA
+PIS;Programaciï¿½n Orientada a Objetos;C;EMBER UBEIMAR MARTINEZ FLOR
+PIS;Laboratorio de Sistemas Operativos;A;ERWIN MEZA VEGA
+PIS;Laboratorio de Sistemas Operativos;B;ERWIN MEZA VEGA
+PIS;Sistemas Operativos;A;ERWIN MEZA VEGA
+PIS;Redes;A;FULVIO YESID VIVAS CANTERO
+PIS;Redes;B;FULVIO YESID VIVAS CANTERO
+PIS;ï¿½lgebra Lineal;FD;GUSTAVO ADOLFO GOMEZ AGREDO
+PIS;ï¿½lgebra Lineal;J;JAIME TOBAR MUï¿½OZ
+PIS;Introducciï¿½n a la Informï¿½tica;D;JHON EDER MASSO DAZA
 PIS;Laboratorio de Estructuras de Datos II;A;JHON EDER MASSO DAZA
-PIS;Laboratorio de Programación Orientada a Objetos;A;JHON EDER MASSO DAZA
-PIS;Programación Orientada a Objetos;A;JHON EDER MASSO DAZA
-PIS;Bases de Datos I;A;JIMENA ADRIANA TIMANA PEÑA
-PIS;Inteligencia Artificial SE CANCELA ESTE GRUPO;B;JIMENA ADRIANA TIMANA PEÑA
-PIS;Introducción a la Informática;B;JIMENA ADRIANA TIMANA PEÑA
-PIS;Pensamiento fotográfico (para primer semestre);B;JORGE IVAN CORONEL
+PIS;Laboratorio de Programaciï¿½n Orientada a Objetos;A;JHON EDER MASSO DAZA
+PIS;Programaciï¿½n Orientada a Objetos;A;JHON EDER MASSO DAZA
+PIS;Bases de Datos I;A;JIMENA ADRIANA TIMANA PEï¿½A
+PIS;Inteligencia Artificial;B;JIMENA ADRIANA TIMANA PEï¿½A
+PIS;Introducciï¿½n a la Informï¿½tica;B;JIMENA ADRIANA TIMANA PEï¿½A
+PIS;Pensamiento fotogrï¿½fico;B;JORGE IVAN CORONEL
 PIS;Estructuras de Datos I;A;JORGE JAIR MORENO CHAUSTRE
-PIS;Introducción a la Informática;A;JORGE JAIR MORENO CHAUSTRE
+PIS;Introducciï¿½n a la Informï¿½tica;A;JORGE JAIR MORENO CHAUSTRE
 PIS;Laboratorio de Estructuras de Datos I;A;JORGE JAIR MORENO CHAUSTRE
-PIS;Laboratorio de Programación Orientada a Objetos;B;JORGE JAIR MORENO CHAUSTRE
-PIS;Programación Orientada a Objetos;B;JORGE JAIR MORENO CHAUSTRE
+PIS;Laboratorio de Programaciï¿½n Orientada a Objetos;B;JORGE JAIR MORENO CHAUSTRE
+PIS;Programaciï¿½n Orientada a Objetos;B;JORGE JAIR MORENO CHAUSTRE
 PIS;Laboratorio de Electromagnetismo;D;JORGE WASHINGTON CORONEL GARCIA
-PIS;Gestión Empresarial;A;JUAN MANUEL AREVALO VIVEROS
+PIS;Gestiï¿½n Empresarial;A;JUAN MANUEL AREVALO VIVEROS
 PIS;Laboratorio de Estructuras de Datos I;D;JUDY VIVIANA MOLANO MORA
-PIS;Laboratorio de Introducción a la Informática;D;JUDY VIVIANA MOLANO MORA
-PIS;Fundamentos de Economía;A;JULIANA ISABEL SARMIENTO CASTILLO
-PIS;Laboratorio de Mecánica;N;JULIANA PAOLA ENRIQUEZ FUERTES
-PIS;Ingeniería de Software II;A;JULIO ARIEL HURTADO ALEGRIA
-PIS;Laboratorio de Ingeniería de Software II SE CANCELA ESTE GRUPO;A;JULIO ARIEL HURTADO ALEGRIA
-PIS;Legislación Laboral;A;MARIA ELENA VIVAS MUÑOZ
-PIS;Laboratorio de Introducción a la Informática;B;MARIA ISABEL VIDAL CAICEDO
-PIS;Cálculo I - Cambio profesora y salon;FG;MARIA LUCIA MUÑOZ VARGAS
-PIS;Cálculo I - Cambio profesora y salon;FI;MARIA LUCIA MUÑOZ VARGAS
-PIS;Laboratorio de Mecánica;O;MARIA MAGDALENA FALLA SOLORZANO
-PIS;Cálculo II;F;MARIA MARLEN BENDECK LUGO,AIDA PATRICIA GONZALEZ NIEVA
-PIS;Estadística y Probabilidad;FB;MARIO ELCIAS MUÑOZ OCHOA
+PIS;Laboratorio de Introducciï¿½n a la Informï¿½tica;D;JUDY VIVIANA MOLANO MORA
+PIS;Fundamentos de Economï¿½a;A;JULIANA ISABEL SARMIENTO CASTILLO
+PIS;Laboratorio de Mecï¿½nica;N;JULIANA PAOLA ENRIQUEZ FUERTES
+PIS;Ingenierï¿½a de Software II;A;JULIO ARIEL HURTADO ALEGRIA
+PIS;Laboratorio de Ingenierï¿½a de Software II;A;JULIO ARIEL HURTADO ALEGRIA
+PIS;Legislaciï¿½n Laboral;A;MARIA ELENA VIVAS MUï¿½OZ
+PIS;Laboratorio de Introducciï¿½n a la Informï¿½tica;B;MARIA ISABEL VIDAL CAICEDO
+PIS;Cï¿½lculo I;FG;MARIA LUCIA MUï¿½OZ VARGAS
+PIS;Cï¿½lculo I;FI;MARIA LUCIA MUï¿½OZ VARGAS
+PIS;Laboratorio de Mecï¿½nica;O;MARIA MAGDALENA FALLA SOLORZANO
+PIS;Cï¿½lculo II;F;MARIA MARLEN BENDECK LUGO
+PIS;Estadï¿½stica y Probabilidad;FB;MARIO ELCIAS MUï¿½OZ OCHOA
 PIS;Laboratorio de Bases de Datos I;A;MARTHA ELIANA MENDOZA BECERRA
-PIS;Proyecto I;B;MIGUEL ANGEL NIÑO ZAMBRANO
-PIS;Proyecto I;A;MIGUEL ANGEL NIÑO ZAMBRANO
-PIS;Teoría y Dinámica de Sistemas;A;MIGUEL ANGEL NIÑO ZAMBRANO
-PIS;Cálculo I;FA;OMAR ALBEIRO TREJO NARVAEZ
-PIS;Cálculo I;FF;OMAR ALBEIRO TREJO NARVAEZ
-PIS;Laboratorio de Electromagnetismo;C;OSCAR   BERMUDEZ CASTILLO
+PIS;Proyecto I;B;MIGUEL ANGEL NIï¿½O ZAMBRANO
+PIS;Proyecto I;A;MIGUEL ANGEL NIï¿½O ZAMBRANO
+PIS;Teorï¿½a y Dinï¿½mica de Sistemas;A;MIGUEL ANGEL NIï¿½O ZAMBRANO
+PIS;Cï¿½lculo I;FA;OMAR ALBEIRO TREJO NARVAEZ
+PIS;Cï¿½lculo I;FF;OMAR ALBEIRO TREJO NARVAEZ
+PIS;Laboratorio de Electromagnetismo;C;OSCAR BERMUDEZ CASTILLO
 PIS;Sistemas Distribuidos;A;PABLO AUGUSTO MAGE IMBACHI
-PIS;Álgebra Lineal;I;P2
-PIS;Análisis Numérico;B;P3
-PIS;Introducción a la PIS;B;P4
-PIS;Laboratorio de Bases de Datos II  - Nuevo Curso;C;P5
-PIS;Laboratorio de Ingeniería de Software I;B;P6
-PIS;Laboratorio de Programación Orientada a Objetos;D;P7
-PIS;Proyecto II     CANCELAR ESTE CURSO;B;P8
-PIS;Estructura de Datos II;A;RENE FABIAN ZUÑIGA MUÑOZ
-PIS;Laboratorio de Introducción a la Informática;A;RENE FABIAN ZUÑIGA MUÑOZ
+PIS;ï¿½lgebra Lineal;I;P2
+PIS;Anï¿½lisis Numï¿½rico;B;P3
+PIS;Introducciï¿½n a la PIS;B;P4
+PIS;Laboratorio de Bases de Datos II;C;P5
+PIS;Laboratorio de Ingenierï¿½a de Software I;B;P6
+PIS;Laboratorio de Programaciï¿½n Orientada a Objetos;D;P7
+PIS;Proyecto II;B;P8
+PIS;Estructura de Datos II;A;RENE FABIAN ZUï¿½IGA MUï¿½OZ
+PIS;Laboratorio de Introducciï¿½n a la Informï¿½tica;A;RENE FABIAN ZUï¿½IGA MUï¿½OZ
 PIS;Estructuras de Datos I;B;RICARDO ANTONIO ZAMBRANO SEGURA
-PIS;Laboratorio de Introducción a la Informática;E;RICARDO ANTONIO ZAMBRANO SEGURA
-PIS;Laboratorio de Programación Orientada a Objetos;C;RICARDO ANTONIO ZAMBRANO SEGURA
-PIS;Lectura y Escritura;Q;SALOMON   RODRIGUEZ GUARIN
+PIS;Laboratorio de Introducciï¿½n a la Informï¿½tica;E;RICARDO ANTONIO ZAMBRANO SEGURA
+PIS;Laboratorio de Programaciï¿½n Orientada a Objetos;C;RICARDO ANTONIO ZAMBRANO SEGURA
+PIS;Lectura y Escritura;Q;SALOMON RODRIGUEZ GUARIN
 PIS;Calidad de Software;A;SANDRA LORENA BUITRON RUIZ
-PIS;Gestión de Proyectos Informáticos;A;SANDRA LORENA BUITRON RUIZ
-PIS;Laboratorio de Introducción a la Informática;C;SARA DONNELLY GARCES AGREDO
-PIS;Introducción a la Informática;C;SILER   AMADOR DONADO
-PIS;Electromagnetismo;FD;SONIA MARITZA HENAO DUQUE,VICTOR HUGO MONCAYO RUIZ
-PIS;Cálculo II;FC;VICTOR HUGO RUIZ GUACHETA
-PIS;Cálculo III;D;WILMER LIBARDO MOLINA YEPES
-PIS;Bases de Datos II;A;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Estructura de Lenguajes;A;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Laboratorio de Bases de Datos II;A;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Laboratorio de Bases de Datos II;B;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Laboratorio de Estructura de Lenguajes;A;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Laboratorio de Estructura de Lenguajes;B;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Laboratorio de Ingeniería de Software III- SE CANCELA ESTE GRUPO;B;WILSON ALFREDO ORTEGA ORDOÑEZ
-PIS;Ingeniería de Software III;A;WILSON LIBARDO PANTOJA YEPEZ
-PIS;Laboratorio de Ingeniería de Software III;A;WILSON LIBARDO PANTOJA YEPEZ
+PIS;Gestiï¿½n de Proyectos Informï¿½ticos;A;SANDRA LORENA BUITRON RUIZ
+PIS;Laboratorio de Introducciï¿½n a la Informï¿½tica;C;SARA DONNELLY GARCES AGREDO
+PIS;Introducciï¿½n a la Informï¿½tica;C;SILER AMADOR DONADO
+PIS;Electromagnetismo;FD;SONIA MARITZA HENAO DUQUE
+PIS;Cï¿½lculo II;FC;VICTOR HUGO RUIZ GUACHETA
+PIS;Cï¿½lculo III;D;WILMER LIBARDO MOLINA YEPES
+PIS;Bases de Datos II;A;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Estructura de Lenguajes;A;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Laboratorio de Bases de Datos II;A;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Laboratorio de Bases de Datos II;B;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Laboratorio de Estructura de Lenguajes;A;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Laboratorio de Estructura de Lenguajes;B;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Laboratorio de Ingenierï¿½a de Software III;B;WILSON ALFREDO ORTEGA ORDOï¿½EZ
+PIS;Ingenierï¿½a de Software III;A;WILSON LIBARDO PANTOJA YEPEZ
+PIS;Laboratorio de Ingenierï¿½a de Software III;A;WILSON LIBARDO PANTOJA YEPEZ
 PIS;Proyecto II;A;WILSON LIBARDO PANTOJA YEPEZ
-PIS;Cálculo III;FB;YANETH PATRICIA LOPEZ MUTIS
-PIS;Electromagnetismo;FC;YASSER HALIL OCHOA MUÑOZ
-PIS;Mecánica;FC;YASSER HALIL OCHOA MUÑOZ
-PIS;Mecánica;FD;YASSER HALIL OCHOA MUÑOZ
+PIS;Cï¿½lculo III;FB;YANETH PATRICIA LOPEZ MUTIS
+PIS;Electromagnetismo;FC;YASSER HALIL OCHOA MUï¿½OZ
+PIS;Mecï¿½nica;FC;YASSER HALIL OCHOA MUï¿½OZ
+PIS;Mecï¿½nica;FD;YASSER HALIL OCHOA MUï¿½OZ

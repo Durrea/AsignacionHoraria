@@ -1,42 +1,42 @@
-PIS;11465;Cálculo I ;FG;30;1
-PIS;11465;Cálculo I;FI;30;1
-PIS;SIS0101;Introducción a la Informática;C;25;1
-PIS;11465;Cálculo I;FA;30;1
-PIS;11465;Cálculo I;FF;30;1
-PIS;SIS0101;Introducción a la Informática;A;25;1
-PIS;SIS0101;Introducción a la Informática;B;25;1
-PIS;SIS0101;Introducción a la Informática;D;25;1
-PIS;SIS0103;Introducción a la PIS;A;30;1
-PIS;SIS0103;Introducción a la PIS;B;30;1
-PIS;SIS0102;Laboratorio de Introducción a la Informática;A;20;1
-PIS;SIS0102;Laboratorio de Introducción a la Informática;B;20;1
-PIS;SIS0102;Laboratorio de Introducción a la Informática;C;20;1
-PIS;SIS0102;Laboratorio de Introducción a la Informática;D;20;1
-PIS;SIS0102;Laboratorio de Introducción a la Informática;E;20;1
+PIS;11465;Cï¿½lculo I;FG;30;1
+PIS;11465;Cï¿½lculo I;FI;30;1
+PIS;SIS0101;Introducciï¿½n a la Informï¿½tica;C;25;1
+PIS;11465;Cï¿½lculo I;FA;30;1
+PIS;11465;Cï¿½lculo I;FF;30;1
+PIS;SIS0101;Introducciï¿½n a la Informï¿½tica;A;25;1
+PIS;SIS0101;Introducciï¿½n a la Informï¿½tica;B;25;1
+PIS;SIS0101;Introducciï¿½n a la Informï¿½tica;D;25;1
+PIS;SIS0103;Introducciï¿½n a la PIS;A;30;1
+PIS;SIS0103;Introducciï¿½n a la PIS;B;30;1
+PIS;SIS0102;Laboratorio de Introducciï¿½n a la Informï¿½tica;A;20;1
+PIS;SIS0102;Laboratorio de Introducciï¿½n a la Informï¿½tica;B;20;1
+PIS;SIS0102;Laboratorio de Introducciï¿½n a la Informï¿½tica;C;20;1
+PIS;SIS0102;Laboratorio de Introducciï¿½n a la Informï¿½tica;D;20;1
+PIS;SIS0102;Laboratorio de Introducciï¿½n a la Informï¿½tica;E;20;1
 PIS;22205;Lectura y Escritura;Q;30;1
 PIS;22205;Lectura y Escritura;R;30;1
-PIS;307;Álgebra Lineal;FD;10;2
-PIS;SIS201-L;Laboratorio de Programación Orientada a Objetos;A;20;2
-PIS;SIS201-L;Laboratorio de Programación Orientada a Objetos;B;20;2
-PIS;SIS201-L;Laboratorio de Programación Orientada a Objetos;C;20;2
-PIS;SIS201-L;Laboratorio de Programación Orientada a Objetos;D;20;2
-PIS;307;Álgebra Lineal;I;35;2
-PIS;307;Álgebra Lineal;J;35;2
-PIS;311-1;Cálculo II;F;40;2
-PIS;311-1;Cálculo II;FC;30;2
-PIS;318-1;Laboratorio de Mecánica;FA;15;2
-PIS;318-1;Laboratorio de Mecánica;FB;15;2
-PIS;318-1;Laboratorio de Mecánica;N;15;2
-PIS;318-1;Laboratorio de Mecánica;O;15;2
-PIS;312-1;Mecánica;FC;40;2
-PIS;312-1;Mecánica;FD;40;2
-PIS;SIS201;Programación Orientada a Objetos;A;25;2
-PIS;SIS201;Programación Orientada a Objetos;B;25;2
-PIS;SIS201;Programación Orientada a Objetos;C;25;2
+PIS;307;ï¿½lgebra Lineal;FD;10;2
+PIS;SIS201-L;Laboratorio de Programaciï¿½n Orientada a Objetos;A;20;2
+PIS;SIS201-L;Laboratorio de Programaciï¿½n Orientada a Objetos;B;20;2
+PIS;SIS201-L;Laboratorio de Programaciï¿½n Orientada a Objetos;C;20;2
+PIS;SIS201-L;Laboratorio de Programaciï¿½n Orientada a Objetos;D;20;2
+PIS;307;ï¿½lgebra Lineal;I;35;2
+PIS;307;ï¿½lgebra Lineal;J;35;2
+PIS;311-1;Cï¿½lculo II;F;40;2
+PIS;311-1;Cï¿½lculo II;FC;30;2
+PIS;318-1;Laboratorio de Mecï¿½nica;FA;15;2
+PIS;318-1;Laboratorio de Mecï¿½nica;FB;15;2
+PIS;318-1;Laboratorio de Mecï¿½nica;N;15;2
+PIS;318-1;Laboratorio de Mecï¿½nica;O;15;2
+PIS;312-1;Mecï¿½nica;FC;40;2
+PIS;312-1;Mecï¿½nica;FD;40;2
+PIS;SIS201;Programaciï¿½n Orientada a Objetos;A;25;2
+PIS;SIS201;Programaciï¿½n Orientada a Objetos;B;25;2
+PIS;SIS201;Programaciï¿½n Orientada a Objetos;C;25;2
 PIS;SIS301;Estructuras de Datos I;B;30;3
-PIS;SIS301L;Laboratorio de Estructuras de Datos I  ESTE GRUPO SE CANCELA;C;16;3
-PIS;316-1;Cálculo III;D;35;3
-PIS;316-1;Cálculo III;FB;18;3
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;C;16;3
+PIS;316-1;Cï¿½lculo III;D;35;3
+PIS;316-1;Cï¿½lculo III;FB;18;3
 PIS;317-1;Electromagnetismo;FC;35;3
 PIS;317-1;Electromagnetismo;FD;35;3
 PIS;SIS301;Estructuras de Datos I;A;30;3
@@ -55,51 +55,51 @@ PIS;SIS401L;Laboratorio de Estructuras de Datos II;B;16;4
 PIS;323-1;Vibraciones y Ondas;D;32;4
 PIS;323-1;Vibraciones y Ondas;E;32;4
 PIS;SIS504;Bases de Datos II;A;20;5
-PIS;SIS504;Bases de Datos II  - Nuevo curso;B;20;5
-PIS;SIS503;Ingeniería de Software I;A;35;5
+PIS;SIS504;Bases de Datos II;B;20;5
+PIS;SIS503;Ingenierï¿½a de Software I;A;35;5
 PIS;SIS504L;Laboratorio de Bases de Datos II;A;17;5
-PIS;SIS504L;Laboratorio de Bases de Datos II  - Nuevo Curso;C;17;5
-PIS;SIS503L;Laboratorio de Ingeniería de Software I;A;18;5
-PIS;SIS503L;Laboratorio de Ingeniería de Software I;B;18;5
-PIS;SIS501;Teoría de la Computación;A;35;5
-PIS;328-1;Análisis Numérico;A;20;5
-PIS;328-1;Análisis Numérico;B;15;5
+PIS;SIS504L;Laboratorio de Bases de Datos II;C;17;5
+PIS;SIS503L;Laboratorio de Ingenierï¿½a de Software I;A;18;5
+PIS;SIS503L;Laboratorio de Ingenierï¿½a de Software I;B;18;5
+PIS;SIS501;Teorï¿½a de la Computaciï¿½n;A;35;5
+PIS;328-1;Anï¿½lisis Numï¿½rico;A;20;5
+PIS;328-1;Anï¿½lisis Numï¿½rico;B;15;5
 PIS;SIS502;Arquitectura Computacional;A;23;5
 PIS;SIS504L;Laboratorio de Bases de Datos II;B;17;5
 PIS;SIS601;Estructura de Lenguajes;A;30;6
-PIS;SIS602;Ingeniería de Software II;A;28;6
-PIS;SIS602L;Laboratorio de Ingeniería de Software II SE CANCELA ESTE GRUPO;A;12;6
-PIS;SIS602L;Laboratorio de Ingeniería de Software II;A;18;6
-PIS;MAT131;Estadística y Probabilidad;FB;35;6
+PIS;SIS602;Ingenierï¿½a de Software II;A;28;6
+PIS;SIS602L;Laboratorio de Ingenierï¿½a de Software II;A;12;6
+PIS;SIS602L;Laboratorio de Ingenierï¿½a de Software II;A;18;6
+PIS;MAT131;Estadï¿½stica y Probabilidad;FB;35;6
 PIS;SIS601L;Laboratorio de Estructura de Lenguajes;A;15;6
 PIS;SIS601L;Laboratorio de Estructura de Lenguajes;B;15;6
 PIS;SIS603L;Laboratorio de Sistemas Operativos;A;13;6
 PIS;SIS603L;Laboratorio de Sistemas Operativos;B;15;6
 PIS;SIS603;Sistemas Operativos;A;33;6
-PIS;SIS703;Ingeniería de Software III;A;30;7
+PIS;SIS703;Ingenierï¿½a de Software III;A;30;7
 PIS;333-1;Inteligencia Artificial;A;20;7
-PIS;333-1;Inteligencia Artificial SE CANCELA ESTE GRUPO;B;20;7
-PIS;SIS703L;Laboratorio de Ingeniería de Software III;A;18;7
-PIS;SIS703L;Laboratorio de Ingeniería de Software III- SE CANCELA ESTE GRUPO;B;14;7
-PIS;SIS702L;Laboratorio de Sistemas Distribuidos SE CANCELA ESTE GRUPO;B;20;7
+PIS;333-1;Inteligencia Artificial;B;20;7
+PIS;SIS703L;Laboratorio de Ingenierï¿½a de Software III;A;18;7
+PIS;SIS703L;Laboratorio de Ingenierï¿½a de Software III;B;14;7
+PIS;SIS702L;Laboratorio de Sistemas Distribuidos;B;20;7
 PIS;SIS702;Sistemas Distribuidos;A;18;7
 PIS;SIS702;Sistemas Distribuidos;B;18;7
-PIS;SIS706;Teoría y Dinámica de Sistemas;A;30;7
+PIS;SIS706;Teorï¿½a y Dinï¿½mica de Sistemas;A;30;7
 PIS;SIS702L;Laboratorio de Sistemas Distribuidos;A;20;7
-PIS;SIS801;Metodología de la Investigación;A;30;7
+PIS;SIS801;Metodologï¿½a de la Investigaciï¿½n;A;30;7
 PIS;SIS803;Calidad de Software;B;18;8
 PIS;346-1;Proyecto I;B;20;8
 PIS;SIS803;Calidad de Software;A;18;8
-PIS;338;Investigación de Operaciones;A;35;8
+PIS;338;Investigaciï¿½n de Operaciones;A;35;8
 PIS;346-1;Proyecto I;A;20;8
 PIS;TLM815;Redes;A;20;8
 PIS;TLM815;Redes;B;20;8
-PIS;SIS901;Gestión de Proyectos Informáticos;A;30;9
+PIS;SIS901;Gestiï¿½n de Proyectos Informï¿½ticos;A;30;9
 PIS;SIS902;Proyecto II;A;28;9
-PIS;SIS902;Proyecto II     CANCELAR ESTE CURSO;B;28;9
-PIS;339;Fundamentos de Economía;A;25;9
-PIS;344;Gestión Empresarial;A;25;9
-PIS;351;Legislación Laboral;A;35;9
+PIS;SIS902;Proyecto II;B;28;9
+PIS;339;Fundamentos de Economï¿½a;A;25;9
+PIS;344;Gestiï¿½n Empresarial;A;25;9
+PIS;351;Legislaciï¿½n Laboral;A;35;9
 PIS;353;Trabajo de Grado;A;120;10
-PIS;EFISH 409;Formación ciudadana (para primer semestre);A;30;1
-PIS;EFISH 524;Pensamiento fotográfico (para primer semestre);B;30;1
+PIS;EFISH 409;Formaciï¿½n ciudadana;A;30;1
+PIS;EFISH 524;Pensamiento fotogrï¿½fico;B;30;1
