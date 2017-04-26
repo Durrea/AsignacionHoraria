@@ -68,7 +68,7 @@ public class CargueDatos {
         } catch (Exception ex) {
             System.out.println("Error");
         }
-        return materias;
+        return mats;
     }
     public void CargarDatos()
     {
