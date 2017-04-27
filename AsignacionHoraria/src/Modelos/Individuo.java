@@ -45,9 +45,11 @@ public class Individuo implements Individual {
             for (int j = i + 1; j < size; j++) {
 
                 newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
-                Gen auxIntercambio = newSolution.getGenes().get(i);
-                newSolution.getGenes().set(i, newSolution.getGenes().get(j));
-                newSolution.getGenes().set(j, auxIntercambio);
+                ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+                newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
+                //newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+                newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+                //newSolution.getGenes().set(j, auxIntercambio);
 
                 newSolution.getEvaluacion();
                 neighbourhood.add(newSolution);
@@ -76,7 +78,7 @@ public class Individuo implements Individual {
 
     @Override
     public double getValue(int position) {
-        return this.getGenes().get(position).getValue();
+        return this.evaluacion;
     }
 
     @Override
