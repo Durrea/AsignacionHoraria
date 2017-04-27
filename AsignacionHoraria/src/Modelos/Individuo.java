@@ -76,7 +76,7 @@ public class Individuo implements Individual {
 
     @Override
     public double getValue(int position) {
-        return 0;
+        return position;
     }
 
     @Override
