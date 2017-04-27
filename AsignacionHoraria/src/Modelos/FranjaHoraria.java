@@ -14,4 +14,27 @@ public class FranjaHoraria {
     private int franja;
     private int dia;
 
+    public FranjaHoraria(int franja, int dia) {
+        this.franja = franja;
+        this.dia = dia;
+    }
+
+    public int getFranja() {
+        return franja;
+    }
+
+    public void setFranja(int franja) {
+        this.franja = franja;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+    
+    
+
 }

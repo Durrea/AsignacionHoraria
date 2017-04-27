@@ -5,6 +5,8 @@
  */
 package Servicios;
 
+import Modelos.FranjaHoraria;
+import Modelos.InfoAulas;
 import Modelos.InfoDocente;
 import Modelos.InfoMaterias;
 import java.io.BufferedReader;
@@ -22,11 +24,15 @@ public class CargueDatos {
     
     private ArrayList<InfoDocente> docentes;
     private ArrayList<InfoMaterias> materias;
+    private ArrayList<InfoAulas> aulas;
+    private ArrayList<FranjaHoraria> franjas;
     
     public CargueDatos()
     {
         this.docentes = new ArrayList();
         this.materias = new ArrayList();
+        this.aulas = new ArrayList();
+        this.franjas = new ArrayList();
     }
     public ArrayList CargarDatosProfesor()
     {
@@ -108,7 +114,49 @@ public class CargueDatos {
         }
         
     }
-
+    public void CargarDatosAulas()
+    {
+        FileReader file;
+        BufferedReader buffer;
+        try
+        {
+            String linea;
+            file = new FileReader("salones.txt");
+            buffer = new BufferedReader(file);
+            while((linea = buffer.readLine())!=null)
+            {
+                String[] datos = linea.split(";");
+                InfoAulas aula = new InfoAulas(Integer.parseInt(datos[0]),datos[1],Integer.parseInt(datos[2]),datos[3]);
+                this.aulas.add(aula);
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void CargarDatosFranjas()
+    {
+        FileReader file;
+        BufferedReader buffer;
+        try
+        {
+            String linea;
+            file = new FileReader("franjas.txt");
+            buffer = new BufferedReader(file);
+            while((linea = buffer.readLine())!=null)
+            {
+                String[] datos = linea.split(";");
+                FranjaHoraria franja = new FranjaHoraria(Integer.parseInt(datos[0]),Integer.parseInt(datos[1]));
+                this.franjas.add(franja);
+            }
+            
+        }catch(Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public ArrayList<InfoDocente> getDocentes() {
         return docentes;
     }
