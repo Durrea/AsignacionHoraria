@@ -31,7 +31,6 @@ public class Memetico implements IMemetico{
             System.out.println(datos.getMaterias().get(i).getNombreMateria());
         }
        
-        
         return genes;
     }
 

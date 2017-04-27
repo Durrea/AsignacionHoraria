@@ -82,6 +82,9 @@ public class CargueDatos {
         BufferedReader buffer;
         this.docentes = CargarDatosProfesor();
         this.materias = CargarDatosMaterias();
+        CargarDatosAulas();
+        CargarDatosFranjas();
+        
         try{
             String linea; 
             file = new FileReader("profesor_curso.txt");

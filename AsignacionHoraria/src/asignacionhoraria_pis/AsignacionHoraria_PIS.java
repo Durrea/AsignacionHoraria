@@ -5,6 +5,7 @@
  */
 package asignacionhoraria_pis;
 
+import AlgoritmoMemetico.Memetico;
 import Modelos.InfoDocente;
 import Modelos.InfoMaterias;
 import Servicios.CargueDatos;
@@ -27,13 +28,19 @@ public class AsignacionHoraria_PIS {
         ArrayList<InfoMaterias> materias = c.getMaterias();
         ArrayList<InfoDocente> docentes = c.getDocentes();
         //materias = c.CargarDatosMaterias();
-        for (int i = 0; i < materias.size(); i++) 
-        {
-            if(materias.get(i).getPosDocente() == -1)
-            {
-            System.out.println(materias.get(i).getNombreMateria()+" "+materias.get(i).getGrupoMateria()+" "+materias.get(i).getPosDocente());
-            }
-        }
+        //for (int i = 0; i < materias.size(); i++) 
+        //{
+        //    if(materias.get(i).getPosDocente() == -1)
+        //    {
+        //    System.out.println(materias.get(i).getNombreMateria()+" "+materias.get(i).getGrupoMateria()+" "+materias.get(i).getPosDocente());
+        //    }
+        //}
+        
+        Memetico memetico = new Memetico();
+        
+        memetico.generarPoblacionInicial();
+        
+        
         /*for (int i = 0; i < docentes.size(); i++) 
         {
             System.out.println(docentes.get(i).getNombreDocente());
