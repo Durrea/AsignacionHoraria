@@ -29,7 +29,10 @@ public class AsignacionHoraria_PIS {
         //materias = c.CargarDatosMaterias();
         for (int i = 0; i < materias.size(); i++) 
         {
+            if(materias.get(i).getPosDocente() == -1)
+            {
             System.out.println(materias.get(i).getNombreMateria()+" "+materias.get(i).getGrupoMateria()+" "+materias.get(i).getPosDocente());
+            }
         }
         /*for (int i = 0; i < docentes.size(); i++) 
         {
