@@ -6,6 +6,8 @@
 package asignacionhoraria_pis;
 
 import AlgoritmoMemetico.Memetico;
+import Modelos.Gen;
+import Modelos.Individuo;
 import Modelos.InfoDocente;
 import Modelos.InfoMaterias;
 import Servicios.CargueDatos;
@@ -37,8 +39,11 @@ public class AsignacionHoraria_PIS {
         //}
         
         Memetico memetico = new Memetico();
-        
-        memetico.generarPoblacionInicial();
+        ArrayList<Gen> genes = new ArrayList<Gen>();
+        genes = memetico.generarPoblacionInicial();
+        Individuo individuo = new Individuo(genes);
+        double evaluacion = individuo.getEvaluacion();
+        System.out.println("Evaluacion del chamaco: " + evaluacion);
         
         
         /*for (int i = 0; i < docentes.size(); i++) 

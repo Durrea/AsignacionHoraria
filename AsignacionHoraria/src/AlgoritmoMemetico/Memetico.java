@@ -30,6 +30,8 @@ public class Memetico implements IMemetico{
         for (int i = 0; i < genes.size(); i++) {
             
             System.out.println("Materia: " + genes.get(i).getMateria().getNombreMateria());
+            System.out.println("Docente: " + genes.get(i).getMateria().getPosDocente());
+            System.out.println("Tipo: " + genes.get(i).getMateria().getTipoMateria());
             System.out.println("Franja 1: " +  genes.get(i).getHorarios().get(0).getDia()+":"+
                     genes.get(i).getHorarios().get(0).getFranja()+
                     "\nFranja2: "+genes.get(i).getHorarios().get(1).getDia()+":"+genes.get(i).getHorarios().get(1).getFranja());

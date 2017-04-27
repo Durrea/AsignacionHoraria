@@ -5,24 +5,25 @@
  */
 package Modelos;
 
+import algoritmo_base.Individual;
 import java.util.ArrayList;
 
 /**
  *
  * @author ingesis
  */
-public class Individuo {
-    
-    private ArrayList<Gen> genes;
-    private double adaptacion;
+public class Individuo implements Individual {
 
-    public Individuo(ArrayList<Gen> genes, double adaptacion) {
+    private ArrayList<Gen> genes;
+    private double evaluacion;
+
+    public Individuo(ArrayList<Gen> genes) {
         this.genes = genes;
-        this.adaptacion = adaptacion;
+        this.evaluacion = 0;
     }
 
     public Individuo() {
-        
+
     }
 
     public ArrayList<Gen> getGenes() {
@@ -33,14 +34,139 @@ public class Individuo {
         this.genes = genes;
     }
 
-    public double getAdaptacion() {
-        return adaptacion;
+    @Override
+    public ArrayList<Individual> getNeighbourhood() {
+        int size = this.genes.size();
+        Individuo newSolution;
+        ArrayList<Individual> neighbourhood = new ArrayList();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = i + 1; j < size; j++) {
+
+                newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
+                Gen auxIntercambio = newSolution.getGenes().get(i);
+                newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+                newSolution.getGenes().set(j, auxIntercambio);
+
+                newSolution.getEvaluacion();
+                neighbourhood.add(newSolution);
+            }
+        }
+        return neighbourhood;
     }
 
-    public void setAdaptacion(double adaptacion) {
-        this.adaptacion = adaptacion;
+    @Override
+    public double getEvaluacion() {
+
+        int rest1 = evaluarRestriccionSalonHora();
+        int rest2 = evaluarRestriccionProfesorHora();
+        int rest3 = evaluarRestriccionSemestreHora();
+        int rest4 = evaluarRestriccionTipoMateria();
+
+        int evaluacion = rest1 + rest2 + rest3 + rest4;
+
+        return evaluacion;
     }
 
-    
-    
+    @Override
+    public int getIndividualSize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getValue(int position) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Individual clonar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private int evaluarRestriccionSalonHora() {
+
+        int penalizacion = 0; //Aumento de penalización -> 5
+
+        for (int i = 0; i < this.genes.size() - 1; i++) {
+            for (int j = i + 1; j < this.genes.size(); j++) {
+
+                for (int k = 0; k < 2; k++) {
+                    if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                        if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                            if (genes.get(i).getAulas().get(k).getIdsalon() == genes.get(j).getAulas().get(k).getIdsalon()) {
+                                penalizacion = penalizacion + 5;
+                                System.out.println("Penalizacion SalonHora");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return penalizacion;
+    }
+
+    private int evaluarRestriccionProfesorHora() {
+        int penalizacion = 0; //Aumento de penalización -> 5
+
+        for (int i = 0; i < this.genes.size() - 1; i++) {
+            for (int j = i + 1; j < this.genes.size(); j++) {
+
+                if (genes.get(i).getMateria().getPosDocente() == genes.get(j).getMateria().getPosDocente()) {
+                    for (int k = 0; k < 2; k++) {
+                        if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                            if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                                penalizacion = penalizacion + 5;
+                                System.out.println("Penalizacion ProfesorHora");
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return penalizacion;
+    }
+
+    private int evaluarRestriccionSemestreHora() {
+        int penalizacion = 0; //Aumento de penalización -> 5
+
+        for (int i = 0; i < this.genes.size() - 1; i++) {
+            for (int j = i + 1; j < this.genes.size(); j++) {
+
+                if (genes.get(i).getMateria().getSemestre() == genes.get(j).getMateria().getSemestre()) {
+                    for (int k = 0; k < 2; k++) {
+                        if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                            if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                                penalizacion = penalizacion + 2;
+                                System.out.println("Penalizacion SemestreHora");
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return penalizacion;
+    }
+
+    private int evaluarRestriccionTipoMateria() {
+        int penalizacion = 0; //Aumento de penalización -> 5
+
+        for (int i = 0; i < this.genes.size(); i++){
+
+                for (int k = 0; k < genes.get(i).getAulas().size(); k++) {
+                    if (!genes.get(i).getMateria().getTipoMateria().equalsIgnoreCase(genes.get(i).getAulas().get(k).getTipo())) {
+                        
+                            penalizacion = penalizacion + 2;
+                            //System.out.println(genes.get(i).getAulas().get(k).getTipo());
+                            System.out.println("Penalizacion TipoMateria");
+                    }
+                }
+        }
+
+        return penalizacion;
+    }
+
 }
