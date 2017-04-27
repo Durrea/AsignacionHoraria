@@ -5,15 +5,39 @@
  */
 package AlgoritmoMemetico;
 
+import Modelos.Gen;
+import Servicios.CargueDatos;
 import java.util.ArrayList;
 
 /**
  *
- * @author Eduardo
+ * @author hp
  */
-public interface Memetico {
+public class Memetico implements IMemetico{
+
+    @Override
+    public void ejecutar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList generarPoblacionInicial() {
+       
+        ArrayList<Gen> genes = null;
+        CargueDatos datos = new CargueDatos();
+        
+        for (int i = 0; i < datos.getMaterias().size(); i++) {
+            
+            System.out.println(datos.getMaterias().get(i).getNombreMateria());
+        }
+       
+        
+        return genes;
+    }
+
+    @Override
+    public double funcionAdaptacion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    public void ejecutar();
-    public ArrayList generarPoblacionInicial();
-    public double funcionAdaptacion();
 }
