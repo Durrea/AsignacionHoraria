@@ -23,12 +23,15 @@ public class Memetico implements IMemetico{
     @Override
     public ArrayList generarPoblacionInicial() {
        
-        ArrayList<Gen> genes = null;
+        ArrayList<Gen> genes = new ArrayList<>();
         CargueDatos datos = new CargueDatos();
+        datos.CargarDatos();
         
         for (int i = 0; i < datos.getMaterias().size(); i++) {
             
             System.out.println(datos.getMaterias().get(i).getNombreMateria());
+            
+            
         }
        
         return genes;

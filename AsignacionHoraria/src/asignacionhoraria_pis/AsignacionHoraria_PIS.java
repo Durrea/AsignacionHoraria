@@ -23,10 +23,10 @@ public class AsignacionHoraria_PIS {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        CargueDatos c = new CargueDatos();
-        c.CargarDatos();
-        ArrayList<InfoMaterias> materias = c.getMaterias();
-        ArrayList<InfoDocente> docentes = c.getDocentes();
+        //CargueDatos c = new CargueDatos();
+        //c.CargarDatos();
+        //ArrayList<InfoMaterias> materias = c.getMaterias();
+        //ArrayList<InfoDocente> docentes = c.getDocentes();
         //materias = c.CargarDatosMaterias();
         //for (int i = 0; i < materias.size(); i++) 
         //{
