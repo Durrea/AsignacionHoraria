@@ -29,11 +29,11 @@ public class RTR implements Recombinacion
         
         for (int i = 0; i < genes_1.size(); i++) 
         {
-            if(genes_1.get(i).getCosto() == genes_2.get(i).getCosto())
+            //if(genes_1.get(i).getCosto() == genes_2.get(i).getCosto())
             {
                 resultado.add(genes_1.get(i));
             }
-            else
+            //else
             {
                 
             }

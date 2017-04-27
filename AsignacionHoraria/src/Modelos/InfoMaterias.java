@@ -20,11 +20,11 @@ public class InfoMaterias {
     private int cupoMateria;
     private int semestre;
     private int posDocente;
-    private ArrayList<FranjaHoraria> horariosCoste;
+    private String tipoMateria;
  
     public InfoMaterias() {}
 
-    public InfoMaterias(String nombrePrograma, String codigoMateria, String nombreMateria, String grupoMateria, int cupoMateria, int semestre) {
+    public InfoMaterias(String nombrePrograma, String codigoMateria, String nombreMateria, String grupoMateria, int cupoMateria, int semestre,String tipoMateria) {
         this.nombrePrograma = nombrePrograma;
         this.codigoMateria = codigoMateria;
         this.nombreMateria = nombreMateria;
@@ -32,7 +32,7 @@ public class InfoMaterias {
         this.cupoMateria = cupoMateria;
         this.semestre = semestre;
         this.posDocente = -1;
-        this.horariosCoste = new ArrayList();
+        this.tipoMateria = tipoMateria;
     }
 
     public String getNombrePrograma() {
@@ -90,13 +90,12 @@ public class InfoMaterias {
     public void setSemestre(int semestre) {
         this.semestre = semestre;
     }
-
-    public ArrayList<FranjaHoraria> getHorariosCoste() {
-        return horariosCoste;
-    }
-
-    public void setHorariosCoste(ArrayList<FranjaHoraria> horariosCoste) {
-        this.horariosCoste = horariosCoste;
-    }
     
+    public String getTipoMateria() {
+        return tipoMateria;
+    }
+
+    public void setTipoMateria(String tipoMateria) {
+        this.tipoMateria = tipoMateria;
+    }
 }

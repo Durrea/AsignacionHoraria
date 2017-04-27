@@ -61,12 +61,12 @@ public class CargueDatos {
             while((linea = buffer.readLine())!=null)
             {
                 String[] datosmat = linea.split(";");
-                InfoMaterias materia = new InfoMaterias(datosmat[0],datosmat[1],datosmat[2],datosmat[3],Integer.parseInt(datosmat[4]),Integer.parseInt(datosmat[5]));
+                InfoMaterias materia = new InfoMaterias(datosmat[0],datosmat[1],datosmat[2],datosmat[3],Integer.parseInt(datosmat[4]),Integer.parseInt(datosmat[5]),datosmat[6]);
                 mats.add(materia);
             }
             buffer.close();
         } catch (Exception ex) {
-            System.out.println("Error");
+            System.out.println("Error CargueDatosMaterias");
         }
         return mats;
     }

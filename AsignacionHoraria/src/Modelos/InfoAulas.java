@@ -17,14 +17,12 @@ public class InfoAulas {
     private String nombreAula;
     private int capacidad;
     private String tipo;
-    private ArrayList<FranjaHoraria> horarios;
 
     public InfoAulas(int idsalon, String nombreAula, int capacidad, String tipo) {
         this.idsalon = idsalon;
         this.nombreAula = nombreAula;
         this.capacidad = capacidad;
         this.tipo = tipo;
-        this.horarios = new ArrayList();
     }
 
     public int getIdsalon() {
@@ -59,15 +57,6 @@ public class InfoAulas {
         this.tipo = tipo;
     }
 
-    public ArrayList<FranjaHoraria> getHorarios() {
-        return horarios;
-    }
-
-    public void setHorarios(ArrayList<FranjaHoraria> horarios) {
-        this.horarios = horarios;
-    }
-
-    
         
     
 }
