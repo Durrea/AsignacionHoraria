@@ -109,7 +109,7 @@ public class Memetico implements IMemetico {
             gen.getAulas().add(datos.getAulas().get(aula));
             aula = (int) (Math.random() * datos.getAulas().size());
             gen.getAulas().add(datos.getAulas().get(aula));
-
+            gen.setValue(i+1);
             genes.add(gen);
 
         }
@@ -122,7 +122,7 @@ public class Memetico implements IMemetico {
 
         ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
         configuracion.setTipoProblema(false);
-        configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 1000);
+        configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 5);
         configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
         configuracion.setListaTabu(new TabuListMovimientos(), 5);
 

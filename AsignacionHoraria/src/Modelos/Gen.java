@@ -16,6 +16,7 @@ public class Gen {
     private InfoMaterias materia;
     private ArrayList<FranjaHoraria> horarios;
     private ArrayList<InfoAulas> aulas;  
+    private int value;
     
     public Gen()
     {
@@ -29,6 +30,15 @@ public class Gen {
         this.aulas = aulas;
     }
 
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    
     public InfoMaterias getMateria() {
         return materia;
     }

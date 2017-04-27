@@ -76,18 +76,13 @@ public class Individuo implements Individual {
 
     @Override
     public double getValue(int position) {
-        return position;
+        return this.getGenes().get(position).getValue();
     }
 
     @Override
     public Individual clonar() {
         
-        try {
-            return (Individual) this.clone();
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(Individuo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return new Individuo(this.genes);
     }
 
     private int evaluarRestriccionSalonHora() {
@@ -175,6 +170,5 @@ public class Individuo implements Individual {
         }
 
         return penalizacion;
-    }
-
+    }    
 }
