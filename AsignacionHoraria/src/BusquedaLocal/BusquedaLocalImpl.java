@@ -5,6 +5,7 @@
  */
 package BusquedaLocal;
 
+import Modelos.Individuo;
 import algoritmo_base.Individual;
 
 /**
@@ -13,10 +14,23 @@ import algoritmo_base.Individual;
  */
 public class BusquedaLocalImpl implements IBUsquedaLocal{
 
+    public int NUM_ITERACIONES;
     @Override
-    public Individual LocalSearchEngine(Individual individuo) {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Individual LocalSearchEngine(Individual current) 
+    {
+        int i = 0;
+        Individuo nuevo;
+        Individuo actual = (Individuo)current;
+        while(i<this.NUM_ITERACIONES)
+        {
+            nuevo = (Individuo) actual.getNeighbourhood(actual);
+            if(nuevo.ObtenerEvaluacion()<actual.ObtenerEvaluacion())
+            {
+                actual = nuevo;
+            }
+            i++;
+        }
+        return actual;
     }
     
 }

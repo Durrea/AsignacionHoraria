@@ -5,15 +5,16 @@
  */
 package AlgoritmoMemetico;
 
+import BusquedaLocal.BusquedaLocalImpl;
 import Modelos.Gen;
 import Modelos.Individuo;
 import Servicios.CargueDatos;
-import algoritmo_base.ConfiguracionTabuSearch;
+//import algoritmo_base.ConfiguracionTabuSearch;
 import algoritmo_base.Individual;
-import algoritmo_base.TabuSearch;
-import algoritmo_base.criterios_aspiracion.CriteriosAspiracionEnum;
-import algoritmo_base.criterios_parada.CriteriosParadaEnum;
-import algoritmo_base.lista_tabu.TabuListMovimientos;
+//import algoritmo_base.TabuSearch;
+//import algoritmo_base.criterios_aspiracion.CriteriosAspiracionEnum;
+//import algoritmo_base.criterios_parada.CriteriosParadaEnum;
+//import algoritmo_base.lista_tabu.TabuListMovimientos;
 import java.util.ArrayList;
 
 /**
@@ -118,16 +119,9 @@ public class Memetico implements IMemetico {
 
     private Individuo localSearchEngine(Individuo individuo) {
 
-        TabuSearch busqueda = new TabuSearch();
-
-        ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
-        configuracion.setTipoProblema(false);
-        configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 5);
-        configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
-        configuracion.setListaTabu(new TabuListMovimientos(), 5);
-
-        Individuo best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
-
+        BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
+        busqueda.NUM_ITERACIONES = 30;
+        Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
         return best;
     }
 }

@@ -41,6 +41,8 @@ public class AsignacionHoraria_PIS {
         Memetico memetico = new Memetico();
         ArrayList<Individuo> poblacion = new ArrayList<Individuo>();
         poblacion = memetico.generarPoblacionInicial();
+        //Individuo ind = new Individuo();
+        //poblacion = ind.OrdenarIndividuos(poblacion, 0, poblacion.size()-1);
         
         for (int i = 0; i < memetico.poblacion.size(); i++) 
         {

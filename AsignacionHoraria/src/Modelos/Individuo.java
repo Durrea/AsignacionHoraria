@@ -7,6 +7,7 @@ package Modelos;
 
 import algoritmo_base.Individual;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +38,10 @@ public class Individuo implements Individual {
     }
 
     @Override
-    public ArrayList<Individual> getNeighbourhood() {
+    public Individual getNeighbourhood(Individual individuo) {
         int size = this.genes.size();
         Individuo newSolution;
-        ArrayList<Individual> neighbourhood = new ArrayList();
+        ArrayList<Individuo> neighbourhood = new ArrayList();
         for (int i = 0; i < size - 1; i++) {
             for (int j = i + 1; j < size; j++) {
 
@@ -55,9 +56,17 @@ public class Individuo implements Individual {
                 neighbourhood.add(newSolution);
             }
         }
-        return neighbourhood;
+        neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size()-1);
+        return neighbourhood.get(0);
+        //Collections.sort(neighbourhood,Individuo.this.evaluacion);
+        //return neighbourhood;
     }
-
+    
+    public double ObtenerEvaluacion()
+    {
+        return this.evaluacion;
+    }
+    
     @Override
     public double getEvaluacion() {
 
@@ -172,5 +181,38 @@ public class Individuo implements Individual {
         }
 
         return penalizacion;
-    }    
+    }
+    public ArrayList OrdenarIndividuos(ArrayList<Individuo> individuos, int izq, int der)
+    {
+        //individuos = (ArrayList<Individuo>) individuos;
+        Individuo pivote=individuos.get(izq); // tomamos primer elemento como pivote
+        int i=izq; // i realiza la búsqueda de izquierda a derecha
+        int j=der; // j realiza la búsqueda de derecha a izquierda
+        Individuo ind;
+        int aux;
+ 
+        while(i<j)
+        {            // mientras no se crucen las búsquedas
+            while(individuos.get(i).getEvaluacion()<=pivote.getEvaluacion() && i<j) i++; // busca elemento mayor que pivote
+            while(individuos.get(j).getEvaluacion()>pivote.getEvaluacion()) j--;         // busca elemento menor que pivote
+            if (i<j) 
+            {
+               ind = individuos.get(i); // si no se han cruzado                      
+               //aux= A[i];                  // los intercambia
+               individuos.set(i, individuos.get(j));
+               //A[i]=A[j];
+               individuos.set(j, ind);
+               //A[j]=aux;
+            }
+        }
+        individuos.set(izq, individuos.get(j));
+         //A[izq]=A[j]; // se coloca el pivote en su lugar de forma que tendremos
+        individuos.set(j, pivote);
+         //A[j]=pivote; // los menores a su izquierda y los mayores a su derecha
+        if(izq<j-1)
+            OrdenarIndividuos(individuos,izq,j-1); // ordenamos subarray izquierdo
+        if(j+1 <der)
+            OrdenarIndividuos(individuos,j+1,der); // ordenamos subarray derecho
+        return individuos;
+    }
 }

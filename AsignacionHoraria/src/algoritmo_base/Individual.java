@@ -18,7 +18,7 @@ public interface Individual {
      * @return el conjunto de individuos generados a partir del individuo actual
      * (el vecindario)
      */
-    public ArrayList<Individual> getNeighbourhood();
+    public Individual getNeighbourhood(Individual individuo);
     /**
      * Permite obtener la evaluación del individuo. La forma de calcular la evaluación
      * depende del problema estudiado
