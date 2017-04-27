@@ -42,41 +42,57 @@ public class Individuo implements Individual {
         int size = this.genes.size();
         Individuo newSolution;
         ArrayList<Individuo> neighbourhood = new ArrayList();
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = i + 1; j < size; j++) {
+        for (int i = 0; i < size/4; i++) {
+            /*for (int j = i + 1; j < size; j++) {
 
-                newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
-                ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
-                newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
-                //newSolution.getGenes().set(i, newSolution.getGenes().get(j));
-                newSolution.getGenes().get(j).setHorarios(auxIntercambio);
-                //newSolution.getGenes().set(j, auxIntercambio);
+             newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
+             ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+             newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
+             //newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+             newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+             //newSolution.getGenes().set(j, auxIntercambio);
 
-                newSolution.getEvaluacion();
-                neighbourhood.add(newSolution);
+             newSolution.getEvaluacion();
+             neighbourhood.add(newSolution);
+             }*/
+
+            newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
+            ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+            int j = (int) (Math.random() * newSolution.genes.size());
+            while (i == j) {
+                j = (int) (Math.random() * newSolution.genes.size());
             }
+            newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
+            newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+            newSolution.getEvaluacion();
+            neighbourhood.add(newSolution);
+
         }
-        neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size()-1);
+        neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size() - 1);
         return neighbourhood.get(0);
         //Collections.sort(neighbourhood,Individuo.this.evaluacion);
         //return neighbourhood;
     }
-    
-    public double ObtenerEvaluacion()
-    {
+
+    public double ObtenerEvaluacion() {
         return this.evaluacion;
     }
-    
+
     @Override
     public double getEvaluacion() {
 
-        int rest1 = evaluarRestriccionSalonHora();
-        int rest2 = evaluarRestriccionProfesorHora();
-        int rest3 = evaluarRestriccionSemestreHora();
-        int rest4 = evaluarRestriccionTipoMateria();
+        /*int rest1 = evaluarRestriccionSalonHora();
+         int rest2 = evaluarRestriccionProfesorHora();
+         int rest3 = evaluarRestriccionSemestreHora();
+         int rest4 = evaluarRestriccionTipoMateria();*/
+        int rest5 = evaluarRestricciones();
+        this.evaluacion = rest5;
 
-        this.evaluacion = rest1 + rest2 + rest3 + rest4;
-
+        /*if (rest5 == this.evaluacion) {
+         System.out.println("Restricciones iguales");
+         } else {
+         System.out.println("Restricciones diferentess");
+         }*/
         return this.evaluacion;
     }
 
@@ -92,8 +108,63 @@ public class Individuo implements Individual {
 
     @Override
     public Individual clonar() {
-        
+
         return new Individuo(this.genes);
+    }
+
+    private int evaluarRestricciones() {
+        int penalizacion = 0;
+
+        for (int i = 0; i < this.genes.size(); i++) {
+
+            for (int k = 0; k < genes.get(i).getAulas().size(); k++) {
+                //Evaluar restriccion de Tipo
+                if (!genes.get(i).getMateria().getTipoMateria().equalsIgnoreCase(genes.get(i).getAulas().get(k).getTipo())) {
+
+                    penalizacion = penalizacion + 2;
+                    //System.out.println(genes.get(i).getAulas().get(k).getTipo());
+                    //System.out.println("Penalizacion TipoMateria");
+                }
+            }
+
+            for (int j = i + 1; j < this.genes.size(); j++) {
+                //Evaluar restriccion de Semestre
+                if (genes.get(i).getMateria().getSemestre() == genes.get(j).getMateria().getSemestre()) {
+                    for (int k = 0; k < 2; k++) {
+                        if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                            if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                                penalizacion = penalizacion + 2;
+                                //System.out.println("Penalizacion SemestreHora");
+                            }
+                        }
+                    }
+                }
+                //Evaluar restriccion de Docente
+                if (genes.get(i).getMateria().getPosDocente() == genes.get(j).getMateria().getPosDocente()) {
+                    for (int k = 0; k < 2; k++) {
+                        if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                            if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                                penalizacion = penalizacion + 5;
+                                //System.out.println("Penalizacion ProfesorHora");
+                            }
+                        }
+                    }
+                }
+                //Evaluar restriccion hora
+                for (int k = 0; k < 2; k++) {
+                    if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
+                        if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
+                            if (genes.get(i).getAulas().get(k).getIdsalon() == genes.get(j).getAulas().get(k).getIdsalon()) {
+                                penalizacion = penalizacion + 5;
+                                //System.out.println("Penalizacion SalonHora");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return penalizacion;
     }
 
     private int evaluarRestriccionSalonHora() {
@@ -134,7 +205,6 @@ public class Individuo implements Individual {
                             }
                         }
                     }
-
                 }
             }
         }
@@ -168,51 +238,55 @@ public class Individuo implements Individual {
     private int evaluarRestriccionTipoMateria() {
         int penalizacion = 0; //Aumento de penalización -> 5
 
-        for (int i = 0; i < this.genes.size(); i++){
+        for (int i = 0; i < this.genes.size(); i++) {
 
-                for (int k = 0; k < genes.get(i).getAulas().size(); k++) {
-                    if (!genes.get(i).getMateria().getTipoMateria().equalsIgnoreCase(genes.get(i).getAulas().get(k).getTipo())) {
-                        
-                            penalizacion = penalizacion + 2;
-                            //System.out.println(genes.get(i).getAulas().get(k).getTipo());
-                            //System.out.println("Penalizacion TipoMateria");
-                    }
+            for (int k = 0; k < genes.get(i).getAulas().size(); k++) {
+                if (!genes.get(i).getMateria().getTipoMateria().equalsIgnoreCase(genes.get(i).getAulas().get(k).getTipo())) {
+
+                    penalizacion = penalizacion + 2;
+                    //System.out.println(genes.get(i).getAulas().get(k).getTipo());
+                    //System.out.println("Penalizacion TipoMateria");
                 }
+            }
         }
 
         return penalizacion;
     }
-    public ArrayList OrdenarIndividuos(ArrayList<Individuo> individuos, int izq, int der)
-    {
+
+    public ArrayList OrdenarIndividuos(ArrayList<Individuo> individuos, int izq, int der) {
         //individuos = (ArrayList<Individuo>) individuos;
-        Individuo pivote=individuos.get(izq); // tomamos primer elemento como pivote
-        int i=izq; // i realiza la búsqueda de izquierda a derecha
-        int j=der; // j realiza la búsqueda de derecha a izquierda
+        Individuo pivote = individuos.get(izq); // tomamos primer elemento como pivote
+        int i = izq; // i realiza la búsqueda de izquierda a derecha
+        int j = der; // j realiza la búsqueda de derecha a izquierda
         Individuo ind;
         int aux;
- 
-        while(i<j)
-        {            // mientras no se crucen las búsquedas
-            while(individuos.get(i).getEvaluacion()<=pivote.getEvaluacion() && i<j) i++; // busca elemento mayor que pivote
-            while(individuos.get(j).getEvaluacion()>pivote.getEvaluacion()) j--;         // busca elemento menor que pivote
-            if (i<j) 
-            {
-               ind = individuos.get(i); // si no se han cruzado                      
-               //aux= A[i];                  // los intercambia
-               individuos.set(i, individuos.get(j));
-               //A[i]=A[j];
-               individuos.set(j, ind);
-               //A[j]=aux;
+
+        while (i < j) {            // mientras no se crucen las búsquedas
+            while (individuos.get(i).getEvaluacion() <= pivote.getEvaluacion() && i < j) {
+                i++; // busca elemento mayor que pivote
+            }
+            while (individuos.get(j).getEvaluacion() > pivote.getEvaluacion()) {
+                j--;         // busca elemento menor que pivote
+            }
+            if (i < j) {
+                ind = individuos.get(i); // si no se han cruzado                      
+                //aux= A[i];                  // los intercambia
+                individuos.set(i, individuos.get(j));
+                //A[i]=A[j];
+                individuos.set(j, ind);
+                //A[j]=aux;
             }
         }
         individuos.set(izq, individuos.get(j));
-         //A[izq]=A[j]; // se coloca el pivote en su lugar de forma que tendremos
+        //A[izq]=A[j]; // se coloca el pivote en su lugar de forma que tendremos
         individuos.set(j, pivote);
-         //A[j]=pivote; // los menores a su izquierda y los mayores a su derecha
-        if(izq<j-1)
-            OrdenarIndividuos(individuos,izq,j-1); // ordenamos subarray izquierdo
-        if(j+1 <der)
-            OrdenarIndividuos(individuos,j+1,der); // ordenamos subarray derecho
+        //A[j]=pivote; // los menores a su izquierda y los mayores a su derecha
+        if (izq < j - 1) {
+            OrdenarIndividuos(individuos, izq, j - 1); // ordenamos subarray izquierdo
+        }
+        if (j + 1 < der) {
+            OrdenarIndividuos(individuos, j + 1, der); // ordenamos subarray derecho
+        }
         return individuos;
     }
 }

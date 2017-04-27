@@ -8,6 +8,50 @@ PIS;SIS0101;Introducci�n a la Inform�tica;B;25;1;T
 PIS;SIS0101;Introducci�n a la Inform�tica;D;25;1;T
 PIS;SIS0103;Introducci�n a la PIS;A;30;1;T
 PIS;SIS0103;Introducci�n a la PIS;B;30;1;T
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;A;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;B;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;C;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;D;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;E;20;1;P
+PIS;22205;Lectura y Escritura;Q;30;1;T
+PIS;22205;Lectura y Escritura;R;30;1;T
+PIS;307;�lgebra Lineal;FD;10;2;T
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;A;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;B;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;C;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;D;20;2;P
+PIS;307;�lgebra Lineal;I;35;2;T
+PIS;307;�lgebra Lineal;J;35;2;T
+PIS;311-1;C�lculo II;F;40;2;T
+PIS;311-1;C�lculo II;FC;30;2;T
+PIS;318-1;Laboratorio de Mec�nica;FA;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;FB;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;N;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;O;15;2;L
+PIS;312-1;Mec�nica;FC;40;2;T
+PIS;312-1;Mec�nica;FD;40;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;A;25;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;B;25;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;C;25;2;T
+PIS;SIS301;Estructuras de Datos I;B;30;3;T
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;C;16;3;P
+PIS;316-1;C�lculo III;D;35;3;T
+PIS;316-1;C�lculo III;FB;18;3;T
+PIS;317-1;Electromagnetismo;FC;35;3;T
+PIS;317-1;Electromagnetismo;FD;35;3;T
+PIS;SIS301;Estructuras de Datos I;A;30;3;T
+PIS;329-1;Laboratorio de Electromagnetismo;C;18;3;L
+PIS;329-1;Laboratorio de Electromagnetismo;D;18;3;L
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;A;16;3;P
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;B;16;3;P
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;D;16;3;P
+PIS;SIS402;Bases de Datos I;A;30;4;T
+PIS;322-1;Ecuaciones Diferenciales Ordinarias;D;33;4;T
+PIS;SIS401;Estructura de Datos II;A;35;4;T
+PIS;SIS402L;Laboratorio de Bases de Datos I;A;15;4;P
+PIS;SIS402L;Laboratorio de Bases de Datos I;B;15;4;P
+PIS;SIS401L;Laboratorio de Estructuras de Datos II;A;16;4;P
+PIS;SIS401L;Laboratorio de Estructuras de Datos II;B;16;4;P
 PIS;323-1;Vibraciones y Ondas;D;32;4;T
 PIS;323-1;Vibraciones y Ondas;E;32;4;T
 PIS;SIS504;Bases de Datos II;A;20;5;T
@@ -18,3 +62,44 @@ PIS;SIS504L;Laboratorio de Bases de Datos II;C;17;5;P
 PIS;SIS503L;Laboratorio de Ingenier�a de Software I;A;18;5;P
 PIS;SIS503L;Laboratorio de Ingenier�a de Software I;B;18;5;P
 PIS;SIS501;Teor�a de la Computaci�n;A;35;5;T
+PIS;328-1;An�lisis Num�rico;A;20;5;P
+PIS;328-1;An�lisis Num�rico;B;15;5;P
+PIS;SIS502;Arquitectura Computacional;A;23;5;P
+PIS;SIS504L;Laboratorio de Bases de Datos II;B;17;5;P
+PIS;SIS601;Estructura de Lenguajes;A;30;6;T
+PIS;SIS602;Ingenier�a de Software II;A;28;6;T
+PIS;SIS602L;Laboratorio de Ingenier�a de Software II;A;12;6;P
+PIS;SIS602L;Laboratorio de Ingenier�a de Software II;A;18;6;P
+PIS;MAT131;Estad�stica y Probabilidad;FB;35;6;T
+PIS;SIS601L;Laboratorio de Estructura de Lenguajes;A;15;6;P
+PIS;SIS601L;Laboratorio de Estructura de Lenguajes;B;15;6;P
+PIS;SIS603L;Laboratorio de Sistemas Operativos;A;13;6;P
+PIS;SIS603L;Laboratorio de Sistemas Operativos;B;15;6;P
+PIS;SIS603;Sistemas Operativos;A;33;6;T
+PIS;SIS703;Ingenier�a de Software III;A;30;7;T
+PIS;333-1;Inteligencia Artificial;A;20;7;P
+PIS;333-1;Inteligencia Artificial;B;20;7;P
+PIS;SIS703L;Laboratorio de Ingenier�a de Software III;A;18;7;P
+PIS;SIS703L;Laboratorio de Ingenier�a de Software III;B;14;7;P
+PIS;SIS702L;Laboratorio de Sistemas Distribuidos;B;20;7;P
+PIS;SIS702;Sistemas Distribuidos;A;18;7;T
+PIS;SIS702;Sistemas Distribuidos;B;18;7;T
+PIS;SIS706;Teor�a y Din�mica de Sistemas;A;30;7;P
+PIS;SIS702L;Laboratorio de Sistemas Distribuidos;A;20;7;P
+PIS;SIS801;Metodolog�a de la Investigaci�n;A;30;7;T
+PIS;SIS803;Calidad de Software;B;18;8;T
+PIS;346-1;Proyecto I;B;20;8;P
+PIS;SIS803;Calidad de Software;A;18;8;T
+PIS;338;Investigaci�n de Operaciones;A;35;8;T
+PIS;346-1;Proyecto I;A;20;8;P
+PIS;TLM815;Redes;A;20;8;P
+PIS;TLM815;Redes;B;20;8;P
+PIS;SIS901;Gesti�n de Proyectos Inform�ticos;A;30;9;T
+PIS;SIS902;Proyecto II;A;28;9;P
+PIS;SIS902;Proyecto II;B;28;9;P
+PIS;339;Fundamentos de Econom�a;A;25;9;T
+PIS;344;Gesti�n Empresarial;A;25;9;T
+PIS;351;Legislaci�n Laboral;A;35;9;T
+PIS;353;Trabajo de Grado;A;120;10;N
+PIS;EFISH 409;Formaci�n ciudadana;A;30;1;T
+PIS;EFISH 524;Pensamiento fotogr�fico;B;30;1;T

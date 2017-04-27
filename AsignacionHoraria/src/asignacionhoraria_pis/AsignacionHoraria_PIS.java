@@ -46,7 +46,7 @@ public class AsignacionHoraria_PIS {
         
         for (int i = 0; i < memetico.poblacion.size(); i++) 
         {
-            System.out.println(poblacion.get(i).getEvaluacion());
+            System.out.println(poblacion.get(i).ObtenerEvaluacion());
         }
         
         

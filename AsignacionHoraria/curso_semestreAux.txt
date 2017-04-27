@@ -1,0 +1,39 @@
+﻿PIS;11465;C�lculo I;FG;30;1;T
+PIS;11465;C�lculo I;FI;30;1;T
+PIS;SIS0101;Introducci�n a la Inform�tica;C;25;1;T
+PIS;11465;C�lculo I;FA;30;1;T
+PIS;11465;C�lculo I;FF;30;1;T
+PIS;SIS0101;Introducci�n a la Inform�tica;A;25;1;T
+PIS;SIS0101;Introducci�n a la Inform�tica;B;25;1;T
+PIS;SIS0101;Introducci�n a la Inform�tica;D;25;1;T
+PIS;SIS0103;Introducci�n a la PIS;A;30;1;T
+PIS;SIS0103;Introducci�n a la PIS;B;30;1;T
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;A;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;B;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;C;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;D;20;1;P
+PIS;SIS0102;Laboratorio de Introducci�n a la Inform�tica;E;20;1;P
+PIS;22205;Lectura y Escritura;Q;30;1;T
+PIS;22205;Lectura y Escritura;R;30;1;T
+PIS;307;�lgebra Lineal;FD;10;2;T
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;A;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;B;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;C;20;2;P
+PIS;SIS201-L;Laboratorio de Programaci�n Orientada a Objetos;D;20;2;P
+PIS;307;�lgebra Lineal;I;35;2;T
+PIS;307;�lgebra Lineal;J;35;2;T
+PIS;311-1;C�lculo II;F;40;2;T
+PIS;311-1;C�lculo II;FC;30;2;T
+PIS;318-1;Laboratorio de Mec�nica;FA;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;FB;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;N;15;2;L
+PIS;318-1;Laboratorio de Mec�nica;O;15;2;L
+PIS;312-1;Mec�nica;FC;40;2;T
+PIS;312-1;Mec�nica;FD;40;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;A;25;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;B;25;2;T
+PIS;SIS201;Programaci�n Orientada a Objetos;C;25;2;T
+PIS;SIS301;Estructuras de Datos I;B;30;3;T
+PIS;SIS301L;Laboratorio de Estructuras de Datos I;C;16;3;P
+PIS;316-1;C�lculo III;D;35;3;T
+PIS;316-1;C�lculo III;FB;18;3;T
