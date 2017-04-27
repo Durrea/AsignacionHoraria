@@ -39,11 +39,13 @@ public class AsignacionHoraria_PIS {
         //}
         
         Memetico memetico = new Memetico();
-        ArrayList<Gen> genes = new ArrayList<Gen>();
-        genes = memetico.generarPoblacionInicial();
-        Individuo individuo = new Individuo(genes);
-        double evaluacion = individuo.getEvaluacion();
-        System.out.println("Evaluacion del chamaco: " + evaluacion);
+        ArrayList<Individuo> poblacion = new ArrayList<Individuo>();
+        poblacion = memetico.generarPoblacionInicial();
+        
+        for (int i = 0; i < memetico.poblacion.size(); i++) 
+        {
+            System.out.println(poblacion.get(i).getEvaluacion());
+        }
         
         
         /*for (int i = 0; i < docentes.size(); i++) 

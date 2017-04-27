@@ -7,6 +7,8 @@ package Modelos;
 
 import algoritmo_base.Individual;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -62,24 +64,30 @@ public class Individuo implements Individual {
         int rest3 = evaluarRestriccionSemestreHora();
         int rest4 = evaluarRestriccionTipoMateria();
 
-        int evaluacion = rest1 + rest2 + rest3 + rest4;
+        this.evaluacion = rest1 + rest2 + rest3 + rest4;
 
-        return evaluacion;
+        return this.evaluacion;
     }
 
     @Override
     public int getIndividualSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.genes.size();
     }
 
     @Override
     public double getValue(int position) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 0;
     }
 
     @Override
     public Individual clonar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            return (Individual) this.clone();
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(Individuo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     private int evaluarRestriccionSalonHora() {
@@ -94,7 +102,7 @@ public class Individuo implements Individual {
                         if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
                             if (genes.get(i).getAulas().get(k).getIdsalon() == genes.get(j).getAulas().get(k).getIdsalon()) {
                                 penalizacion = penalizacion + 5;
-                                System.out.println("Penalizacion SalonHora");
+                                //System.out.println("Penalizacion SalonHora");
                             }
                         }
                     }
@@ -116,7 +124,7 @@ public class Individuo implements Individual {
                         if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
                             if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
                                 penalizacion = penalizacion + 5;
-                                System.out.println("Penalizacion ProfesorHora");
+                                //System.out.println("Penalizacion ProfesorHora");
                             }
                         }
                     }
@@ -139,7 +147,7 @@ public class Individuo implements Individual {
                         if (genes.get(i).getHorarios().get(k).getDia() == genes.get(j).getHorarios().get(k).getDia()) {
                             if (genes.get(i).getHorarios().get(k).getFranja() == genes.get(j).getHorarios().get(k).getFranja()) {
                                 penalizacion = penalizacion + 2;
-                                System.out.println("Penalizacion SemestreHora");
+                                //System.out.println("Penalizacion SemestreHora");
                             }
                         }
                     }
@@ -161,7 +169,7 @@ public class Individuo implements Individual {
                         
                             penalizacion = penalizacion + 2;
                             //System.out.println(genes.get(i).getAulas().get(k).getTipo());
-                            System.out.println("Penalizacion TipoMateria");
+                            //System.out.println("Penalizacion TipoMateria");
                     }
                 }
         }
