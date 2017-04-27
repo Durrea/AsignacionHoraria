@@ -175,5 +175,22 @@ public class CargueDatos {
     public void setMaterias(ArrayList<InfoMaterias> materias) {
         this.materias = materias;
     }
+
+    public ArrayList<InfoAulas> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(ArrayList<InfoAulas> aulas) {
+        this.aulas = aulas;
+    }
+
+    public ArrayList<FranjaHoraria> getFranjas() {
+        return franjas;
+    }
+
+    public void setFranjas(ArrayList<FranjaHoraria> franjas) {
+        this.franjas = franjas;
+    }
+    
     
 }

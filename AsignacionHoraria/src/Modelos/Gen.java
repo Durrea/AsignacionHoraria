@@ -15,6 +15,44 @@ public class Gen {
     
     private InfoMaterias materia;
     private ArrayList<FranjaHoraria> horarios;
-    private ArrayList<InfoAulas> aulas;    
+    private ArrayList<InfoAulas> aulas;  
+    
+    public Gen()
+    {
+        horarios = new ArrayList<>();
+        aulas = new ArrayList<>();
+    }
+
+    public Gen(InfoMaterias materia, ArrayList<FranjaHoraria> horarios, ArrayList<InfoAulas> aulas) {
+        this.materia = materia;
+        this.horarios = horarios;
+        this.aulas = aulas;
+    }
+
+    public InfoMaterias getMateria() {
+        return materia;
+    }
+
+    public void setMateria(InfoMaterias materia) {
+        this.materia = materia;
+    }
+
+    public ArrayList<FranjaHoraria> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(ArrayList<FranjaHoraria> horarios) {
+        this.horarios = horarios;
+    }
+
+    public ArrayList<InfoAulas> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(ArrayList<InfoAulas> aulas) {
+        this.aulas = aulas;
+    }
+    
+    
     
 }
