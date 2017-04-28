@@ -34,14 +34,21 @@ public class CargueDatos {
         this.aulas = new ArrayList();
         this.franjas = new ArrayList();
     }
-    public ArrayList CargarDatosProfesor()
+    public ArrayList CargarDatosProfesor(int PROBLEMA)
     {
         FileReader file;
         BufferedReader buffer;
         ArrayList<InfoDocente> docs = new ArrayList();
         try {
             String linea;
-            file = new FileReader("profesores.txt");
+            if(PROBLEMA == 1)
+            {
+                file = new FileReader("profesores.txt");
+            }
+            else
+            {
+                file = new FileReader("profesores2.txt");
+            }
             buffer = new BufferedReader(file);
             while((linea = buffer.readLine())!=null)
             {
@@ -55,14 +62,21 @@ public class CargueDatos {
         }
         return docs;
     }
-    public ArrayList CargarDatosMaterias()
+    public ArrayList CargarDatosMaterias(int PROBLEMA)
     {
         FileReader file;
         BufferedReader buffer;
         ArrayList<InfoMaterias> mats = new ArrayList();
         try {
             String linea;
-            file = new FileReader("curso_semestre.txt");
+            if(PROBLEMA == 1)
+            {
+                file = new FileReader("curso_semestre.txt");
+            }
+            else
+            {
+                file = new FileReader("curso_semestre2.txt");
+            }
             buffer = new BufferedReader(file);
             while((linea = buffer.readLine())!=null)
             {
@@ -76,14 +90,24 @@ public class CargueDatos {
         }
         return mats;
     }
-    public void CargarDatos()
+    public void CargarDatos(int PROBLEMA)
     {
         FileReader file;
-        BufferedReader buffer;
-        this.docentes = CargarDatosProfesor();
-        this.materias = CargarDatosMaterias();
-        CargarDatosAulas();
-        CargarDatosFranjas();
+        BufferedReader buffer; 
+        
+        if(PROBLEMA == 1)
+        {
+            this.docentes = CargarDatosProfesor(PROBLEMA);
+            CargarDatosAulas();
+            CargarDatosFranjas(PROBLEMA);
+            this.materias = CargarDatosMaterias(PROBLEMA);
+        }
+        else
+        {
+            this.docentes = CargarDatosProfesor(PROBLEMA);
+            CargarDatosFranjas(PROBLEMA);
+            this.materias = CargarDatosMaterias(PROBLEMA);
+        }
         
         try{
             String linea; 
@@ -138,14 +162,21 @@ public class CargueDatos {
             System.out.println(e.getMessage());
         }
     }
-    public void CargarDatosFranjas()
+    public void CargarDatosFranjas(int PROBLEMA)
     {
         FileReader file;
         BufferedReader buffer;
         try
         {
             String linea;
-            file = new FileReader("franjas.txt");
+            if(PROBLEMA == 1)
+            {
+                file = new FileReader("franjas.txt");
+            }
+            else
+            {
+                file = new FileReader("franjas2.txt");
+            }
             buffer = new BufferedReader(file);
             while((linea = buffer.readLine())!=null)
             {

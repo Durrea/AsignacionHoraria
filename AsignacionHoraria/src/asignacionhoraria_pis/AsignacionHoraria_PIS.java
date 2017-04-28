@@ -39,7 +39,7 @@ public class AsignacionHoraria_PIS {
         //}
         
         Memetico memetico = new Memetico();
-        memetico.NUM_REPETICIONES = 10;
+        memetico.NUM_REPETICIONES = 20;
         memetico.poblacionSize = 30;
         memetico.ejecutar();
         //ArrayList<Individuo> poblacion = new ArrayList<Individuo>();

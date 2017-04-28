@@ -37,12 +37,14 @@ public class Memetico implements IMemetico {
     public double ENTROPIA_ANTERIOR;
     public double VALOR_T = 0.01;
     public double PRESERVE = 0.25;
+    public int PROBLEMA;
+    
 
     @Override
     public void ejecutar() {
         
         CargueDatos datos = new CargueDatos();
-        datos.CargarDatos();
+        datos.CargarDatos(PROBLEMA);
         
         ArrayList<Individuo> miPoblacion = generarPoblacionInicial(datos);
         this.NUM_HIJOS = 10;
@@ -51,7 +53,7 @@ public class Memetico implements IMemetico {
         while (i < this.NUM_REPETICIONES) {
             Individuo ind = new Individuo();
             miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size()-1);
-            ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion);
+            ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion, datos);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
             if (convergue(miPoblacion, i)) {
                 miPoblacion = reiniciarPoblacion(miPoblacion, datos);
@@ -99,7 +101,7 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList generarNuevaPoblacion(ArrayList pop) {
+    public ArrayList generarNuevaPoblacion(ArrayList pop, CargueDatos datos) {
         ArrayList<Individuo> buffer = pop;
         ArrayList<Individuo> hijos = new ArrayList();
         int k = 0;
@@ -113,7 +115,7 @@ public class Memetico implements IMemetico {
             //System.out.println("k: "+k);
             //System.out.println("j: "+j);
             Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
-            Individuo hijomutado = Mutar(hijo);
+            Individuo hijomutado = Mutar(hijo, datos);
             hijomutado.getEvaluacion();
             hijos.add(hijomutado);
             k = 0;
@@ -182,11 +184,14 @@ public class Memetico implements IMemetico {
                 gen.getHorarios().add(datos.getFranjas().get(segundoHorario));
                 gen.getHorarios().add(datos.getFranjas().get(primerHorario));
             }
-
-            aula = (int) (Math.random() * datos.getAulas().size());
-            gen.getAulas().add(datos.getAulas().get(aula));
-            aula = (int) (Math.random() * datos.getAulas().size());
-            gen.getAulas().add(datos.getAulas().get(aula));
+            if(this.PROBLEMA == 1)
+            {
+                aula = (int) (Math.random() * datos.getAulas().size());
+                gen.getAulas().add(datos.getAulas().get(aula));
+                aula = (int) (Math.random() * datos.getAulas().size());
+                gen.getAulas().add(datos.getAulas().get(aula));
+            }
+            
             gen.setValue(i);
             genes.add(gen);
 
@@ -235,11 +240,10 @@ public class Memetico implements IMemetico {
         return poblacionActualizada;
     }
 
-    public Individuo Mutar(Individuo individuo) {
+    public Individuo Mutar(Individuo individuo, CargueDatos datos) {
         int genran = (int) (Math.random() * individuo.getGenes().size());
         //System.out.println(datos.getMaterias().get(i).getNombreMateria())
-        CargueDatos datos = new CargueDatos();
-        datos.CargarDatos();
+
         int primerHorario = (int) (Math.random() * datos.getFranjas().size());
         int segundoHorario = (int) (Math.random() * datos.getFranjas().size());
         while (datos.getFranjas().get(primerHorario).getDia() == datos.getFranjas().get(segundoHorario).getDia()) {
