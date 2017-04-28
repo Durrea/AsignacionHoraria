@@ -26,11 +26,12 @@ public class Memetico implements IMemetico {
 
     public ArrayList<Individuo> poblacion = new ArrayList<>();
     public ArrayList<Double> iteraciones = new ArrayList<>();
-    int poblacionSize = 25;
-    int NUM_HIJOS;
-    int NUM_REPETICIONES;
-    double ENTROPIA_ANTERIOR;
-    double VALOR_T = 0.01;
+    public int poblacionSize = 25;
+    public int NUM_HIJOS;
+    public int NUM_REPETICIONES;
+    public double ENTROPIA_ANTERIOR;
+    public double VALOR_T = 0.01;
+    public double PRESERVE = 0.25;
 
     @Override
     public void ejecutar() {
@@ -46,6 +47,9 @@ public class Memetico implements IMemetico {
             }
             i = i + 1;
         }
+        this.poblacion = miPoblacion;
+        Individuo ind = new Individuo();
+        this.poblacion = ind.OrdenarIndividuos(this.poblacion, 0, this.poblacion.size()-1);
     }
 
     @Override
@@ -114,7 +118,27 @@ public class Memetico implements IMemetico {
     @Override
     public ArrayList reiniciarPoblacion(ArrayList pop) {
 
-        return null;
+        ArrayList<Individuo> newpop = new ArrayList();
+        ArrayList<Individuo> population = pop;
+        ArrayList<Gen> genes;
+        Individuo ind = new Individuo();
+        population = ind.OrdenarIndividuos(population, 0, population.size()-1);
+        int preserved = (int) (population.size()*this.PRESERVE);
+        for (int i = 0; i < preserved; i++) 
+        {
+            Individuo individuo = population.get(i);
+            newpop.add(individuo);
+        }
+        for (int i = (preserved+1); i < population.size(); i++) 
+        {
+            genes = generateRandomConfiguration();
+            Individuo individuo = new Individuo(genes);
+            individuo.getEvaluacion();
+            individuo = localSearchEngine(individuo);
+            newpop.add(individuo);
+        }
+        
+        return newpop;
     }
 
     private ArrayList generateRandomConfiguration() {
@@ -161,7 +185,7 @@ public class Memetico implements IMemetico {
     private Individuo localSearchEngine(Individuo individuo) {
 
         BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
-        busqueda.NUM_ITERACIONES = 20;
+        busqueda.NUM_ITERACIONES = 100;
         Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
         return best;
     }
