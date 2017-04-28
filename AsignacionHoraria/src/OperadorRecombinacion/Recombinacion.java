@@ -5,6 +5,7 @@
  */
 package OperadorRecombinacion;
 
+import algoritmo_base.Individual;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,6 @@ import java.util.ArrayList;
  */
 public interface Recombinacion {
     
-    public Object OperadorRecombinacion(Object agente_a, Object agente_b);
+    public Object OperadorRecombinacion(Individual agente_a, Individual agente_b);
     
 }

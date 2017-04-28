@@ -8,6 +8,7 @@ package AlgoritmoMemetico;
 import BusquedaLocal.BusquedaLocalImpl;
 import Modelos.Gen;
 import Modelos.Individuo;
+import OperadorRecombinacion.RTR;
 import Servicios.CargueDatos;
 //import algoritmo_base.ConfiguracionTabuSearch;
 import algoritmo_base.Individual;
@@ -25,11 +26,21 @@ public class Memetico implements IMemetico {
 
     public ArrayList<Individuo> poblacion = new ArrayList<>();
     int poblacionSize = 25;
+    int NUM_HIJOS;
+    int NUM_REPETICIONES;
 
     @Override
     public void ejecutar() {
         ArrayList<Individuo> miPoblacion = generarPoblacionInicial();
-        
+        this.NUM_HIJOS = 10;
+        int i = 0;
+        while(i < this.NUM_REPETICIONES)
+        {
+            ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion);
+            miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
+            
+            i = i + 1;
+        }
     }
 
     @Override
@@ -69,12 +80,33 @@ public class Memetico implements IMemetico {
 
     @Override
     public ArrayList generarNuevaPoblacion( ArrayList pop) {
-        int Nop = 5;
         ArrayList<Individuo> buffer = pop;
-        for (int i = 0; i < Nop; i++) {
-            
+        ArrayList<Individuo> hijos = new ArrayList();
+        int k = 0;
+        int j = 0;
+        RTR recombinacion = new RTR();
+        for (int i = 0; i < this.NUM_HIJOS; i++) 
+        {
+            while( k == j)
+            {
+                k = (int)(Math.random()*buffer.size());
+                j = (int)(Math.random()*buffer.size());   
+            }
+            Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
+            Individuo hijomutado = Mutar(hijo);
+            hijomutado.getEvaluacion();
+            hijos.add(hijomutado);
         }
-        return null;
+        for (int i = 0; i < hijos.size(); i++) 
+        {
+            buffer.add(hijos.get(i));
+        }
+        Individuo ind = new Individuo();
+        buffer = ind.OrdenarIndividuos(buffer, 0, buffer.size()-1);
+        for (int i = buffer.size() - 1; i > this.poblacionSize; i--) {
+            buffer.remove(i);
+        }
+        return buffer;
     }
 
     @Override
@@ -143,9 +175,31 @@ public class Memetico implements IMemetico {
         Individuo individuo = new Individuo();
         poblacionActualizada = individuo.OrdenarIndividuos(poblacionActualizada, 0, poblacionActualizada.size() - 1);
 
-        for (int i = poblacionActualizada.size() - 1; i == pop.size(); i--) {
+        for (int i = poblacionActualizada.size() - 1; i > this.poblacionSize; i--) {
             poblacionActualizada.remove(i);
         }
         return poblacionActualizada;
+    }
+    public Individuo Mutar(Individuo individuo)
+    {
+        int genran = (int)(Math.random()*individuo.getGenes().size());
+        //System.out.println(datos.getMaterias().get(i).getNombreMateria())
+        CargueDatos datos = new CargueDatos();
+        datos.CargarDatos();
+        int primerHorario = (int) (Math.random() * datos.getFranjas().size());
+        int segundoHorario = (int) (Math.random() * datos.getFranjas().size());
+        while (datos.getFranjas().get(primerHorario).getDia() == datos.getFranjas().get(segundoHorario).getDia()) {
+            segundoHorario = (int) (Math.random() * datos.getFranjas().size());
+        }
+
+        if (datos.getFranjas().get(primerHorario).getDia() < datos.getFranjas().get(segundoHorario).getDia()) {
+            individuo.getGenes().get(genran).getHorarios().set(0, datos.getFranjas().get(primerHorario));
+            individuo.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(segundoHorario));
+        } else {
+            individuo.getGenes().get(genran).getHorarios().set(0, datos.getFranjas().get(segundoHorario));
+            individuo.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(primerHorario));
+        }
+        
+        return individuo;
     }
 }

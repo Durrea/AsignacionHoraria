@@ -7,6 +7,7 @@ package OperadorRecombinacion;
 
 import Modelos.Gen;
 import Modelos.Individuo;
+import algoritmo_base.Individual;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,7 @@ public class RTR implements Recombinacion
 {
     
     @Override
-    public Object OperadorRecombinacion(Object agente_a, Object agente_b) 
+    public Individual OperadorRecombinacion(Individual agente_a, Individual agente_b) 
     {
         Individuo agente_1 = (Individuo)agente_a;
         Individuo agente_2 = (Individuo)agente_b;
@@ -29,17 +30,24 @@ public class RTR implements Recombinacion
         
         for (int i = 0; i < genes_1.size(); i++) 
         {
-            //if(genes_1.get(i).getCosto() == genes_2.get(i).getCosto())
+            if(genes_1.get(i).equals(genes_2.get(i)))
             {
                 resultado.add(genes_1.get(i));
             }
-            //else
+            else
             {
-                
+                int gen = (int)(Math.random()*2);
+                if(gen == 0)
+                {
+                    resultado.add(genes_1.get(i));
+                }
+                else
+                {
+                    resultado.add(genes_2.get(i));
+                }
             }
         }
-        Individuo individuo_resultante = new Individuo();
-        individuo_resultante.setGenes(resultado);
+        Individuo individuo_resultante = new Individuo(resultado);
         return individuo_resultante;
     }
     
