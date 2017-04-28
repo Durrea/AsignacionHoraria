@@ -181,7 +181,7 @@ public class Memetico implements IMemetico {
             gen.getAulas().add(datos.getAulas().get(aula));
             aula = (int) (Math.random() * datos.getAulas().size());
             gen.getAulas().add(datos.getAulas().get(aula));
-            gen.setValue(i + 1);
+            gen.setValue(i);
             genes.add(gen);
 
         }
@@ -190,11 +190,11 @@ public class Memetico implements IMemetico {
 
     private Individuo localSearchEngine(Individuo individuo) {
 
-        /*BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
+        BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
         busqueda.NUM_ITERACIONES = 3;
         Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
-        return best;*/
-        TabuSearch busqueda = new TabuSearch();
+        return best;
+        /*TabuSearch busqueda = new TabuSearch();
         
         ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
         configuracion.setTipoProblema(false);
@@ -208,7 +208,7 @@ public class Memetico implements IMemetico {
         //CIUDADES     
         
         Individuo best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
-        return best;
+        return best;*/
     }
 
     @Override

@@ -100,7 +100,7 @@ public class Individuo implements Individual {
 
     @Override
     public double getValue(int position) {
-        return this.evaluacion;
+        return this.genes.get(position).getValue();
     }
 
     @Override

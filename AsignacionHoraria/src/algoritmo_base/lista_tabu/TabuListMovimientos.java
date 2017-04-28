@@ -46,11 +46,18 @@ public class TabuListMovimientos implements TabuList {
     public boolean isTabu(Individual promisingSolution, Individual currentSolution) {
         int posX = -1, posY = -1;
         for (int i=0;i<listaTabu.length;i++){
+            System.out.println("Promising: "+promisingSolution.getValue(i) + "Current: "+currentSolution.getValue(i));
             if (promisingSolution.getValue(i)!=currentSolution.getValue(i)){
+                System.out.println("Promising: "+promisingSolution.getValue(i) + "Current: "+currentSolution.getValue(i));
                 if (posX==-1) posX = i;
                 else posY = i;
             }
         }
+        if(posX == -1 || posY == -1)
+        {
+            return false;
+        }
+        System.out.println("X: "+posX + "Y: "+posY);
         return listaTabu[posX][posY]!=0;
     }
 

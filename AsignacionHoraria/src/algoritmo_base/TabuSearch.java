@@ -51,7 +51,7 @@ public class TabuSearch {
         
         //Configuración y declaración de variables
         configuration.aplicarConfiguración(this);
-        seed.getEvaluacion();
+        //seed.getEvaluacion();
         Individual currentSolution = seed;
         Individual bestSolution = seed;
         Individual previousSolution = seed;
