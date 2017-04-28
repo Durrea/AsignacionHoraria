@@ -69,6 +69,11 @@ public class Memetico implements IMemetico {
 
     @Override
     public ArrayList generarNuevaPoblacion( ArrayList pop) {
+        int Nop = 5;
+        ArrayList<Individuo> buffer = pop;
+        for (int i = 0; i < Nop; i++) {
+            
+        }
         return null;
     }
 
