@@ -286,4 +286,36 @@ public class Individuo implements Individual {
         }
         return individuos;
     }
+
+    @Override
+    public ArrayList getNeighbourhood() {
+        
+        int size = this.genes.size();
+        Individuo newSolution;
+        ArrayList<Individuo> neighbourhood = new ArrayList();
+        for (int i = 0; i < size/4; i++) {
+            /*for (int j = i + 1; j < size; j++) {
+
+             newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
+             ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+             newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
+             //newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+             newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+             //newSolution.getGenes().set(j, auxIntercambio);
+
+             newSolution.getEvaluacion();
+             neighbourhood.add(newSolution);
+             }*/
+
+            newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
+            ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+            int j = (int) (Math.random() * newSolution.genes.size());
+            newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
+            newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+            newSolution.getEvaluacion();
+            neighbourhood.add(newSolution);
+
+        }
+        return neighbourhood;
+    }
 }

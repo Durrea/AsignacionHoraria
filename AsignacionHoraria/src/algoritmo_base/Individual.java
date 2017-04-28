@@ -23,7 +23,12 @@ public interface Individual {
      * Permite obtener la evaluación del individuo. La forma de calcular la evaluación
      * depende del problema estudiado
      * @return la evaluación del individuo
+     * 
+     *
      */
+    public ArrayList getNeighbourhood();
+    
+    
     public double getEvaluacion();
     /**
      * Permite obtener el tamaño de un individuo, es decir, el tamaño del arreglo
