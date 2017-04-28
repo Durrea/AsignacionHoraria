@@ -40,7 +40,11 @@ public class Memetico implements IMemetico {
 
     @Override
     public void ejecutar() {
-        ArrayList<Individuo> miPoblacion = generarPoblacionInicial();
+        
+        CargueDatos datos = new CargueDatos();
+        datos.CargarDatos();
+        
+        ArrayList<Individuo> miPoblacion = generarPoblacionInicial(datos);
         this.NUM_HIJOS = 10;
         this.ENTROPIA_ANTERIOR = 0;
         int i = 0;
@@ -48,7 +52,7 @@ public class Memetico implements IMemetico {
             ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
             if (convergue(miPoblacion, i)) {
-                miPoblacion = reiniciarPoblacion(miPoblacion);
+                miPoblacion = reiniciarPoblacion(miPoblacion, datos);
             }
             i = i + 1;
         }
@@ -58,13 +62,13 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList generarPoblacionInicial() {
+    public ArrayList generarPoblacionInicial(CargueDatos datos) {
 
         for (int i = 0; i < poblacionSize; i++) {
 
             ArrayList<Gen> genes = new ArrayList<>();
 
-            genes = generateRandomConfiguration();
+            genes = generateRandomConfiguration(datos);
             Individuo individuo = new Individuo(genes);
             individuo.getEvaluacion();
             Individuo individuoMejorado = localSearchEngine(individuo);
@@ -121,7 +125,7 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList reiniciarPoblacion(ArrayList pop) {
+    public ArrayList reiniciarPoblacion(ArrayList pop,CargueDatos datos) {
 
         ArrayList<Individuo> newpop = new ArrayList();
         ArrayList<Individuo> population = pop;
@@ -136,7 +140,7 @@ public class Memetico implements IMemetico {
         }
         for (int i = (preserved+1); i < population.size(); i++) 
         {
-            genes = generateRandomConfiguration();
+            genes = generateRandomConfiguration(datos);
             Individuo individuo = new Individuo(genes);
             individuo.getEvaluacion();
             individuo = localSearchEngine(individuo);
@@ -146,12 +150,9 @@ public class Memetico implements IMemetico {
         return newpop;
     }
 
-    private ArrayList generateRandomConfiguration() {
+    private ArrayList generateRandomConfiguration(CargueDatos datos) {
 
         ArrayList<Gen> genes = new ArrayList<>();
-
-        CargueDatos datos = new CargueDatos();
-        datos.CargarDatos();
 
         int primerHorario;
         int segundoHorario;
