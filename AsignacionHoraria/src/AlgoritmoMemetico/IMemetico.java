@@ -17,6 +17,6 @@ public interface IMemetico {
     public ArrayList generarPoblacionInicial();
     public ArrayList generarNuevaPoblacion(ArrayList pop);
     public ArrayList actualizarPoblacion(ArrayList pop, ArrayList newPop);
-    public ArrayList reiniciarPoblacion();
+    public ArrayList reiniciarPoblacion(ArrayList pop);
     public double funcionAdaptacion();
 }

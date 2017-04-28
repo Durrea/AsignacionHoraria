@@ -25,20 +25,25 @@ import java.util.ArrayList;
 public class Memetico implements IMemetico {
 
     public ArrayList<Individuo> poblacion = new ArrayList<>();
+    public ArrayList<Double> iteraciones = new ArrayList<>();
     int poblacionSize = 25;
     int NUM_HIJOS;
     int NUM_REPETICIONES;
+    double ENTROPIA_ANTERIOR;
+    double VALOR_T = 0.01;
 
     @Override
     public void ejecutar() {
         ArrayList<Individuo> miPoblacion = generarPoblacionInicial();
         this.NUM_HIJOS = 10;
+        this.ENTROPIA_ANTERIOR = 0;
         int i = 0;
-        while(i < this.NUM_REPETICIONES)
-        {
+        while (i < this.NUM_REPETICIONES) {
             ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
-            
+            if (convergue(miPoblacion, i)) {
+                miPoblacion = reiniciarPoblacion(miPoblacion);
+            }
             i = i + 1;
         }
     }
@@ -79,30 +84,27 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList generarNuevaPoblacion( ArrayList pop) {
+    public ArrayList generarNuevaPoblacion(ArrayList pop) {
         ArrayList<Individuo> buffer = pop;
         ArrayList<Individuo> hijos = new ArrayList();
         int k = 0;
         int j = 0;
         RTR recombinacion = new RTR();
-        for (int i = 0; i < this.NUM_HIJOS; i++) 
-        {
-            while( k == j)
-            {
-                k = (int)(Math.random()*buffer.size());
-                j = (int)(Math.random()*buffer.size());   
+        for (int i = 0; i < this.NUM_HIJOS; i++) {
+            while (k == j) {
+                k = (int) (Math.random() * buffer.size());
+                j = (int) (Math.random() * buffer.size());
             }
             Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
             Individuo hijomutado = Mutar(hijo);
             hijomutado.getEvaluacion();
             hijos.add(hijomutado);
         }
-        for (int i = 0; i < hijos.size(); i++) 
-        {
+        for (int i = 0; i < hijos.size(); i++) {
             buffer.add(hijos.get(i));
         }
         Individuo ind = new Individuo();
-        buffer = ind.OrdenarIndividuos(buffer, 0, buffer.size()-1);
+        buffer = ind.OrdenarIndividuos(buffer, 0, buffer.size() - 1);
         for (int i = buffer.size() - 1; i > this.poblacionSize; i--) {
             buffer.remove(i);
         }
@@ -110,8 +112,9 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList reiniciarPoblacion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList reiniciarPoblacion(ArrayList pop) {
+
+        return null;
     }
 
     private ArrayList generateRandomConfiguration() {
@@ -180,9 +183,9 @@ public class Memetico implements IMemetico {
         }
         return poblacionActualizada;
     }
-    public Individuo Mutar(Individuo individuo)
-    {
-        int genran = (int)(Math.random()*individuo.getGenes().size());
+
+    public Individuo Mutar(Individuo individuo) {
+        int genran = (int) (Math.random() * individuo.getGenes().size());
         //System.out.println(datos.getMaterias().get(i).getNombreMateria())
         CargueDatos datos = new CargueDatos();
         datos.CargarDatos();
@@ -199,7 +202,38 @@ public class Memetico implements IMemetico {
             individuo.getGenes().get(genran).getHorarios().set(0, datos.getFranjas().get(segundoHorario));
             individuo.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(primerHorario));
         }
-        
+
         return individuo;
+    }
+
+    private boolean convergue(ArrayList<Individuo> miPoblacion, int iteracion) {
+        int sumaAdaptacion = 0;
+        double entropiaSuma = 0;
+        ArrayList<Double> probabilidades = new ArrayList<>();
+        ArrayList<Double> entropia = new ArrayList<>();
+
+        for (int i = 0; i < miPoblacion.size(); i++) {
+            sumaAdaptacion += miPoblacion.get(i).ObtenerEvaluacion();
+        }
+
+        for (int i = 0; i < miPoblacion.size(); i++) {
+            probabilidades.add(miPoblacion.get(i).ObtenerEvaluacion() / sumaAdaptacion);
+        }
+
+        for (int i = 0; i < miPoblacion.size(); i++) {
+            entropia.add(probabilidades.get(i) * Math.log10(probabilidades.get(i)));
+            entropiaSuma += entropia.get(i);
+        }
+
+        iteraciones.add(iteracion, entropiaSuma);
+
+        if (iteracion == 0) {
+            return false;
+        } else {
+            if (iteraciones.get(iteracion - 1) - iteraciones.get(iteracion) < this.VALOR_T) {
+                return true;
+            }
+        }
+        return false;
     }
 }
