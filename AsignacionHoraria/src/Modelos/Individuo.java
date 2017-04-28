@@ -41,7 +41,7 @@ public class Individuo implements Individual {
     public Individual getNeighbourhood(Individual individuo) {
         int size = this.genes.size();
         Individuo newSolution;
-        ArrayList<Individuo> neighbourhood = new ArrayList();
+        ArrayList<Individual> neighbourhood = new ArrayList();
         for (int i = 0; i < size/4; i++) {
             /*for (int j = i + 1; j < size; j++) {
 
@@ -250,9 +250,9 @@ public class Individuo implements Individual {
         return penalizacion;
     }
 
-    public ArrayList OrdenarIndividuos(ArrayList<Individuo> individuos, int izq, int der) {
+    public ArrayList OrdenarIndividuos(ArrayList<Individual> individuos, int izq, int der) {
         //individuos = (ArrayList<Individuo>) individuos;
-        Individuo pivote = individuos.get(izq); // tomamos primer elemento como pivote
+        Individuo pivote = (Individuo) individuos.get(izq); // tomamos primer elemento como pivote
         int i = izq; // i realiza la búsqueda de izquierda a derecha
         int j = der; // j realiza la búsqueda de derecha a izquierda
         Individuo ind;
@@ -266,7 +266,7 @@ public class Individuo implements Individual {
                 j--;         // busca elemento menor que pivote
             }
             if (i < j) {
-                ind = individuos.get(i); // si no se han cruzado                      
+                ind = (Individuo) individuos.get(i); // si no se han cruzado                      
                 //aux= A[i];                  // los intercambia
                 individuos.set(i, individuos.get(j));
                 //A[i]=A[j];

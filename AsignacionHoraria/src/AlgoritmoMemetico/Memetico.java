@@ -6,8 +6,12 @@
 package AlgoritmoMemetico;
 
 import BusquedaLocal.BusquedaLocalImpl;
+import Convergencia.ConvergenciaUniversidad;
+import Convergencia.IConvergencia;
 import Modelos.Gen;
 import Modelos.Individuo;
+import OperadorMutacion.IMutacion;
+import OperadorMutacion.MutacionUniversidad;
 import OperadorRecombinacion.RTR;
 import Servicios.CargueDatos;
 import algoritmo_base.ConfiguracionTabuSearch;
@@ -29,7 +33,7 @@ import java.util.ArrayList;
  */
 public class Memetico implements IMemetico {
 
-    public ArrayList<Individuo> poblacion = new ArrayList<>();
+    public ArrayList<Individual> poblacion = new ArrayList<>();
     public ArrayList<Double> iteraciones = new ArrayList<>();
     public int poblacionSize = 25;
     public int NUM_HIJOS;
@@ -46,7 +50,7 @@ public class Memetico implements IMemetico {
         CargueDatos datos = new CargueDatos();
         datos.CargarDatos(PROBLEMA);
         
-        ArrayList<Individuo> miPoblacion = generarPoblacionInicial(datos);
+        ArrayList<Individual> miPoblacion = generarPoblacionInicial(datos);
         this.NUM_HIJOS = 10;
         this.ENTROPIA_ANTERIOR = 0;
         int i = 0;
@@ -55,7 +59,8 @@ public class Memetico implements IMemetico {
             miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size()-1);
             ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion, datos);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
-            if (convergue(miPoblacion, i)) {
+            IConvergencia convergencia = new ConvergenciaUniversidad(); 
+            if (convergencia.Converge(miPoblacion, this.iteraciones, i, this.VALOR_T)) {
                 miPoblacion = reiniciarPoblacion(miPoblacion, datos);
             }
             i = i + 1;
@@ -102,8 +107,8 @@ public class Memetico implements IMemetico {
 
     @Override
     public ArrayList generarNuevaPoblacion(ArrayList pop, CargueDatos datos) {
-        ArrayList<Individuo> buffer = pop;
-        ArrayList<Individuo> hijos = new ArrayList();
+        ArrayList<Individual> buffer = pop;
+        ArrayList<Individual> hijos = new ArrayList();
         int k = 0;
         int j = 0;
         RTR recombinacion = new RTR();
@@ -115,7 +120,8 @@ public class Memetico implements IMemetico {
             //System.out.println("k: "+k);
             //System.out.println("j: "+j);
             Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
-            Individuo hijomutado = Mutar(hijo, datos);
+            IMutacion mutacion = new MutacionUniversidad();
+            Individuo hijomutado = (Individuo) mutacion.Mutar(hijo, datos);
             hijomutado.getEvaluacion();
             hijos.add(hijomutado);
             k = 0;
@@ -135,15 +141,15 @@ public class Memetico implements IMemetico {
     @Override
     public ArrayList reiniciarPoblacion(ArrayList pop,CargueDatos datos) {
 
-        ArrayList<Individuo> newpop = new ArrayList();
-        ArrayList<Individuo> population = pop;
+        ArrayList<Individual> newpop = new ArrayList();
+        ArrayList<Individual> population = pop;
         ArrayList<Gen> genes;
         Individuo ind = new Individuo();
         population = ind.OrdenarIndividuos(population, 0, population.size()-1);
         int preserved = (int) (population.size()*this.PRESERVE);
         for (int i = 0; i < preserved; i++) 
         {
-            Individuo individuo = population.get(i);
+            Individuo individuo = (Individuo) population.get(i);
             newpop.add(individuo);
         }
         for (int i = (preserved+1); i < population.size(); i++) 
@@ -225,7 +231,7 @@ public class Memetico implements IMemetico {
     @Override
     public ArrayList actualizarPoblacion(ArrayList pop, ArrayList newPop) {
 
-        ArrayList<Individuo> poblacionActualizada = new ArrayList<>();
+        ArrayList<Individual> poblacionActualizada = new ArrayList<>();
         for (int i = 0; i < pop.size(); i++) {
             poblacionActualizada.add((Individuo) pop.get(i));
             poblacionActualizada.add((Individuo) newPop.get(i));
@@ -238,27 +244,6 @@ public class Memetico implements IMemetico {
             poblacionActualizada.remove(i);
         }
         return poblacionActualizada;
-    }
-
-    public Individuo Mutar(Individuo individuo, CargueDatos datos) {
-        int genran = (int) (Math.random() * individuo.getGenes().size());
-        //System.out.println(datos.getMaterias().get(i).getNombreMateria())
-
-        int primerHorario = (int) (Math.random() * datos.getFranjas().size());
-        int segundoHorario = (int) (Math.random() * datos.getFranjas().size());
-        while (datos.getFranjas().get(primerHorario).getDia() == datos.getFranjas().get(segundoHorario).getDia()) {
-            segundoHorario = (int) (Math.random() * datos.getFranjas().size());
-        }
-
-        if (datos.getFranjas().get(primerHorario).getDia() < datos.getFranjas().get(segundoHorario).getDia()) {
-            individuo.getGenes().get(genran).getHorarios().set(0, datos.getFranjas().get(primerHorario));
-            individuo.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(segundoHorario));
-        } else {
-            individuo.getGenes().get(genran).getHorarios().set(0, datos.getFranjas().get(segundoHorario));
-            individuo.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(primerHorario));
-        }
-
-        return individuo;
     }
 
     private boolean convergue(ArrayList<Individuo> miPoblacion, int iteracion) {
