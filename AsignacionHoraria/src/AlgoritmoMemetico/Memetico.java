@@ -28,7 +28,8 @@ public class Memetico implements IMemetico {
 
     @Override
     public void ejecutar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Individuo> miPoblacion = generarPoblacionInicial();
+        
     }
 
     @Override
@@ -67,8 +68,8 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList generarNuevaPoblacion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList generarNuevaPoblacion( ArrayList pop) {
+        return null;
     }
 
     @Override
@@ -110,7 +111,7 @@ public class Memetico implements IMemetico {
             gen.getAulas().add(datos.getAulas().get(aula));
             aula = (int) (Math.random() * datos.getAulas().size());
             gen.getAulas().add(datos.getAulas().get(aula));
-            gen.setValue(i+1);
+            gen.setValue(i + 1);
             genes.add(gen);
 
         }
@@ -120,8 +121,26 @@ public class Memetico implements IMemetico {
     private Individuo localSearchEngine(Individuo individuo) {
 
         BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
-        busqueda.NUM_ITERACIONES = 10;
+        busqueda.NUM_ITERACIONES = 20;
         Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
         return best;
+    }
+
+    @Override
+    public ArrayList actualizarPoblacion(ArrayList pop, ArrayList newPop) {
+
+        ArrayList<Individuo> poblacionActualizada = new ArrayList<>();
+        for (int i = 0; i < pop.size(); i++) {
+            poblacionActualizada.add((Individuo) pop.get(i));
+            poblacionActualizada.add((Individuo) newPop.get(i));
+        }
+
+        Individuo individuo = new Individuo();
+        poblacionActualizada = individuo.OrdenarIndividuos(poblacionActualizada, 0, poblacionActualizada.size() - 1);
+
+        for (int i = poblacionActualizada.size() - 1; i == pop.size(); i--) {
+            poblacionActualizada.remove(i);
+        }
+        return poblacionActualizada;
     }
 }

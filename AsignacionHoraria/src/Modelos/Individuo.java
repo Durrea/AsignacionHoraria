@@ -59,9 +59,6 @@ public class Individuo implements Individual {
             newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
             ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
             int j = (int) (Math.random() * newSolution.genes.size());
-            while (i == j) {
-                j = (int) (Math.random() * newSolution.genes.size());
-            }
             newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
             newSolution.getGenes().get(j).setHorarios(auxIntercambio);
             newSolution.getEvaluacion();
