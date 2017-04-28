@@ -30,8 +30,9 @@ public class RTR implements Recombinacion
         
         for (int i = 0; i < genes_1.size(); i++) 
         {
-            if(genes_1.get(i).equals(genes_2.get(i)))
+            if(CompareIndividual(genes_1.get(i), genes_2.get(i)))
             {
+                System.out.println("Entro aqui padres iguales");
                 resultado.add(genes_1.get(i));
             }
             else
@@ -50,5 +51,34 @@ public class RTR implements Recombinacion
         Individuo individuo_resultante = new Individuo(resultado);
         return individuo_resultante;
     }
-    
+    public boolean CompareIndividual(Gen a, Gen b)
+    {
+        //Individuo individuo_a = (Individuo) a;
+        //Individuo individuo_b = (Individuo) b;
+        //boolean resultado = false;
+        int valor = 0;
+        
+        if(a.getMateria().getNombreMateria().equalsIgnoreCase(b.getMateria().getNombreMateria())&&
+            a.getMateria().getGrupoMateria().equalsIgnoreCase(b.getMateria().getGrupoMateria()))
+        {
+            for (int j = 0; j < a.getHorarios().size(); j++) {
+                if (a.getHorarios().get(j).getDia() == b.getHorarios().get(j).getDia()
+                        && a.getHorarios().get(j).getFranja() == b.getHorarios().get(j).getFranja()
+                        && a.getAulas().get(j).getIdsalon() == b.getAulas().get(j).getIdsalon()) 
+                {
+                    valor = valor + 1;
+                }
+            }
+        }
+        
+            
+        if(valor == a.getHorarios().size())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }        
+    }
 }

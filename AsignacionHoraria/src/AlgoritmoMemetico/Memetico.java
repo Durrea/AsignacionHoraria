@@ -49,6 +49,8 @@ public class Memetico implements IMemetico {
         this.ENTROPIA_ANTERIOR = 0;
         int i = 0;
         while (i < this.NUM_REPETICIONES) {
+            Individuo ind = new Individuo();
+            miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size()-1);
             ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
             if (convergue(miPoblacion, i)) {

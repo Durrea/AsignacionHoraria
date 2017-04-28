@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Individuo implements Individual {
 
-    private ArrayList<Gen> genes;
+    public ArrayList<Gen> genes;
     private double evaluacion;
 
     public Individuo(ArrayList<Gen> genes) {
@@ -318,4 +318,5 @@ public class Individuo implements Individual {
         }
         return neighbourhood;
     }
+    
 }
