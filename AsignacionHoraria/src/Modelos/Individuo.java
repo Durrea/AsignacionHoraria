@@ -293,7 +293,7 @@ public class Individuo implements Individual {
         int size = this.genes.size();
         Individuo newSolution;
         ArrayList<Individuo> neighbourhood = new ArrayList();
-        for (int i = 0; i < size/4; i++) {
+        for (int i = 0; i < size; i++) {
             /*for (int j = i + 1; j < size; j++) {
 
              newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
