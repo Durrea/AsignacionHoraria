@@ -32,7 +32,7 @@ public class RTR implements Recombinacion
         {
             if(CompareIndividual(genes_1.get(i), genes_2.get(i)))
             {
-                System.out.println("Entro aqui padres iguales");
+                //System.out.println("Entro aqui padres iguales");
                 resultado.add(genes_1.get(i));
             }
             else

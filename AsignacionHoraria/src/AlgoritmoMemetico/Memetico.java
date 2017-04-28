@@ -110,10 +110,14 @@ public class Memetico implements IMemetico {
                 k = (int) (Math.random() * buffer.size());
                 j = (int) (Math.random() * buffer.size());
             }
+            //System.out.println("k: "+k);
+            //System.out.println("j: "+j);
             Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
             Individuo hijomutado = Mutar(hijo);
             hijomutado.getEvaluacion();
             hijos.add(hijomutado);
+            k = 0;
+            j = 0;
         }
         for (int i = 0; i < hijos.size(); i++) {
             buffer.add(hijos.get(i));
