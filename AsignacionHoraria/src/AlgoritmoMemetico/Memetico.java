@@ -185,7 +185,7 @@ public class Memetico implements IMemetico {
     private Individuo localSearchEngine(Individuo individuo) {
 
         BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
-        busqueda.NUM_ITERACIONES = 100;
+        busqueda.NUM_ITERACIONES = 3;
         Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
         return best;
     }
