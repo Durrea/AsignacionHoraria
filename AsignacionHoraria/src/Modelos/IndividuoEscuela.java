@@ -57,7 +57,9 @@ public class IndividuoEscuela implements Individual {
 
     @Override
     public double getEvaluacion() {
-        return 0;
+        int evaluacion = evaluarRestricciones();
+        this.evaluacion = evaluacion;
+        return evaluacion;
     }
 
     @Override
@@ -138,6 +140,127 @@ public class IndividuoEscuela implements Individual {
     @Override
     public ArrayList getNeighbourhood() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private int evaluarRestricciones() {
+        int pena1 = 1;
+        int penalizacionJardinSemana = 0;
+        int penalizacionPreJardinSemana = 0;
+        int penalizacionTransicionSemana = 0;
+        int penalizacionJardinDia = 0;
+        int penalizacionPreJardinDia = 0;
+        int penalizacionTransicionDia = 0;
+        int sumaIngles = 0;
+        int sumaMatematicas = 0;
+        int sumaMusica = 0;
+        int sumalectura = 0;
+        int sumaEstetica = 0;
+
+        int genes = this.genes.size();
+
+        for (int i = 0; i < 20; i++) {
+            if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("INGLES")) {
+                sumaIngles++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MATEMATICAS")) {
+                sumaMatematicas++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("ESTETICA")) {
+                sumaEstetica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MUSICA")) {
+                sumaMusica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("LECTURA-ESCRITURA")) {
+                sumalectura++;
+            }
+        }
+
+        if (sumaEstetica != 4) {
+            penalizacionTransicionSemana += pena1;
+        }
+        if (sumaIngles != 4) {
+            penalizacionTransicionSemana += pena1;
+        }
+        if (sumaMatematicas != 4) {
+            penalizacionTransicionSemana += pena1;
+        }
+        if (sumaMusica != 4) {
+            penalizacionTransicionSemana += pena1;
+        }
+        if (sumalectura != 4) {
+            penalizacionTransicionSemana += pena1;
+        }
+        sumaIngles = 0;
+        sumaMatematicas = 0;
+        sumaMusica = 0;
+        sumalectura = 0;
+        sumaEstetica = 0;
+        
+        for (int i = 20; i < 40; i++) {
+            if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("INGLES")) {
+                sumaIngles++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MATEMATICAS")) {
+                sumaMatematicas++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("ESTETICA")) {
+                sumaEstetica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MUSICA")) {
+                sumaMusica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("LECTURA-ESCRITURA")) {
+                sumalectura++;
+            }
+        }
+
+        if (sumaEstetica != 4) {
+            penalizacionPreJardinSemana += pena1;
+        }
+        if (sumaIngles != 4) {
+            penalizacionPreJardinSemana += pena1;
+        }
+        if (sumaMatematicas != 4) {
+            penalizacionPreJardinSemana += pena1;
+        }
+        if (sumaMusica != 4) {
+            penalizacionPreJardinSemana += pena1;
+        }
+        if (sumalectura != 4) {
+            penalizacionPreJardinSemana += pena1;
+        }
+        
+        sumaIngles = 0;
+        sumaMatematicas = 0;
+        sumaMusica = 0;
+        sumalectura = 0;
+        sumaEstetica = 0;
+        
+        for (int i = 40; i < 60; i++) {
+            if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("INGLES")) {
+                sumaIngles++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MATEMATICAS")) {
+                sumaMatematicas++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("ESTETICA")) {
+                sumaEstetica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("MUSICA")) {
+                sumaMusica++;
+            } else if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("LECTURA-ESCRITURA")) {
+                sumalectura++;
+            }
+        }
+
+        if (sumaEstetica != 4) {
+            penalizacionJardinSemana += pena1;
+        }
+        if (sumaIngles != 4) {
+            penalizacionJardinSemana += pena1;
+        }
+        if (sumaMatematicas != 4) {
+            penalizacionJardinSemana += pena1;
+        }
+        if (sumaMusica != 4) {
+            penalizacionJardinSemana += pena1;
+        }
+        if (sumalectura != 4) {
+            penalizacionJardinSemana += pena1;
+        }
+
+        return penalizacionJardinSemana + penalizacionPreJardinSemana + penalizacionTransicionSemana
+                + penalizacionJardinDia + penalizacionPreJardinDia + penalizacionTransicionDia;
     }
 
 }

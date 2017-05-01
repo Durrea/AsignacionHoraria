@@ -7,6 +7,7 @@ package OperadorMutacion;
 
 import Modelos.Individuo;
 import Modelos.IndividuoEscuela;
+import Modelos.InfoMaterias;
 import Servicios.CargueDatos;
 import algoritmo_base.Individual;
 
@@ -22,9 +23,17 @@ public class MutacionEscuela implements IMutacion {
         IndividuoEscuela ind = (IndividuoEscuela) individuo;
         int genran1 = (int) (Math.random() * ind.genes.size());
         int genran2 = (int) (Math.random() * ind.genes.size());
+        InfoMaterias materia1 = datos.getMaterias().get((int) (Math.random() * datos.getMaterias().size()));
+        InfoMaterias materia2 = datos.getMaterias().get((int) (Math.random() * datos.getMaterias().size()));
+        while (materia1.getNombreMateria().equals(materia2.getNombreMateria()))
+        {            
+        materia2 = datos.getMaterias().get((int) (Math.random() * datos.getMaterias().size()));    
+        }
         //System.out.println(datos.getMaterias().get(i).getNombreMateria())
-        ind.getGenes().get(genran1).setMateria(datos.getMaterias().get((int) (Math.random() * datos.getMaterias().size())));
-        ind.getGenes().get(genran2).setMateria(datos.getMaterias().get((int) (Math.random() * datos.getMaterias().size())));
+        //System.out.println(materia1.getNombreMateria());
+        //System.out.println(materia2.getNombreMateria());
+        ind.getGenes().get(genran1).setMateria(materia1);
+        ind.getGenes().get(genran2).setMateria(materia2);
 
         return ind;
     }

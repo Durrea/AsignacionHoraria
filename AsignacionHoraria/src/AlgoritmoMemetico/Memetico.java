@@ -155,13 +155,13 @@ public class Memetico implements IMemetico {
         }
         for (int i = 0; i < this.NUM_HIJOS; i++) {
 
-            Individual hijo = (Individual) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));;
-            Individual hijomutado = (Individual) mutacion.Mutar(hijo, datos);;
-
             while (k == j) {
                 k = (int) (Math.random() * buffer.size());
                 j = (int) (Math.random() * buffer.size());
             }
+            Individual hijo = (Individual) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));;
+            Individual hijomutado = (Individual) mutacion.Mutar(hijo, datos);;
+
             //System.out.println("k: "+k);
             //System.out.println("j: "+j);
 

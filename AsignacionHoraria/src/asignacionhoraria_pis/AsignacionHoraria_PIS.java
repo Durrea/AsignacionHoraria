@@ -8,6 +8,7 @@ package asignacionhoraria_pis;
 import AlgoritmoMemetico.Memetico;
 import Modelos.Gen;
 import Modelos.Individuo;
+import Modelos.IndividuoEscuela;
 import Modelos.InfoDocente;
 import Modelos.InfoMaterias;
 import Servicios.CargueDatos;
@@ -52,7 +53,7 @@ public class AsignacionHoraria_PIS {
         
         for (int i = 0; i < memetico.poblacion.size(); i++) 
         {
-            Individuo ind = (Individuo) memetico.poblacion.get(i);
+            IndividuoEscuela ind = (IndividuoEscuela) memetico.poblacion.get(i);
             System.out.println(ind.ObtenerEvaluacion());
         }
         
