@@ -17,7 +17,7 @@ public class IndividuoEscuela implements Individual {
 
     public double evaluacion;
     private int TOTAL_FRANJAS = 60;
-    ArrayList<GenEscuela> genes = new ArrayList<GenEscuela>();
+    public ArrayList<GenEscuela> genes = new ArrayList<GenEscuela>();
 
     public IndividuoEscuela() {
     }

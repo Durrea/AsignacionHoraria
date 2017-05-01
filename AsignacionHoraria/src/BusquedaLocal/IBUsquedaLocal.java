@@ -13,6 +13,6 @@ import algoritmo_base.Individual;
  */
 public interface IBUsquedaLocal {
     
-    public Individual LocalSearchEngine(Individual individuo);
+    public Individual LocalSearchEngine(Individual individuo, int numiteraciones);
     
 }

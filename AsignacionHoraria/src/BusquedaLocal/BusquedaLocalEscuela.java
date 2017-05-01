@@ -14,27 +14,22 @@ import algoritmo_base.Individual;
  *
  * @author Eduardo
  */
-public class BusquedaLocalImpl implements IBUsquedaLocal {
+public class BusquedaLocalEscuela implements IBUsquedaLocal{
 
     public int NUM_ITERACIONES;
-
-    public BusquedaLocalImpl() {
-        this.NUM_ITERACIONES = 10;
-    }
-
     @Override
-    public Individual LocalSearchEngine(Individual current, int numiteraciones) {
+    public Individual LocalSearchEngine(Individual current, int numiteraciones) 
+    {
         this.NUM_ITERACIONES = numiteraciones;
         int i = 0;
         Individual nuevo;
         Individual actual;
 
-        actual = (Individuo) current;
-        
+        actual = (IndividuoEscuela) current;
 
         while (i < this.NUM_ITERACIONES) {
-            
-            nuevo = (Individuo) actual.getNeighbourhood(actual);
+
+            nuevo = (IndividuoEscuela) actual.getNeighbourhood(actual);
             
             if (nuevo.ObtenerEvaluacion() < actual.ObtenerEvaluacion()) {
                 actual = nuevo;
@@ -43,5 +38,6 @@ public class BusquedaLocalImpl implements IBUsquedaLocal {
         }
         return actual;
     }
-
+        
 }
+    

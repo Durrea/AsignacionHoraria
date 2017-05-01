@@ -5,7 +5,10 @@
  */
 package AlgoritmoMemetico;
 
+import BusquedaLocal.BusquedaLocalEscuela;
 import BusquedaLocal.BusquedaLocalImpl;
+import BusquedaLocal.IBUsquedaLocal;
+import Convergencia.ConvergenciaEscuela;
 import Convergencia.ConvergenciaUniversidad;
 import Convergencia.IConvergencia;
 import Modelos.Gen;
@@ -55,7 +58,15 @@ public class Memetico implements IMemetico {
 
         CargueDatos datos = new CargueDatos();
         datos.CargarDatos(PROBLEMA);
-        IConvergencia convergencia = new ConvergenciaUniversidad();
+        IConvergencia convergencia;
+        if(this.PROBLEMA == 0)
+        {
+            convergencia = new ConvergenciaUniversidad();
+        }
+        else
+        {
+            convergencia = new ConvergenciaEscuela();
+        }
         Individual ind;
 
         ArrayList<Individual> miPoblacion = generarPoblacionInicial(datos);
@@ -68,7 +79,7 @@ public class Memetico implements IMemetico {
 
         while (i < this.NUM_REPETICIONES) {
 
-            miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size() - 1);
+            //miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size() - 1);
             ArrayList<Individual> newPoblacion = generarNuevaPoblacion(miPoblacion, datos);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
             if (convergencia.Converge(miPoblacion, this.iteraciones, i, this.VALOR_T)) {
@@ -214,9 +225,18 @@ public class Memetico implements IMemetico {
 
     private Individual localSearchEngine(Individual individuo) {
 
-        BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
-        busqueda.NUM_ITERACIONES = 3;
-        Individual best = (Individual) busqueda.LocalSearchEngine(individuo);
+        IBUsquedaLocal busqueda;
+        if(this.PROBLEMA == 0)
+        {
+            busqueda = new BusquedaLocalImpl();
+            
+        }
+        else
+        {
+            busqueda = new BusquedaLocalEscuela();
+        }
+        
+        Individual best = (Individual) busqueda.LocalSearchEngine(individuo,3);
         return best;
         /*TabuSearch busqueda = new TabuSearch();
         
@@ -251,41 +271,5 @@ public class Memetico implements IMemetico {
             poblacionActualizada.remove(i);
         }
         return poblacionActualizada;
-    }
-
-    private boolean convergue(ArrayList<Individual> miPoblacion, int iteracion) {
-        int sumaAdaptacion = 0;
-        double entropiaSuma = 0;
-        ArrayList<Double> probabilidades = new ArrayList<>();
-        ArrayList<Double> entropia = new ArrayList<>();
-
-        for (int i = 0; i < miPoblacion.size(); i++) {
-            if(this.PROBLEMA == 0)
-            {
-                
-                sumaAdaptacion +=  miPoblacion.get(i).ObtenerEvaluacion();
-            }
-            
-        }
-
-        for (int i = 0; i < miPoblacion.size(); i++) {
-            probabilidades.add(miPoblacion.get(i).ObtenerEvaluacion() / sumaAdaptacion);
-        }
-
-        for (int i = 0; i < miPoblacion.size(); i++) {
-            entropia.add(probabilidades.get(i) * Math.log10(probabilidades.get(i)));
-            entropiaSuma += entropia.get(i);
-        }
-
-        iteraciones.add(iteracion, entropiaSuma);
-
-        if (iteracion == 0) {
-            return false;
-        } else {
-            if (iteraciones.get(iteracion - 1) - iteraciones.get(iteracion) < this.VALOR_T) {
-                return true;
-            }
-        }
-        return false;
     }
 }
