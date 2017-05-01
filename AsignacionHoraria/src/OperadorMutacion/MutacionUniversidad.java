@@ -36,7 +36,7 @@ public class MutacionUniversidad implements IMutacion{
             ind.getGenes().get(genran).getHorarios().set(1, datos.getFranjas().get(primerHorario));
         }
 
-        return individuo;
+        return ind;
     }
     
 }

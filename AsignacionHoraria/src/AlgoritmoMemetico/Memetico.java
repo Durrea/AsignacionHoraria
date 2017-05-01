@@ -59,12 +59,9 @@ public class Memetico implements IMemetico {
         CargueDatos datos = new CargueDatos();
         datos.CargarDatos(PROBLEMA);
         IConvergencia convergencia;
-        if(this.PROBLEMA == 0)
-        {
+        if (this.PROBLEMA == 0) {
             convergencia = new ConvergenciaUniversidad();
-        }
-        else
-        {
+        } else {
             convergencia = new ConvergenciaEscuela();
         }
         Individual ind;
@@ -226,17 +223,14 @@ public class Memetico implements IMemetico {
     private Individual localSearchEngine(Individual individuo) {
 
         IBUsquedaLocal busqueda;
-        if(this.PROBLEMA == 0)
-        {
+        if (this.PROBLEMA == 0) {
             busqueda = new BusquedaLocalImpl();
-            
-        }
-        else
-        {
+
+        } else {
             busqueda = new BusquedaLocalEscuela();
         }
-        
-        Individual best = (Individual) busqueda.LocalSearchEngine(individuo,3);
+
+        Individual best = (Individual) busqueda.LocalSearchEngine(individuo, 3);
         return best;
         /*TabuSearch busqueda = new TabuSearch();
         
@@ -259,12 +253,23 @@ public class Memetico implements IMemetico {
     public ArrayList actualizarPoblacion(ArrayList pop, ArrayList newPop) {
 
         ArrayList<Individual> poblacionActualizada = new ArrayList<>();
-        for (int i = 0; i < pop.size(); i++) {
-            poblacionActualizada.add((Individuo) pop.get(i));
-            poblacionActualizada.add((Individuo) newPop.get(i));
+        Individual individuo;
+
+        if (this.PROBLEMA == 0) {
+
+            for (int i = 0; i < pop.size(); i++) {
+                poblacionActualizada.add((Individuo) pop.get(i));
+                poblacionActualizada.add((Individuo) newPop.get(i));
+            }
+            individuo = new Individuo();
+        } else {
+            for (int i = 0; i < pop.size(); i++) {
+                poblacionActualizada.add((IndividuoEscuela) pop.get(i));
+                poblacionActualizada.add((IndividuoEscuela) newPop.get(i));
+            }
+            individuo = new IndividuoEscuela();
         }
 
-        Individuo individuo = new Individuo();
         poblacionActualizada = individuo.OrdenarIndividuos(poblacionActualizada, 0, poblacionActualizada.size() - 1);
 
         for (int i = poblacionActualizada.size() - 1; i > this.poblacionSize; i--) {

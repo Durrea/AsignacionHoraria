@@ -34,13 +34,25 @@ public class IndividuoEscuela implements Individual {
 
     @Override
     public Individual getNeighbourhood(Individual individuo) {
-        System.out.println("Olis");
-        return null;
-    }
 
-    @Override
-    public ArrayList getNeighbourhood() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int size = this.genes.size();
+        IndividuoEscuela newSolution;
+        ArrayList<Individual> neighbourhood = new ArrayList();
+        for (int i = 0; i < size / 4; i++) {
+            newSolution = new IndividuoEscuela((ArrayList<GenEscuela>) this.genes.clone());
+            InfoMaterias auxMateria = new InfoMaterias();
+            int a = (int) (Math.random() * newSolution.genes.size());
+            int b = (int) (Math.random() * newSolution.genes.size());
+            auxMateria = newSolution.getGenes().get(a).getMateria();
+            newSolution.getGenes().get(a).setMateria(newSolution.getGenes().get(b).getMateria());
+            newSolution.getGenes().get(b).setMateria(auxMateria);
+            newSolution.getEvaluacion();
+            neighbourhood.add(newSolution);
+        }
+        neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size() - 1);
+        return neighbourhood.get(0);
+        //Collections.sort(neighbourhood,Individuo.this.evaluacion);
+        //return neighbourhood;
     }
 
     @Override
@@ -103,9 +115,7 @@ public class IndividuoEscuela implements Individual {
 
     @Override
     public ArrayList generateRandomConfiguration(CargueDatos datos) {
-        System.out.println("primero");
         ArrayList<GenEscuela> genes = new ArrayList<GenEscuela>();
-        System.out.println("segundo");
         int materia;
 
         for (int i = 0; i < this.TOTAL_FRANJAS; i++) {
@@ -119,6 +129,15 @@ public class IndividuoEscuela implements Individual {
         }
         return genes;
 
+    }
+
+    public ArrayList<GenEscuela> getGenes() {
+        return genes;
+    }
+
+    @Override
+    public ArrayList getNeighbourhood() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
