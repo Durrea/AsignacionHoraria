@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author ingesis
  */
-public class Gen {
+public class Gen{
     
     private InfoMaterias materia;
     private ArrayList<FranjaHoraria> horarios;

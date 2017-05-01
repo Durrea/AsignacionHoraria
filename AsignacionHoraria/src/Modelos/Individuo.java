@@ -5,6 +5,7 @@
  */
 package Modelos;
 
+import Servicios.CargueDatos;
 import algoritmo_base.Individual;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +43,7 @@ public class Individuo implements Individual {
         int size = this.genes.size();
         Individuo newSolution;
         ArrayList<Individual> neighbourhood = new ArrayList();
-        for (int i = 0; i < size/4; i++) {
+        for (int i = 0; i < size / 4; i++) {
             /*for (int j = i + 1; j < size; j++) {
 
              newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
@@ -71,6 +72,7 @@ public class Individuo implements Individual {
         //return neighbourhood;
     }
 
+    @Override
     public double ObtenerEvaluacion() {
         return this.evaluacion;
     }
@@ -289,7 +291,7 @@ public class Individuo implements Individual {
 
     @Override
     public ArrayList getNeighbourhood() {
-        
+
         int size = this.genes.size();
         Individuo newSolution;
         ArrayList<Individuo> neighbourhood = new ArrayList();
@@ -318,5 +320,49 @@ public class Individuo implements Individual {
         }
         return neighbourhood;
     }
-    
+
+    @Override
+    public ArrayList generateRandomConfiguration(CargueDatos datos) {
+
+        ArrayList<Gen> genes = new ArrayList();
+
+        //ArrayList<GenEscuela> genes = new ArrayList<>();
+        int primerHorario;
+        int segundoHorario;
+        int aula;
+
+        for (int i = 0; i < datos.getMaterias().size(); i++) {
+            Gen gen = new Gen();
+            //System.out.println(datos.getMaterias().get(i).getNombreMateria());
+            gen.setMateria(datos.getMaterias().get(i));
+
+            primerHorario = (int) (Math.random() * datos.getFranjas().size());
+            segundoHorario = (int) (Math.random() * datos.getFranjas().size());
+            while (datos.getFranjas().get(primerHorario).getDia() == datos.getFranjas().get(segundoHorario).getDia()) {
+                segundoHorario = (int) (Math.random() * datos.getFranjas().size());
+            }
+
+            if (datos.getFranjas().get(primerHorario).getDia() < datos.getFranjas().get(segundoHorario).getDia()) {
+                gen.getHorarios().add(datos.getFranjas().get(primerHorario));
+                gen.getHorarios().add(datos.getFranjas().get(segundoHorario));
+            } else {
+                gen.getHorarios().add(datos.getFranjas().get(segundoHorario));
+                gen.getHorarios().add(datos.getFranjas().get(primerHorario));
+            }
+
+            aula = (int) (Math.random() * datos.getAulas().size());
+            gen.getAulas().add(datos.getAulas().get(aula));
+            aula = (int) (Math.random() * datos.getAulas().size());
+            gen.getAulas().add(datos.getAulas().get(aula));
+
+            gen.setValue(i);
+            genes.add(gen);
+
+        }
+        return genes;
+
+    }
+
+   
+
 }

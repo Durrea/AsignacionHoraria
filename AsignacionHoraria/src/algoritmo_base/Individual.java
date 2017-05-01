@@ -5,6 +5,7 @@
  */
 package algoritmo_base;
 
+import Servicios.CargueDatos;
 import java.util.ArrayList;
 
 /**
@@ -48,4 +49,19 @@ public interface Individual {
      * @return una copia del individuo
      */
     public Individual clonar();
+
+    public ArrayList<Individual> OrdenarIndividuos(ArrayList<Individual> miPoblacion, int i, int i0);
+    /**
+     * Permite ordenar la poblacion por medio de su adaptacion
+     * @return poblacion ordenada
+     */
+    
+    public ArrayList generateRandomConfiguration(CargueDatos datos);
+    /**
+     * Permite generar una configuracion aleatoria para la creacion de un individuo
+     * @return una lista de genes
+     */
+    
+    public double ObtenerEvaluacion();
+            
 }

@@ -5,7 +5,9 @@
  */
 package BusquedaLocal;
 
+import AlgoritmoMemetico.Memetico;
 import Modelos.Individuo;
+import Modelos.IndividuoEscuela;
 import algoritmo_base.Individual;
 
 /**
@@ -23,10 +25,22 @@ public class BusquedaLocalImpl implements IBUsquedaLocal {
     @Override
     public Individual LocalSearchEngine(Individual current) {
         int i = 0;
-        Individuo nuevo;
-        Individuo actual = (Individuo) current;
+        Memetico memetico = new Memetico();
+        Individual nuevo;
+        Individual actual;
+
+        if (memetico.PROBLEMA == 0) {
+            actual = (Individuo) current;
+        } else {
+            actual = (IndividuoEscuela) current;
+        }
+
         while (i < this.NUM_ITERACIONES) {
-            nuevo = (Individuo) actual.getNeighbourhood(actual);
+            if (memetico.PROBLEMA == 0) {
+                nuevo = (Individuo) actual.getNeighbourhood(actual);
+            } else {
+                nuevo = (IndividuoEscuela) actual.getNeighbourhood(actual);
+            }
             if (nuevo.ObtenerEvaluacion() < actual.ObtenerEvaluacion()) {
                 actual = nuevo;
             }

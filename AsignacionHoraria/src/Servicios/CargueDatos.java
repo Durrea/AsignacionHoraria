@@ -41,7 +41,7 @@ public class CargueDatos {
         ArrayList<InfoDocente> docs = new ArrayList();
         try {
             String linea;
-            if(PROBLEMA == 1)
+            if(PROBLEMA == 0)
             {
                 file = new FileReader("profesores.txt");
             }
@@ -69,7 +69,7 @@ public class CargueDatos {
         ArrayList<InfoMaterias> mats = new ArrayList();
         try {
             String linea;
-            if(PROBLEMA == 1)
+            if(PROBLEMA == 0)
             {
                 file = new FileReader("curso_semestre.txt");
             }
@@ -95,7 +95,7 @@ public class CargueDatos {
         FileReader file;
         BufferedReader buffer; 
         
-        if(PROBLEMA == 1)
+        if(PROBLEMA == 0)
         {
             this.docentes = CargarDatosProfesor(PROBLEMA);
             CargarDatosAulas();
@@ -169,7 +169,7 @@ public class CargueDatos {
         try
         {
             String linea;
-            if(PROBLEMA == 1)
+            if(PROBLEMA == 0)
             {
                 file = new FileReader("franjas.txt");
             }

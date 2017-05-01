@@ -9,10 +9,15 @@ import BusquedaLocal.BusquedaLocalImpl;
 import Convergencia.ConvergenciaUniversidad;
 import Convergencia.IConvergencia;
 import Modelos.Gen;
+import Modelos.GenEscuela;
 import Modelos.Individuo;
+import Modelos.IndividuoEscuela;
 import OperadorMutacion.IMutacion;
+import OperadorMutacion.MutacionEscuela;
 import OperadorMutacion.MutacionUniversidad;
 import OperadorRecombinacion.RTR;
+import OperadorRecombinacion.RTREscuela;
+import OperadorRecombinacion.Recombinacion;
 import Servicios.CargueDatos;
 import algoritmo_base.ConfiguracionTabuSearch;
 //import algoritmo_base.ConfiguracionTabuSearch;
@@ -41,33 +46,38 @@ public class Memetico implements IMemetico {
     public double ENTROPIA_ANTERIOR;
     public double VALOR_T = 0.01;
     public double PRESERVE = 0.25;
-    public int PROBLEMA;
-    
+    public int PROBLEMA; //0 == Universidad // 1 == Escuela
 
     @Override
     public void ejecutar() {
-        
+
+        int i = 0;
+
         CargueDatos datos = new CargueDatos();
         datos.CargarDatos(PROBLEMA);
-        
+        IConvergencia convergencia = new ConvergenciaUniversidad();
+        Individual ind;
+
         ArrayList<Individual> miPoblacion = generarPoblacionInicial(datos);
-        this.NUM_HIJOS = 10;
-        this.ENTROPIA_ANTERIOR = 0;
-        int i = 0;
+
+        if (this.PROBLEMA == 0) {
+            ind = new Individuo();
+        } else {
+            ind = new IndividuoEscuela();
+        }
+
         while (i < this.NUM_REPETICIONES) {
-            Individuo ind = new Individuo();
-            miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size()-1);
-            ArrayList<Individuo> newPoblacion = generarNuevaPoblacion(miPoblacion, datos);
+
+            miPoblacion = ind.OrdenarIndividuos(miPoblacion, 0, miPoblacion.size() - 1);
+            ArrayList<Individual> newPoblacion = generarNuevaPoblacion(miPoblacion, datos);
             miPoblacion = actualizarPoblacion(miPoblacion, newPoblacion);
-            IConvergencia convergencia = new ConvergenciaUniversidad(); 
             if (convergencia.Converge(miPoblacion, this.iteraciones, i, this.VALOR_T)) {
                 miPoblacion = reiniciarPoblacion(miPoblacion, datos);
             }
             i = i + 1;
         }
         this.poblacion = miPoblacion;
-        Individuo ind = new Individuo();
-        this.poblacion = ind.OrdenarIndividuos(this.poblacion, 0, this.poblacion.size()-1);
+        this.poblacion = ind.OrdenarIndividuos(this.poblacion, 0, this.poblacion.size() - 1);
     }
 
     @Override
@@ -75,29 +85,40 @@ public class Memetico implements IMemetico {
 
         for (int i = 0; i < poblacionSize; i++) {
 
-            ArrayList<Gen> genes = new ArrayList<>();
+            Individual individuo;
+            Individual individuoMejorado;
 
-            genes = generateRandomConfiguration(datos);
-            Individuo individuo = new Individuo(genes);
+            if (this.PROBLEMA == 0) {
+                ArrayList<Gen> genes;
+                individuo = new Individuo();
+                genes = individuo.generateRandomConfiguration(datos);
+                individuo = new Individuo(genes);
+            } else {
+                ArrayList<GenEscuela> genes;
+                individuo = new IndividuoEscuela();
+                genes = individuo.generateRandomConfiguration(datos);
+                individuo = new IndividuoEscuela(genes);
+            }
+
             individuo.getEvaluacion();
-            Individuo individuoMejorado = localSearchEngine(individuo);
-
-
-            /*for (int i = 0; i < genes.size(); i++) {
-
-             System.out.println("Materia: " + genes.get(i).getMateria().getNombreMateria());
-             System.out.println("Docente: " + genes.get(i).getMateria().getPosDocente());
-             System.out.println("Tipo: " + genes.get(i).getMateria().getTipoMateria());
-             System.out.println("Franja 1: " + genes.get(i).getHorarios().get(0).getDia() + ":"
-             + genes.get(i).getHorarios().get(0).getFranja()
-             + "\nFranja2: " + genes.get(i).getHorarios().get(1).getDia() + ":" + genes.get(i).getHorarios().get(1).getFranja());
-             System.out.println(genes.get(i).getAulas().get(0).getNombreAula() + "-" + genes.get(i).getAulas().get(1).getNombreAula());
-
-             System.out.println("******************");
-             }*/
+            individuoMejorado = localSearchEngine(individuo);
             poblacion.add(individuoMejorado);
         }
         return poblacion;
+
+
+        /*for (int i = 0; i < genes.size(); i++) {
+
+         System.out.println("Materia: " + genes.get(i).getMateria().getNombreMateria());
+         System.out.println("Docente: " + genes.get(i).getMateria().getPosDocente());
+         System.out.println("Tipo: " + genes.get(i).getMateria().getTipoMateria());
+         System.out.println("Franja 1: " + genes.get(i).getHorarios().get(0).getDia() + ":"
+         + genes.get(i).getHorarios().get(0).getFranja()
+         + "\nFranja2: " + genes.get(i).getHorarios().get(1).getDia() + ":" + genes.get(i).getHorarios().get(1).getFranja());
+         System.out.println(genes.get(i).getAulas().get(0).getNombreAula() + "-" + genes.get(i).getAulas().get(1).getNombreAula());
+
+         System.out.println("******************");
+         }*/
     }
 
     @Override
@@ -111,17 +132,31 @@ public class Memetico implements IMemetico {
         ArrayList<Individual> hijos = new ArrayList();
         int k = 0;
         int j = 0;
-        RTR recombinacion = new RTR();
+        Recombinacion recombinacion = null;
+        IMutacion mutacion = null;
+        Individual ind = null;
+
+        if (this.PROBLEMA == 0) {
+            recombinacion = new RTR();
+            mutacion = new MutacionUniversidad();
+            ind = new Individuo();
+        } else {
+            recombinacion = new RTREscuela();
+            mutacion = new MutacionEscuela();
+            ind = new IndividuoEscuela();
+        }
         for (int i = 0; i < this.NUM_HIJOS; i++) {
+
+            Individual hijo = (Individual) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));;
+            Individual hijomutado = (Individual) mutacion.Mutar(hijo, datos);;
+
             while (k == j) {
                 k = (int) (Math.random() * buffer.size());
                 j = (int) (Math.random() * buffer.size());
             }
             //System.out.println("k: "+k);
             //System.out.println("j: "+j);
-            Individuo hijo = (Individuo) recombinacion.OperadorRecombinacion(buffer.get(k), buffer.get(j));
-            IMutacion mutacion = new MutacionUniversidad();
-            Individuo hijomutado = (Individuo) mutacion.Mutar(hijo, datos);
+
             hijomutado.getEvaluacion();
             hijos.add(hijomutado);
             k = 0;
@@ -130,7 +165,7 @@ public class Memetico implements IMemetico {
         for (int i = 0; i < hijos.size(); i++) {
             buffer.add(hijos.get(i));
         }
-        Individuo ind = new Individuo();
+
         buffer = ind.OrdenarIndividuos(buffer, 0, buffer.size() - 1);
         for (int i = buffer.size() - 1; i > this.poblacionSize; i--) {
             buffer.remove(i);
@@ -139,93 +174,65 @@ public class Memetico implements IMemetico {
     }
 
     @Override
-    public ArrayList reiniciarPoblacion(ArrayList pop,CargueDatos datos) {
+    public ArrayList reiniciarPoblacion(ArrayList pop, CargueDatos datos) {
 
+        Individual ind = null;
         ArrayList<Individual> newpop = new ArrayList();
         ArrayList<Individual> population = pop;
-        ArrayList<Gen> genes;
-        Individuo ind = new Individuo();
-        population = ind.OrdenarIndividuos(population, 0, population.size()-1);
-        int preserved = (int) (population.size()*this.PRESERVE);
-        for (int i = 0; i < preserved; i++) 
-        {
-            Individuo individuo = (Individuo) population.get(i);
+        ArrayList genes = null;
+
+        if (this.PROBLEMA == 0) {
+            ind = new Individuo();
+            genes = new ArrayList<Gen>();
+        } else {
+            ind = new IndividuoEscuela();
+            genes = new ArrayList<GenEscuela>();
+        }
+
+        population = ind.OrdenarIndividuos(population, 0, population.size() - 1);
+        int preserved = (int) (population.size() * this.PRESERVE);
+        for (int i = 0; i < preserved; i++) {
+            Individual individuo = null;
+            individuo = (Individual) population.get(i);
             newpop.add(individuo);
         }
-        for (int i = (preserved+1); i < population.size(); i++) 
-        {
-            genes = generateRandomConfiguration(datos);
-            Individuo individuo = new Individuo(genes);
+        for (int i = (preserved + 1); i < population.size(); i++) {
+            genes = ind.generateRandomConfiguration(datos);
+            Individual individuo = null;
+            if (this.PROBLEMA == 0) {
+                individuo = new Individuo(genes);
+            } else {
+                individuo = new IndividuoEscuela(genes);
+            }
             individuo.getEvaluacion();
             individuo = localSearchEngine(individuo);
             newpop.add(individuo);
         }
-        
+
         return newpop;
     }
 
-    private ArrayList generateRandomConfiguration(CargueDatos datos) {
-
-        ArrayList<Gen> genes = new ArrayList<>();
-
-        int primerHorario;
-        int segundoHorario;
-        int aula;
-
-        for (int i = 0; i < datos.getMaterias().size(); i++) {
-            Gen gen = new Gen();
-            //System.out.println(datos.getMaterias().get(i).getNombreMateria());
-            gen.setMateria(datos.getMaterias().get(i));
-
-            primerHorario = (int) (Math.random() * datos.getFranjas().size());
-            segundoHorario = (int) (Math.random() * datos.getFranjas().size());
-            while (datos.getFranjas().get(primerHorario).getDia() == datos.getFranjas().get(segundoHorario).getDia()) {
-                segundoHorario = (int) (Math.random() * datos.getFranjas().size());
-            }
-
-            if (datos.getFranjas().get(primerHorario).getDia() < datos.getFranjas().get(segundoHorario).getDia()) {
-                gen.getHorarios().add(datos.getFranjas().get(primerHorario));
-                gen.getHorarios().add(datos.getFranjas().get(segundoHorario));
-            } else {
-                gen.getHorarios().add(datos.getFranjas().get(segundoHorario));
-                gen.getHorarios().add(datos.getFranjas().get(primerHorario));
-            }
-            if(this.PROBLEMA == 1)
-            {
-                aula = (int) (Math.random() * datos.getAulas().size());
-                gen.getAulas().add(datos.getAulas().get(aula));
-                aula = (int) (Math.random() * datos.getAulas().size());
-                gen.getAulas().add(datos.getAulas().get(aula));
-            }
-            
-            gen.setValue(i);
-            genes.add(gen);
-
-        }
-        return genes;
-    }
-
-    private Individuo localSearchEngine(Individuo individuo) {
+    private Individual localSearchEngine(Individual individuo) {
 
         BusquedaLocalImpl busqueda = new BusquedaLocalImpl();
         busqueda.NUM_ITERACIONES = 3;
-        Individuo best = (Individuo) busqueda.LocalSearchEngine(individuo);
+        Individual best = (Individual) busqueda.LocalSearchEngine(individuo);
         return best;
         /*TabuSearch busqueda = new TabuSearch();
         
-        ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
-        configuracion.setTipoProblema(false);
-        configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 1000);
-        configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
-        configuracion.setListaTabu(new TabuListMovimientos(), 5);
+         ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
+         configuracion.setTipoProblema(false);
+         configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 1000);
+         configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
+         configuracion.setListaTabu(new TabuListMovimientos(), 5);
         
-        //Problema del Flow Shop
+         //Problema del Flow Shop
         
         
-        //CIUDADES     
+         //CIUDADES     
         
-        Individuo best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
-        return best;*/
+         Individuo best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
+         return best;*/
     }
 
     @Override
@@ -246,14 +253,19 @@ public class Memetico implements IMemetico {
         return poblacionActualizada;
     }
 
-    private boolean convergue(ArrayList<Individuo> miPoblacion, int iteracion) {
+    private boolean convergue(ArrayList<Individual> miPoblacion, int iteracion) {
         int sumaAdaptacion = 0;
         double entropiaSuma = 0;
         ArrayList<Double> probabilidades = new ArrayList<>();
         ArrayList<Double> entropia = new ArrayList<>();
 
         for (int i = 0; i < miPoblacion.size(); i++) {
-            sumaAdaptacion += miPoblacion.get(i).ObtenerEvaluacion();
+            if(this.PROBLEMA == 0)
+            {
+                
+                sumaAdaptacion +=  miPoblacion.get(i).ObtenerEvaluacion();
+            }
+            
         }
 
         for (int i = 0; i < miPoblacion.size(); i++) {
