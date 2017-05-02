@@ -118,9 +118,27 @@ public class IndividuoEscuela implements Individual {
     @Override
     public ArrayList generateRandomConfiguration(CargueDatos datos) {
         ArrayList<GenEscuela> genes = new ArrayList<GenEscuela>();
+        ArrayList<InfoMaterias> materiasAux = datos.getMaterias();
         int materia;
-
-        for (int i = 0; i < this.TOTAL_FRANJAS; i++) {
+        //int suma = 0;
+        for (int i = 0; i < 15; i++) {
+            //materiasAux.clear();
+            //System.out.println("iteracion");
+             materiasAux = (ArrayList<InfoMaterias>) datos.getMaterias().clone();
+            for (int j = 0; j < 4; j++) {
+                //suma++;
+                GenEscuela gen = new GenEscuela();
+                materia = (int) (Math.random() * materiasAux.size());
+                //System.out.println(materiasAux.get(materia).getNombreMateria());
+                gen.setMateria(materiasAux.get(materia));
+                gen.setValue(i);
+                genes.add(gen);
+                materiasAux.remove(materia);
+            }
+            //System.out.println("********");
+        }
+        //System.out.println(suma);
+        /*for (int i = 0; i < this.TOTAL_FRANJAS; i++) {
             GenEscuela gen = new GenEscuela();
             //System.out.println(datos.getMaterias().get(i).getNombreMateria());
             materia = (int) (Math.random() * datos.getMaterias().size());
@@ -128,7 +146,7 @@ public class IndividuoEscuela implements Individual {
             gen.setValue(i);
             genes.add(gen);
 
-        }
+        }*/
         return genes;
 
     }
@@ -192,7 +210,7 @@ public class IndividuoEscuela implements Individual {
         sumaMusica = 0;
         sumalectura = 0;
         sumaEstetica = 0;
-        
+
         for (int i = 20; i < 40; i++) {
             if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("INGLES")) {
                 sumaIngles++;
@@ -222,13 +240,13 @@ public class IndividuoEscuela implements Individual {
         if (sumalectura != 4) {
             penalizacionPreJardinSemana += pena1;
         }
-        
+
         sumaIngles = 0;
         sumaMatematicas = 0;
         sumaMusica = 0;
         sumalectura = 0;
         sumaEstetica = 0;
-        
+
         for (int i = 40; i < 60; i++) {
             if (this.genes.get(i).getMateria().getNombreMateria().equalsIgnoreCase("INGLES")) {
                 sumaIngles++;

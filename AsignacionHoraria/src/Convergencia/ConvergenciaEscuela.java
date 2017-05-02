@@ -19,6 +19,7 @@ public class ConvergenciaEscuela implements IConvergencia{
     @Override
     public boolean Converge(ArrayList<Individual> miPoblacion, ArrayList<Double> iteraciones, int numero, double VALOR_T) 
     {
+        //System.out.println("Conver..");
         int sumaAdaptacion = 0;
         double entropiaSuma = 0;
         ArrayList<Double> probabilidades = new ArrayList<>();
@@ -44,6 +45,7 @@ public class ConvergenciaEscuela implements IConvergencia{
             return false;
         } else {
             if (iteraciones.get(numero - 1) - iteraciones.get(numero) < VALOR_T) {
+                //System.out.println("Si conver.");
                 return true;
             }
         }
