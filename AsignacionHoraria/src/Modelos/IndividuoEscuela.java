@@ -8,6 +8,7 @@ package Modelos;
 import Servicios.CargueDatos;
 import algoritmo_base.Individual;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -35,19 +36,30 @@ public class IndividuoEscuela implements Individual {
     @Override
     public Individual getNeighbourhood(Individual individuo) {
 
-        int size = this.genes.size();
+        int size = (int) (this.genes.size());
         IndividuoEscuela newSolution;
         ArrayList<Individual> neighbourhood = new ArrayList();
-        for (int i = 0; i < size / 4; i++) {
-            newSolution = new IndividuoEscuela((ArrayList<GenEscuela>) this.genes.clone());
-            InfoMaterias auxMateria = new InfoMaterias();
-            int a = (int) (Math.random() * newSolution.genes.size());
-            int b = (int) (Math.random() * newSolution.genes.size());
-            auxMateria = newSolution.getGenes().get(a).getMateria();
-            newSolution.getGenes().get(a).setMateria(newSolution.getGenes().get(b).getMateria());
-            newSolution.getGenes().get(b).setMateria(auxMateria);
-            newSolution.getEvaluacion();
-            neighbourhood.add(newSolution);
+        newSolution = new IndividuoEscuela((ArrayList<GenEscuela>) this.genes.clone());
+        
+        for (int i = 0; i < size-1; i++) {
+            for(int j = i + 1 ;j < size;j++)
+            {
+                
+                Collections.shuffle(newSolution.genes);
+                //InfoMaterias auxMateria = new InfoMaterias();
+                //int a = (int) (Math.random() * newSolution.genes.size());
+                //int b = (int) (Math.random() * newSolution.genes.size());
+                GenEscuela auxMateria;
+                auxMateria = newSolution.genes.get(i);
+                newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+                newSolution.getGenes().set(j, auxMateria);
+                //newSolution.getGenes().get(i).setMateria(newSolution.getGenes().get(j).getMateria());
+                //newSolution.getGenes().get(b).setMateria(auxMateria);
+                //newSolution.getGenes().get(j).setHorarios(auxMateria.getHorarios());
+                newSolution.getEvaluacion();
+                neighbourhood.add(newSolution);
+            }            
+            
         }
         neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size() - 1);
         return neighbourhood.get(0);
@@ -64,17 +76,17 @@ public class IndividuoEscuela implements Individual {
 
     @Override
     public int getIndividualSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.genes.size();
     }
 
     @Override
     public double getValue(int position) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.genes.get(position).getValue();
     }
 
     @Override
     public Individual clonar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new IndividuoEscuela(this.genes);
     }
 
     @Override
@@ -121,6 +133,7 @@ public class IndividuoEscuela implements Individual {
         ArrayList<InfoMaterias> materiasAux = datos.getMaterias();
         int materia;
         //int suma = 0;
+        int value = 0;
         for (int i = 0; i < 15; i++) {
             //materiasAux.clear();
             //System.out.println("iteracion");
@@ -131,7 +144,8 @@ public class IndividuoEscuela implements Individual {
                 materia = (int) (Math.random() * materiasAux.size());
                 //System.out.println(materiasAux.get(materia).getNombreMateria());
                 gen.setMateria(materiasAux.get(materia));
-                gen.setValue(i);
+                value = value + 1; 
+                gen.setValue(value);
                 genes.add(gen);
                 materiasAux.remove(materia);
             }
@@ -156,8 +170,34 @@ public class IndividuoEscuela implements Individual {
     }
 
     @Override
-    public ArrayList getNeighbourhood() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Individual> getNeighbourhood() {
+        int size = (int) (this.genes.size());
+        IndividuoEscuela newSolution;
+        ArrayList<Individual> neighbourhood = new ArrayList();
+        newSolution = new IndividuoEscuela((ArrayList<GenEscuela>) this.genes.clone());
+        
+        for (int i = 0; i < size-1; i++) {
+            for(int j = i + 1 ;j < size;j++)
+            {
+                
+                //Collections.shuffle(newSolution.genes);
+                //InfoMaterias auxMateria = new InfoMaterias();
+                //int a = (int) (Math.random() * newSolution.genes.size());
+                //int b = (int) (Math.random() * newSolution.genes.size());
+                GenEscuela auxMateria;
+                auxMateria = newSolution.genes.get(i);
+                newSolution.getGenes().set(i, newSolution.getGenes().get(j));
+                newSolution.getGenes().set(j, auxMateria);
+                //newSolution.getGenes().get(i).setMateria(newSolution.getGenes().get(j).getMateria());
+                //newSolution.getGenes().get(b).setMateria(auxMateria);
+                //newSolution.getGenes().get(j).setHorarios(auxMateria.getHorarios());
+                newSolution.getEvaluacion();
+                neighbourhood.add(newSolution);
+            }            
+            
+        }
+        //neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size() - 1);
+        return neighbourhood;
     }
 
     private int evaluarRestricciones() {

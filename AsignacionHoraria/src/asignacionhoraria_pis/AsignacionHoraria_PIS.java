@@ -41,10 +41,12 @@ public class AsignacionHoraria_PIS {
         
         Memetico memetico = new Memetico();
         memetico.PROBLEMA = 1;
-        memetico.NUM_REPETICIONES = 50;
+        memetico.NUM_REPETICIONES = 30;
         memetico.NUM_HIJOS = 10;
         memetico.ENTROPIA_ANTERIOR = 0;
         memetico.poblacionSize = 10;
+        memetico.NUM_REPETICIONES_LOCAL = 20;
+        memetico.PRESERVE = 0.30;
         memetico.ejecutar();
         //ArrayList<Individuo> poblacion = new ArrayList<Individuo>();
         //poblacion = memetico.generarPoblacionInicial();
@@ -57,6 +59,11 @@ public class AsignacionHoraria_PIS {
             System.out.println(ind.ObtenerEvaluacion());
         }
         
+        /*for (int i = 0; i < memetico.poblacion.size(); i++) 
+        {
+            Individuo ind = (Individuo) memetico.poblacion.get(i);
+            System.out.println(ind.ObtenerEvaluacion());
+        }*/
         /*while (true) {            
         System.out.println((int)(Math.random()*2));    
         }*/

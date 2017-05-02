@@ -50,6 +50,7 @@ public class Memetico implements IMemetico {
     public double VALOR_T = 0.01;
     public double PRESERVE = 0.25;
     public int PROBLEMA; //0 == Universidad // 1 == Escuela
+    public int NUM_REPETICIONES_LOCAL;
 
     @Override
     public void ejecutar() {
@@ -230,23 +231,26 @@ public class Memetico implements IMemetico {
             busqueda = new BusquedaLocalEscuela();
         }
 
-        Individual best = (Individual) busqueda.LocalSearchEngine(individuo, 3);
+        Individual best = (Individual) busqueda.LocalSearchEngine(individuo, this.NUM_REPETICIONES_LOCAL);
         return best;
         /*TabuSearch busqueda = new TabuSearch();
         
-         ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
-         configuracion.setTipoProblema(false);
-         configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, 1000);
-         configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
-         configuracion.setListaTabu(new TabuListMovimientos(), 5);
+        ConfiguracionTabuSearch configuracion = new ConfiguracionTabuSearch();
+        configuracion.setTipoProblema(false);
+        configuracion.setCriterioParada(CriteriosParadaEnum.NUM_ITERACIONES, this.NUM_REPETICIONES_LOCAL);
+        configuracion.setCriterioAspiracion(CriteriosAspiracionEnum.POR_OBJETIVO);
+        configuracion.setListaTabu(new TabuListMovimientos(), 5);
         
-         //Problema del Flow Shop
-        
-        
-         //CIUDADES     
-        
-         Individuo best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
-         return best;*/
+        Individual best;
+        if(this.PROBLEMA == 0)
+        {
+            best = (Individuo) busqueda.tabuSearch(configuracion, individuo);
+        }
+        else
+        {
+            best = (IndividuoEscuela) busqueda.tabuSearch(configuracion, individuo);
+        }        
+        return best;*/
     }
 
     @Override

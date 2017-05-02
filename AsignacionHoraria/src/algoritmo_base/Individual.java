@@ -27,7 +27,7 @@ public interface Individual {
      * 
      *
      */
-    public ArrayList getNeighbourhood();
+    public ArrayList<Individual> getNeighbourhood();
     
     
     public double getEvaluacion();
@@ -63,5 +63,10 @@ public interface Individual {
      */
     
     public double ObtenerEvaluacion();
+    
+    /**
+     *
+     * @return
+     */
             
 }

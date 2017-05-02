@@ -40,10 +40,10 @@ public class Individuo implements Individual {
 
     @Override
     public Individual getNeighbourhood(Individual individuo) {
-        int size = this.genes.size();
+        int size = this.genes.size() / 17;
         Individuo newSolution;
         ArrayList<Individual> neighbourhood = new ArrayList();
-        for (int i = 0; i < size / 4; i++) {
+        for (int i = 0; i < size - 1; i++) {
             /*for (int j = i + 1; j < size; j++) {
 
              newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
@@ -56,15 +56,24 @@ public class Individuo implements Individual {
              newSolution.getEvaluacion();
              neighbourhood.add(newSolution);
              }*/
-
+            for (int j = i + 1; j < size; j++) {
+                
+            
+    
             newSolution = new Individuo((ArrayList<Gen>) this.genes.clone());
-            ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
-            int j = (int) (Math.random() * newSolution.genes.size());
+            //ArrayList<FranjaHoraria> auxIntercambio = newSolution.getGenes().get(i).getHorarios();
+            Collections.shuffle(newSolution.genes);
+            Gen aux = newSolution.genes.get(i);
+            //newSolution.genes.get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
             newSolution.getGenes().get(i).setHorarios(newSolution.getGenes().get(j).getHorarios());
-            newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+            //newSolution.getGenes().get(j).setHorarios(auxIntercambio);
+            newSolution.getGenes().get(j).setHorarios(aux.getHorarios());
+            //newSolution.genes.get(i).setAulas(newSolution.getGenes().get(j).getAulas());
+            //newSolution.getGenes().get(j).setAulas(aux.getAulas());
+            
             newSolution.getEvaluacion();
             neighbourhood.add(newSolution);
-
+            }
         }
         neighbourhood = OrdenarIndividuos(neighbourhood, 0, neighbourhood.size() - 1);
         return neighbourhood.get(0);
@@ -362,7 +371,4 @@ public class Individuo implements Individual {
         return genes;
 
     }
-
-   
-
 }
