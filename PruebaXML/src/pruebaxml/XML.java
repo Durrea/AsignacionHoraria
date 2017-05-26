@@ -9,6 +9,7 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -33,39 +34,24 @@ public class XML {
            System.out.println(spe.getMessage());
         }
                 
-        Node nodoRaiz = documento.getFirstChild();
+        Element nodoRaiz = documento.getDocumentElement();
+        
         System.out.println("Nodo raiz: "+nodoRaiz.getNodeName());
+        //System.out.println("Ultimo hijo: "+documento.getLastChild().getTextContent());
         System.out.println("Hijos de la raiz");
-        NodeList listaNodosHijos = nodoRaiz.getChildNodes();
-        int cont = 0;
-        for(int i = 0; i< listaNodosHijos.getLength(); i++ )
+        imprimirHijos(nodoRaiz);
+    }
+    public void imprimirHijos(Node nodoRaiz)
+    {
+        NodeList listahijos = nodoRaiz.getChildNodes();
+        for(int i = 0; i< listahijos.getLength(); i++ )
         {
-            //System.out.println(listaNodosHijos.item(i).getNodeName());
-            //System.out.println(listaNodosHijos.item(i).getTextContent());
-            //System.out.println(listaNodosHijos.item(i).getNodeValue());
-            //System.out.println(listaNodosHijos.item(i).getNodeType());
-            //System.out.println(listaNodosHijos.item(i).getNodeName());
-
-            Node padre = listaNodosHijos.item(i).getParentNode();
-            if(padre.getNodeName().equalsIgnoreCase("Condicional"))
+            Node nodo = listahijos.item(i);
+            if(nodo instanceof Element)
             {
-                if(padre.getChildNodes().item(0).isEqualNode(listaNodosHijos.item(i)))
-                {
-                    
-                }
-                else
-                {
-                    
-                }                   
-            }            
-            System.out.println(listaNodosHijos.item(i).getTextContent()); 
-
-            /*NamedNodeMap atributos = listaNodosHijos.item(i).getAttributes(  );            
-            Node unAtributo = atributos.getNamedItem( "resultado_condicion" );
-            String valorAtributo = unAtributo.getNodeValue();
-            System.out.println(valorAtributo);*/
-            cont ++;
-        }
-        System.out.println(cont);
-    }    
+                System.out.println(nodo.getNodeName());
+                imprimirHijos(nodo);
+            }         
+        }    
+    }
 }
