@@ -7,6 +7,11 @@ package pruebaxml;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -58,6 +63,11 @@ public class XML {
         System.out.println("Hijos de la raiz");
         //imprimirHijos(nodoRaiz);
         reemplazarEntradas(nodoRaiz);
+        try {
+            evaluarGrafo(nodoRaiz);
+        } catch (ScriptException ex) {
+            Logger.getLogger(XML.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return nodos;
     }
@@ -96,4 +106,29 @@ public class XML {
         imprimirHijos(nodoRaiz);
     }
 
+    public void evaluarGrafo(Node nodoRaiz) throws ScriptException {
+
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+
+        NodeList listahijos = nodoRaiz.getChildNodes();
+        for (int i = 0; i < listahijos.getLength(); i++) {
+            Node nodo = listahijos.item(i);
+            if (nodo instanceof Element) {
+                if (((Element) nodo).getTagName().equals("Condicional")) {
+                    nodo.getAttributes().getNamedItem("valor").
+                            setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    getTextContent().replace("mayor", ">"));
+                    nodo.getAttributes().getNamedItem("valor").
+                            setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    getTextContent().replace("menor", "<"));
+
+                    Object eval = engine.eval(nodo.getAttributes().getNamedItem("valor").getTextContent());
+                    nodo.getAttributes().getNamedItem("valor").setTextContent(String.valueOf(eval));
+                }
+            }
+            evaluarGrafo(nodo);
+        }
+        imprimirHijos(nodoRaiz);
+    }
 }
