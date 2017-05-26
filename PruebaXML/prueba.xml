@@ -1,0 +1,13 @@
+<Inicio resultado_condicion="NULL">
+	<Leer resultado_condicion="NULL" >P</Leer>
+	<Leer resultado_condicion="NULL" >Q</Leer>
+	<Condicional resultado_condicion="NULL">P+Q mayor 10
+		<Proceso resultado_condicion="YES">Print "Large"</Proceso>
+		<Proceso resultado_condicion="NO">NADA</Proceso>
+	</Condicional>
+	<Condicional resultado_condicion="NULL">P mayor 50
+		<Proceso resultado_condicion="YES">Print "P Large"</Proceso>
+		<Proceso resultado_condicion="NO">NADA</Proceso>
+	</Condicional>
+		
+</Inicio>
