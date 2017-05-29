@@ -33,7 +33,7 @@ public class XML {
     ArrayList<String> entradas = new ArrayList();
     ArrayList<String> valores = new ArrayList();
 
-    public NodeList cargarArchivo() throws XPathExpressionException {
+    public void cargarArchivo() throws XPathExpressionException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         Document documento = null;
         try {
@@ -42,15 +42,12 @@ public class XML {
         } catch (Exception spe) {
             System.out.println(spe.getMessage());
         }
-        String path = "//Proceso[@valor='Print P Large']";
-        XPath xpath = XPathFactory.newInstance().newXPath();
-        //System.out.println("Llego aqui");
-        NodeList nodos = (NodeList) xpath.evaluate(path, documento, XPathConstants.NODESET);
-        for (int i = 0; i < nodos.getLength(); i++) {
-            System.out.println(nodos.item(i).getNodeName() + " : "
-                    + nodos.item(i).getAttributes().getNamedItem("valor"));
-        }
-
+        String path = "//Proceso[@valor='Print P Large']";        
+        ArrayList<String> paths = new ArrayList();
+        paths.add(path);
+        paths.add("//Proceso[@valor='NADA']");
+        int caminos = numeroCaminos(documento, paths);
+        System.out.println("El numero de caminos es: "+ caminos);
         Element nodoRaiz = documento.getDocumentElement();
         NodeList lectura = documento.getElementsByTagName("Leer");
         for (int i = 0; i < lectura.getLength(); i++) {
@@ -62,14 +59,14 @@ public class XML {
         System.out.println("Ultimo hijo: " + documento.getLastChild().getTextContent());
         System.out.println("Hijos de la raiz");
         //imprimirHijos(nodoRaiz);
-        reemplazarEntradas(nodoRaiz);
+        /*reemplazarEntradas(nodoRaiz);
         try {
             evaluarGrafo(nodoRaiz);
         } catch (ScriptException ex) {
             Logger.getLogger(XML.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
 
-        return nodos;
+        //return nodos;
     }
 
     public void imprimirHijos(Node nodoRaiz) {
@@ -77,7 +74,7 @@ public class XML {
         for (int i = 0; i < listahijos.getLength(); i++) {
             Node nodo = listahijos.item(i);
             if (nodo instanceof Element) {
-                System.out.println(nodo.getAttributes().getNamedItem("valor"));
+                System.out.println(nodo.getNodeName()+" : "+nodo.getAttributes().getNamedItem("valor"));
                 imprimirHijos(nodo);
             }
         }
@@ -103,7 +100,7 @@ public class XML {
 
             }
         }
-        imprimirHijos(nodoRaiz);
+        //imprimirHijos(nodoRaiz);
     }
 
     public void evaluarGrafo(Node nodoRaiz) throws ScriptException {
@@ -130,5 +127,17 @@ public class XML {
             evaluarGrafo(nodo);
         }
         imprimirHijos(nodoRaiz);
+    }
+    
+    public int numeroCaminos(Document doc, ArrayList<String> paths) throws XPathExpressionException
+    {
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        int numcaminos = 0;
+        for(int i=0;i<paths.size();i++)            
+        {
+            NodeList nodos = (NodeList) xpath.evaluate(paths.get(i), doc, XPathConstants.NODESET);
+            numcaminos = numcaminos + nodos.getLength();
+        }
+        return numcaminos;
     }
 }
