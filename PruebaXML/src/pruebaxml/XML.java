@@ -5,7 +5,10 @@
  */
 package pruebaxml;
 
+import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +36,7 @@ public class XML {
     ArrayList<String> entradas = new ArrayList();
     ArrayList<String> valores = new ArrayList();
 
-    public void cargarArchivo() throws XPathExpressionException {
+    public void cargarArchivo() throws XPathExpressionException, FileNotFoundException{
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         Document documento = null;
         try {
@@ -42,22 +45,37 @@ public class XML {
         } catch (Exception spe) {
             System.out.println(spe.getMessage());
         }
-        String path = "//Proceso[@valor='Print P Large']";        
+        //String path1 = "//Proceso[@valor='Print P Large']";
+        //String path2 = "//Proceso[@valor='NADA']";
+        String path1 = "/Inicio/Leer/Leer/Condicional/Proceso/Condicional/Proceso";
         ArrayList<String> paths = new ArrayList();
-        paths.add(path);
-        paths.add("//Proceso[@valor='NADA']");
+        paths.add(path1);
+        //paths.add(path2);
+        //documento.normalizeDocument();
         int caminos = numeroCaminos(documento, paths);
         System.out.println("El numero de caminos es: "+ caminos);
         Element nodoRaiz = documento.getDocumentElement();
+        
+        //imprimirHijos(nodoRaiz);
+        NodeList hijosRaiz = nodoRaiz.getChildNodes();
+        NodeList hijos2 = hijosRaiz.item(1).getChildNodes();
+        NodeList hijos3 = hijos2.item(1).getChildNodes();
+        NodeList hijos4 = hijos3.item(1).getChildNodes();
+        imprimirNodos(hijos4);
+        //Node hijo = hijosRaiz.item(0);
+        
+        //System.out.println("Tamaño: "+ hijo.getNodeName());
+        //System.out.println(hijoRaiz.getNodeName()+" : "+hijoRaiz.getAttributes().getNamedItem("valor").getTextContent());
+        
         NodeList lectura = documento.getElementsByTagName("Leer");
         for (int i = 0; i < lectura.getLength(); i++) {
             //System.out.println(lectura.item(i).getAttributes().getNamedItem("valor"));
             entradas.add(String.valueOf(lectura.item(i).getAttributes().getNamedItem("valor").getTextContent()));
             valores.add(String.valueOf(Math.floor(Math.random() * 100 + 1)));
         }
-        System.out.println("Nodo raiz: " + nodoRaiz.getNodeName());
-        System.out.println("Ultimo hijo: " + documento.getLastChild().getTextContent());
-        System.out.println("Hijos de la raiz");
+        //System.out.println("Nodo raiz: " + nodoRaiz.getNodeName());
+        //System.out.println("Ultimo hijo: " + documento.getLastChild().getTextContent());
+        //System.out.println("Hijos de la raiz");
         //imprimirHijos(nodoRaiz);
         /*reemplazarEntradas(nodoRaiz);
         try {
@@ -73,13 +91,26 @@ public class XML {
         NodeList listahijos = nodoRaiz.getChildNodes();
         for (int i = 0; i < listahijos.getLength(); i++) {
             Node nodo = listahijos.item(i);
-            if (nodo instanceof Element) {
-                System.out.println(nodo.getNodeName()+" : "+nodo.getAttributes().getNamedItem("valor"));
+            //if (!nodo.getNodeName().equalsIgnoreCase("#text")) {
+                System.out.println(nodo.getNodeName()+" : ");
                 imprimirHijos(nodo);
-            }
+            //}
         }
     }
-
+    public void LimpiarGrafo(Node nodoRaiz)
+    {
+        NodeList listahijos = nodoRaiz.getChildNodes();
+        for (int i = 0; i < listahijos.getLength(); i++) {
+            if(listahijos.item(i).getNodeName().equalsIgnoreCase("#text"))
+            {
+                nodoRaiz.removeChild(listahijos.item(i));
+            }            
+            LimpiarGrafo(listahijos.item(i));
+        }
+        imprimirHijos(nodoRaiz);
+    }
+    
+    
     public void Camino() {
 
     }
@@ -139,5 +170,15 @@ public class XML {
             numcaminos = numcaminos + nodos.getLength();
         }
         return numcaminos;
+    }
+    public void imprimirNodos(NodeList hijos)
+    {
+        for(int i=0;i<hijos.getLength();i++)
+        {
+            //if(!hijos.item(i).getNodeName().equalsIgnoreCase("#text"))
+            //{
+                System.out.println("Nodo: "+hijos.item(i).getNodeName());
+            //}
+        }
     }
 }
