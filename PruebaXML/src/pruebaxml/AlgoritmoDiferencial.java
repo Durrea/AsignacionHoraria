@@ -5,13 +5,20 @@
  */
 package pruebaxml;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -25,15 +32,18 @@ public class AlgoritmoDiferencial {
     private int ENTRADAS;
     private int SUPERIOR;
     private int INFERIOR;
-    private Element root;
-    public AlgoritmoDiferencial(int POBLACION, int entradas, int superior, int inferior)
+    public Document doc;
+    private ArrayList<String> caminos;
+    public AlgoritmoDiferencial(int POBLACION, int superior, int inferior)
     {
-        this.POBLACION = POBLACION;
-        this.ENTRADAS = entradas;
+        this.POBLACION = POBLACION;        
         this.SUPERIOR = superior;
         this.INFERIOR = inferior;
         this.individuos = new ArrayList();
-        this.root = cargarXML();
+        this.caminos = cargarCaminos();
+        this.CAMINOS = this.caminos.size();
+        this.doc = cargarXML();
+        this.ENTRADAS = NumeroEntradas();
     }
 
     public int getSUPERIOR() {
@@ -50,16 +60,7 @@ public class AlgoritmoDiferencial {
 
     public void setINFERIOR(int INFERIOR) {
         this.INFERIOR = INFERIOR;
-    }
-
-    public Element getRoot() {
-        return root;
-    }
-
-    public void setRoot(Element root) {
-        this.root = root;
-    }
-    
+    }    
     public int getCAMINOS() {
         return CAMINOS;
     }
@@ -104,16 +105,15 @@ public class AlgoritmoDiferencial {
         int NP = this.POBLACION;
         Random rnd = new Random();
         
-        //Individuo r1 = new Individuo();
-        //Individuo r2 = new Individuo();
-        //Individuo r3 = new Individuo();
+        Individuo r1;
+        Individuo r2;
+        Individuo r3;
 
         for (g = 0; g < MAX_GEN; g++) {
             for (int i = 0; i < NP; i++) {
-                //r1 = obj.seleccionarIndividuos();
-                //r2 = obj.seleccionarIndividuos();
-                //r3 = obj.seleccionarIndividuos();
-                
+                r1 = SeleccionarIndividuo();
+                r2 = SeleccionarIndividuo();
+                r3 = SeleccionarIndividuo();                                
                 int jrand = (int) (rnd.nextDouble() * 11 + 0);
                 //obj.getIndividuosNp().clear();
                 for(int j = 0;j<12;j++)
@@ -161,9 +161,9 @@ public class AlgoritmoDiferencial {
     public void GenerarIndividuos(int num)
     {
         for(int i=0;i<num;i++)
-        {
+        {            
             Individuo ind = new Individuo(this.CAMINOS);
-            ind.CalcularEntradas(this.ENTRADAS, SUPERIOR, INFERIOR);
+            ind.CalcularEntradas(this.doc, this.ENTRADAS, SUPERIOR, INFERIOR);
             this.individuos.add(ind);
         }
     }
@@ -171,10 +171,10 @@ public class AlgoritmoDiferencial {
     {
         for(int i=0;i<num;i++)
         {
-            this.individuos.get(i).EvaluarIndividuo(this.root);            
+            this.individuos.get(i).EvaluarIndividuo(this.doc);            
         }
     }
-    public Element cargarXML()
+    public Document cargarXML()
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         Document documento = null;
@@ -184,8 +184,48 @@ public class AlgoritmoDiferencial {
         } catch (Exception spe) {
             System.out.println(spe.getMessage());
         }
-        Element root = documento.getDocumentElement();
-        return root;
+        return documento;       
+    }
+    public ArrayList<String> cargarCaminos()
+    {
+        ArrayList<String> caminos = new ArrayList();
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+           // Apertura del fichero y creacion de BufferedReader para poder
+           // hacer una lectura comoda (disponer del metodo readLine()).
+           archivo = new File ("caminos.txt");
+           fr = new FileReader (archivo);
+           br = new BufferedReader(fr);
+
+           // Lectura del fichero
+           String linea;
+           while((linea=br.readLine())!=null)
+           {
+               caminos.add(linea);               
+           }
+              
+        }
+        catch(Exception e){
+           System.out.println(e.getMessage());
+        }
+        return caminos;
+    }
+    public Individuo SeleccionarIndividuo()
+    {
+        int pos = (int)(Math.random()*(this.individuos.size()-1) + 0);
+        return this.individuos.get(pos);
+    }
+    public void Recombinar()
+    {
+        
+    }
+    public int NumeroEntradas()
+    {       
+        NodeList lectura = this.doc.getElementsByTagName("Leer");
+        return lectura.getLength();
     }
 }
   

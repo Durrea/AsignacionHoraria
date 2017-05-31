@@ -91,10 +91,10 @@ public class XML {
         NodeList listahijos = nodoRaiz.getChildNodes();
         for (int i = 0; i < listahijos.getLength(); i++) {
             Node nodo = listahijos.item(i);
-            //if (!nodo.getNodeName().equalsIgnoreCase("#text")) {
+            if (!nodo.getNodeName().equalsIgnoreCase("#text")) {
                 System.out.println(nodo.getNodeName()+" : ");
                 imprimirHijos(nodo);
-            //}
+            }
         }
     }
     public void LimpiarGrafo(Node nodoRaiz)
