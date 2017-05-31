@@ -34,16 +34,18 @@ public class AlgoritmoDiferencial {
     private int INFERIOR;
     public Document doc;
     private ArrayList<String> caminos;
+    public ArrayList<Integer> caminos_cubiertos;
     public AlgoritmoDiferencial(int POBLACION, int superior, int inferior)
     {
         this.POBLACION = POBLACION;        
         this.SUPERIOR = superior;
         this.INFERIOR = inferior;
         this.individuos = new ArrayList();
+        this.caminos_cubiertos = new ArrayList();
         this.caminos = cargarCaminos();
         this.CAMINOS = this.caminos.size();
         this.doc = cargarXML();
-        this.ENTRADAS = NumeroEntradas();
+        this.ENTRADAS = NumeroEntradas();        
     }
 
     public int getSUPERIOR() {
@@ -163,6 +165,8 @@ public class AlgoritmoDiferencial {
         for(int i=0;i<num;i++)
         {            
             Individuo ind = new Individuo(this.CAMINOS);
+            ind.caminos_posibles = this.caminos;
+            ind.caminos_cubiertos = this.caminos_cubiertos;
             ind.CalcularEntradas(this.doc, this.ENTRADAS, SUPERIOR, INFERIOR);
             this.individuos.add(ind);
         }
@@ -204,7 +208,8 @@ public class AlgoritmoDiferencial {
            String linea;
            while((linea=br.readLine())!=null)
            {
-               caminos.add(linea);               
+               caminos.add(linea);
+               this.caminos_cubiertos.add(0);
            }
               
         }

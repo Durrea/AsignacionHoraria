@@ -23,12 +23,18 @@ public class Individuo {
     private int CAMINOS;
     private ArrayList<Entradas> entradas_individuo;
     private double evaluacion;
+    public ArrayList<String> caminos;
+    public ArrayList<String> caminos_posibles;
+    public ArrayList<Integer> caminos_cubiertos;
     
     public Individuo(int caminos)
     {
         this.CAMINOS = caminos;
         entradas_individuo = new ArrayList();
         this.evaluacion = -1;
+        this.caminos = new ArrayList();
+        this.caminos_posibles = new ArrayList();
+        this.caminos_cubiertos = new ArrayList();
     }
 
     public int getCAMINOS() {
@@ -56,31 +62,36 @@ public class Individuo {
     }
     
     public void EvaluarIndividuo(Document doc)
-    {
-        //CalcularValores(num_entradas,superior,inferior);
+    {        
         Element root = doc.getDocumentElement();
         Node root_copy = root.cloneNode(true);
+        String camino = "/Inicio";
         for(int i = 0; i< this.entradas_individuo.size(); i++ )
         {
-            reemplazarEntradas(root,this.entradas_individuo.get(i).getValores(),this.entradas_individuo.get(i).getEntradas());           
-            //imprimirHijos(root);
+            reemplazarEntradas(root,this.entradas_individuo.get(i).getValores(),this.entradas_individuo.get(i).getEntradas());            
             try
             {
                 evaluarGrafo(root);
             }catch(Exception e)
             {
                 System.out.println(e.getMessage());
-            }
-            //String camino = "/Inicio";
-            //ConstruirCamino(root, camino);
-            //System.out.println("Camino: "+camino);
-            //camino = "/Inicio";
-            //imprimirHijos(root);
-            imprimirRamas(root);
+            }            
+            ConstruirCamino(root, camino);
+            this.entradas_individuo.get(i).setCamino_cubierto(this.caminos.get(0));
+            this.caminos.clear();
+            camino = "/Inicio";
+            imprimirHijos(root);
             System.out.println();
             System.out.println();
             root = (Element) root_copy.cloneNode(true);
         }
+        int cubiertos = CaminosCubiertos();
+        for(int i =0;i<this.caminos_cubiertos.size();i++)
+        {
+            System.out.println("Camino "+i+" valor "+this.caminos_cubiertos.get(i));
+        }                
+        this.evaluacion = cubiertos;
+        System.out.println("Evaluacion: "+this.evaluacion);
     }
     public void CalcularEntradas(Document doc, int num_entradas, int superior, int inferior)
     {
@@ -147,46 +158,90 @@ public class Individuo {
     public void ConstruirCamino(Node nodoRaiz, String camino)
     {
         NodeList listahijos = nodoRaiz.getChildNodes();
-        for(int i = 0;i<listahijos.getLength();i++)
-        {
-            Node nodo = listahijos.item(i);            
-            if(!nodo.getNodeName().equalsIgnoreCase("#text"))
+        if(nodoRaiz.getNodeName().equalsIgnoreCase("Condicional"))
+        {            
+            if(nodoRaiz.getAttributes().getNamedItem("valor").getTextContent().equalsIgnoreCase("true"))
             {
-                if(nodo.getNodeName().equalsIgnoreCase("Condicional"))
-                {
-                    if(nodo.getAttributes().getNamedItem("valor").getTextContent().equalsIgnoreCase("true"))
-                    {
-                        //nodo = nodo.getChildNodes().item(1);
-                        nodo = nodo.getNextSibling();
-                        camino = camino+"/"+nodo.getNodeName()+"/YES";
-                        System.out.println(camino);
-                    }
-                    else
-                    {
-                        camino = camino+"/"+nodo.getNodeName()+"/NO";
-                        nodo = nodo.getNextSibling();
-                        //nodo = nodo.getChildNodes().item(3);
-                        System.out.println(camino);
-                    }
-                }
-                else
-                {
-                    camino = camino+"/"+nodo.getNodeName();
-                }                
+                Node nodo = nodoRaiz.getChildNodes().item(1);
+                camino = camino+"/"+nodo.getNodeName();
+                //this.caminos.add(camino);
+                //System.out.println(camino);
+                ConstruirCamino(nodo,camino);
+            }
+            else
+            {
+                Node nodo = nodoRaiz.getChildNodes().item(3);
+                camino = camino+"/"+nodo.getNodeName();
+                //this.caminos.add(camino);
+                //System.out.println(camino);
                 ConstruirCamino(nodo,camino);
             }
         }
-    }
-    public void imprimirRamas(Node nodoRaiz)
-    {        
-        Node nodo = nodoRaiz.getNextSibling();
-        if(nodo == null)
-        {
-            System.out.println("Es null");
-        }
         else
-        {
-            System.out.println(nodo.getNodeName());
+        {            
+            for(int i = 0;i<listahijos.getLength();i++)
+            {
+                Node nodo = listahijos.item(i);            
+                if(!nodo.getNodeName().equalsIgnoreCase("#text"))
+                {
+                    if(nodo.getNodeName().equalsIgnoreCase("Condicional"))
+                    {
+                        if(nodo.getAttributes().getNamedItem("valor").getTextContent().equalsIgnoreCase("true"))
+                        {
+                            camino = camino+"/"+nodo.getNodeName()+"/YES";
+                            //this.caminos.add(camino);
+                            ConstruirCamino(nodo,camino);                                                         
+                        }
+                        else
+                        {
+                            camino = camino+"/"+nodo.getNodeName()+"/NO";                        
+                            //this.caminos.add(camino);
+                            ConstruirCamino(nodo,camino);
+                        }
+                    }
+                    else
+                    {
+                        if(nodoRaiz.getNodeName().equalsIgnoreCase("Condicional"))
+                        {
+                            camino = camino+"/"+nodo.getNodeName();
+                            //this.caminos.add(camino);
+                            //System.out.println(camino);
+                            ConstruirCamino(nodo,camino);
+                        }
+                        else
+                        {
+                            camino = camino+"/"+nodo.getNodeName();
+                            //this.caminos.add(camino);
+                            //System.out.println(camino);
+                            ConstruirCamino(nodo,camino);
+                        }                                        
+                    }                                
+                }
+            }
         }
+        this.caminos.add(camino);        
+    }
+    public int CaminosCubiertos()
+    {
+        for(int i=0;i<this.CAMINOS;i++)
+        {
+            for(int j =0;j<this.CAMINOS;j++)
+            {
+                if(this.entradas_individuo.get(i).getCamino_cubierto().equalsIgnoreCase(this.caminos_posibles.get(j)))
+                {
+                    this.caminos_cubiertos.set(j, this.caminos_cubiertos.get(j)+1);
+                    j = this.CAMINOS;
+                }
+            }
+        }
+        int num_caminos_cubiertos = 0;
+        for(int i=0;i<this.caminos_cubiertos.size();i++)
+        {
+            if(this.caminos_cubiertos.get(i) != 0)
+            {
+                num_caminos_cubiertos = num_caminos_cubiertos + 1;  
+            }
+        }
+        return num_caminos_cubiertos;
     }
 }
