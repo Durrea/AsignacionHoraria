@@ -136,6 +136,18 @@ public class Individuo {
                     nodo.getAttributes().getNamedItem("valor").
                             setTextContent(nodo.getAttributes().getNamedItem("valor").
                                     getTextContent().replace("menor", "<"));
+                    nodo.getAttributes().getNamedItem("valor").
+                            setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    getTextContent().replace("mayorigual", ">="));
+                    nodo.getAttributes().getNamedItem("valor").
+                            setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    getTextContent().replace("menorigual", "<="));
+                    //nodo.getAttributes().getNamedItem("valor").
+                            //setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    //getTextContent().replace("diferente", "<>"));
+                    nodo.getAttributes().getNamedItem("valor").
+                            setTextContent(nodo.getAttributes().getNamedItem("valor").
+                                    getTextContent().replace("igual", "=="));
 
                     Object eval = engine.eval(nodo.getAttributes().getNamedItem("valor").getTextContent());
                     nodo.getAttributes().getNamedItem("valor").setTextContent(String.valueOf(eval));

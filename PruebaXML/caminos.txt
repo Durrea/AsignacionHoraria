@@ -1,4 +1,4 @@
-/Inicio/Leer/Leer/Condicional/YES/Proceso/Condicional/YES/Proceso
-/Inicio/Leer/Leer/Condicional/NO/Proceso/Condicional/NO/Proceso
-/Inicio/Leer/Leer/Condicional/YES/Proceso/Condicional/NO/Proceso
-/Inicio/Leer/Leer/Condicional/NO/Proceso/Condicional/YES/Proceso
+/Inicio/Leer/Leer/Leer/Leer/Condicional/YES/Proceso/Condicional/YES/Proceso/Proceso
+/Inicio/Leer/Leer/Leer/Leer/Condicional/YES/Proceso/Condicional/NO/Proceso/Proceso
+/Inicio/Leer/Leer/Leer/Leer/Condicional/NO/Proceso/Proceso/Condicional/YES/Proceso/Proceso
+/Inicio/Leer/Leer/Leer/Leer/Condicional/NO/Proceso/Proceso/Condicional/NO/Proceso/Proceso

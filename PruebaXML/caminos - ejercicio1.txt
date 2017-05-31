@@ -1,0 +1,4 @@
+/Inicio/Leer/Leer/Condicional/YES/Proceso/Condicional/YES/Proceso
+/Inicio/Leer/Leer/Condicional/NO/Proceso/Condicional/NO/Proceso
+/Inicio/Leer/Leer/Condicional/YES/Proceso/Condicional/NO/Proceso
+/Inicio/Leer/Leer/Condicional/NO/Proceso/Condicional/YES/Proceso

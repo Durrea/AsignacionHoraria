@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<Inicio resultado_condicion="NULL">
+	<Leer resultado_condicion="NULL" valor="P">
+		<Leer resultado_condicion="NULL" valor="Q">
+			<Condicional resultado_condicion="NULL" valor="P+Q mayor 10">
+				<Proceso resultado_condicion="YES" valor="Print Large">
+					<Condicional resultado_condicion="NULL" valor="P mayor 50">
+						<Proceso resultado_condicion="YES" valor="Print P Large"></Proceso>
+						<Proceso resultado_condicion="NO" valor="NADA"></Proceso>
+					</Condicional>
+				</Proceso>
+				<Proceso resultado_condicion="NO" valor="NADA">
+					<Condicional resultado_condicion="NULL" valor="P mayor 50">
+						<Proceso resultado_condicion="YES" valor="Print P Large"></Proceso>
+						<Proceso resultado_condicion="NO" valor="NADA"></Proceso>
+					</Condicional>
+				</Proceso>
+			</Condicional>
+		</Leer>
+	</Leer>				
+</Inicio>
