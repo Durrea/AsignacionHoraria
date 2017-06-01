@@ -79,6 +79,10 @@ public class Entradas {
     public void setLIMITE_INFERIOR(int LIMITE_INFERIOR) {
         this.LIMITE_INFERIOR = LIMITE_INFERIOR;
     }
+    public void GenerarEntradasAleatorias()
+    {
+        this.valores.add(63);
+    }
     
     public void GenerarEntradasAleatorias(Document doc)
     {

@@ -4,7 +4,7 @@
 		<Leer resultado_condicion="NULL" valor="b">
 			<Leer resultado_condicion="NULL" valor="c">
 				<Leer resultado_condicion="NULL" valor="d">
-					<Condicional resultado_condicion="NULL" valor="a menor b">
+					<Condicional resultado_condicion="NULL" valor="a &lt; b">
 						<Proceso resultado_condicion="YES" valor="I2">
 							<Condicional resultado_condicion="NULL" valor="c != 5">
 								<Proceso resultado_condicion="YES" valor="I5">
@@ -19,7 +19,7 @@
 						</Proceso>
 						<Proceso resultado_condicion="NO" valor="I3">
 							<Proceso resultado_condicion="NULL" valor="I8">
-								<Condicional resultado_condicion="NULL" valor="d &gt; 8">
+								<Condicional resultado_condicion="NULL" valor="d &gt;= 8">
 									<Proceso resultado_condicion="YES" valor="I6">
 										<Proceso resultado_condicion="NULL" valor="I7">									
 										</Proceso>	

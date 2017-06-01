@@ -68,30 +68,36 @@ public class Individuo {
         String camino = "/Inicio";
         for(int i = 0; i< this.entradas_individuo.size(); i++ )
         {
-            reemplazarEntradas(root,this.entradas_individuo.get(i).getValores(),this.entradas_individuo.get(i).getEntradas());            
+            reemplazarEntradas(root_copy,this.entradas_individuo.get(i).getValores(),this.entradas_individuo.get(i).getEntradas());            
+            //imprimirHijos(root_copy);
             try
             {
-                evaluarGrafo(root);
+                evaluarGrafo(root_copy);
+                //imprimirHijos(root_copy);
             }catch(Exception e)
             {
                 System.out.println(e.getMessage());
             }            
-            ConstruirCamino(root, camino);
+            ConstruirCamino(root_copy, camino);
             this.entradas_individuo.get(i).setCamino_cubierto(this.caminos.get(0));
+            //System.out.println(this.caminos.get(0));
             this.caminos.clear();
             camino = "/Inicio";
-            imprimirHijos(root);
-            System.out.println();
-            System.out.println();
-            root = (Element) root_copy.cloneNode(true);
+            //imprimirHijos(root);
+            //System.out.println("Camino entrada: "+this.entradas_individuo.get(i).getCamino_cubierto());
+            //System.out.println();
+            //System.out.println();
+            root_copy = root.cloneNode(true);
+            //root = (Element) root_copy.cloneNode(true);
         }
-        int cubiertos = CaminosCubiertos();
-        for(int i =0;i<this.caminos_cubiertos.size();i++)
+        int cubiertos = CaminosCubiertos(this.entradas_individuo);
+        //System.out.println("Evaluacion individuo: " + cubiertos);
+        /*for(int i =0;i<this.caminos_cubiertos.size();i++)
         {
             System.out.println("Camino "+i+" valor "+this.caminos_cubiertos.get(i));
-        }                
+        }*/               
         this.evaluacion = cubiertos;
-        System.out.println("Evaluacion: "+this.evaluacion);
+        //System.out.println("Evaluacion: "+this.evaluacion);
     }
     public void CalcularEntradas(Document doc, int num_entradas, int superior, int inferior)
     {
@@ -230,16 +236,20 @@ public class Individuo {
                     }                                
                 }
             }
-        }
+        }        
         this.caminos.add(camino);        
     }
-    public int CaminosCubiertos()
+    public int CaminosCubiertos(ArrayList<Entradas> entradas_individuo)
     {
+        for(int i=0;i<this.caminos_cubiertos.size();i++)
+        {
+            this.caminos_cubiertos.set(i, 0);
+        }
         for(int i=0;i<this.CAMINOS;i++)
         {
             for(int j =0;j<this.CAMINOS;j++)
             {
-                if(this.entradas_individuo.get(i).getCamino_cubierto().equalsIgnoreCase(this.caminos_posibles.get(j)))
+                if(entradas_individuo.get(i).getCamino_cubierto().equalsIgnoreCase(this.caminos_posibles.get(j)))
                 {
                     this.caminos_cubiertos.set(j, this.caminos_cubiertos.get(j)+1);
                     j = this.CAMINOS;

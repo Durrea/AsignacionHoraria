@@ -33,7 +33,7 @@ public class PruebaXML {
             System.out.println();
             System.out.println();
         }*/
-        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(1,70,-70);
+        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(10,70,-70);
         obj.GenerarIndividuos(obj.getPOBLACION());
         /*for(int i=0;i<obj.getIndividuos().size();i++)
         {
@@ -49,6 +49,20 @@ public class PruebaXML {
             System.out.println();
         }*/
         obj.EvaluarIndividuos(obj.getPOBLACION());
+        for(int i=0;i<obj.getIndividuos().size();i++)
+        {
+            for(int j=0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
+            {
+                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
+                {
+                    System.out.print(obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
+                            " "+obj.getIndividuos().get(i).getEntradas_individuo().get(j).getValores().get(k));
+                }
+                System.out.println();                
+            }
+            System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
+            System.out.println();
+        }
     }
     
 }

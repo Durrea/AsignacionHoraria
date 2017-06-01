@@ -162,20 +162,25 @@ public class AlgoritmoDiferencial {
     }
     public void GenerarIndividuos(int num)
     {
+        Document doc_copy = (Document) this.doc.cloneNode(true);
         for(int i=0;i<num;i++)
         {            
             Individuo ind = new Individuo(this.CAMINOS);
             ind.caminos_posibles = this.caminos;
             ind.caminos_cubiertos = this.caminos_cubiertos;
-            ind.CalcularEntradas(this.doc, this.ENTRADAS, SUPERIOR, INFERIOR);
+            ind.CalcularEntradas(doc_copy, this.ENTRADAS, SUPERIOR, INFERIOR);
+            
             this.individuos.add(ind);
+            doc_copy = (Document) this.doc.cloneNode(true);
         }
     }
     public void EvaluarIndividuos(int num)
     {
+        Document doc_copy = (Document) this.doc.cloneNode(true);
         for(int i=0;i<num;i++)
         {
-            this.individuos.get(i).EvaluarIndividuo(this.doc);            
+            this.individuos.get(i).EvaluarIndividuo(doc_copy);
+            doc_copy = (Document) this.doc.cloneNode(true);
         }
     }
     public Document cargarXML()
