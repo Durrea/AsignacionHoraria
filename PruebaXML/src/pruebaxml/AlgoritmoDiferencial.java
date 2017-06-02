@@ -28,6 +28,8 @@ public class AlgoritmoDiferencial {
 
     private int POBLACION;
     private ArrayList<Individuo> individuos;
+    private ArrayList<Individuo> individuosNp;
+    private ArrayList<Individuo> generacion;
     private int CAMINOS;
     private int ENTRADAS;
     private int SUPERIOR;
@@ -35,9 +37,11 @@ public class AlgoritmoDiferencial {
     public Document doc;
     private ArrayList<String> caminos;
     public ArrayList<Integer> caminos_cubiertos;
+    public double CR;
 
     public AlgoritmoDiferencial(int POBLACION, int superior, int inferior) {
         this.POBLACION = POBLACION;
+        this.generacion = new ArrayList();
         this.SUPERIOR = superior;
         this.INFERIOR = inferior;
         this.individuos = new ArrayList();
@@ -46,8 +50,18 @@ public class AlgoritmoDiferencial {
         this.CAMINOS = this.caminos.size();
         this.doc = cargarXML();
         this.ENTRADAS = NumeroEntradas();
+        this.individuosNp = new ArrayList();
+        this.CR = 0.9;
     }
 
+    public ArrayList<Individuo> getIndividuosNp() {
+        return individuosNp;
+    }
+
+    public void setIndividuosNp(ArrayList<Individuo> individuosNp) {
+        this.individuosNp = individuosNp;
+    }
+    
     public int getSUPERIOR() {
         return SUPERIOR;
     }
@@ -101,64 +115,57 @@ public class AlgoritmoDiferencial {
         int g = 0;
         GenerarIndividuos(this.POBLACION);
         EvaluarIndividuos(this.POBLACION);
-        //Funcion obj = new Funcion();
-        //obj.GenerarIndividuos(num);
-        //obj.evaluarIndividuos();
         int MAX_GEN = 30;
         int NP = this.POBLACION;
         Random rnd = new Random();
 
         Individuo r1;
-        Individuo r2;
-        Individuo r3;
+        Individuo r2;        
 
         for (g = 0; g < MAX_GEN; g++) {
             for (int i = 0; i < NP; i++) {
                 r1 = SeleccionarIndividuo();
-                r2 = SeleccionarIndividuo();
-                r3 = SeleccionarIndividuo();
+                r2 = SeleccionarIndividuo();                
                 int jrand = (int) (rnd.nextDouble() * 11 + 0);
-                //obj.getIndividuosNp().clear();
+                this.individuosNp.clear();
+                
                 for (int j = 0; j < 12; j++) {
-                    //Individuo np = new Individuo();
-                    //if((rnd.nextDouble()*1+0) < obj.getCR() || j == jrand)
-                    //{
-                    //np = obj.mutacion(r1,r2,r3);
-                    //obj.getIndividuosNp().add(np);
-                    //}
-                    //else
+                    
+                    Individuo np = new Individuo(this.CAMINOS);
+                    if((rnd.nextDouble()*1+0) < this.CR || j == jrand)
                     {
-                        //np = obj.reemplazo(obj.getIndividuos().get(i));
-                        //obj.getIndividuosNp().add(np);
+                        np = Recombinar(r1, r2);
+                        this.individuosNp.add(np);
+                    }
+                    else
+                    {
+                        this.individuosNp.add(this.individuos.get(i));
                     }
                 }
                 int pos = -1;
-                /*for (int j = 0; j < obj.getIndividuosNp().size(); j++) 
+                for (int j = 0; j < this.individuosNp.size(); j++) 
                 {
-                    Individuo ind = new Individuo();
-                    if(obj.getIndividuosNp().get(j).getBeneficio()>obj.getIndividuosNp().get(i).getBeneficio())
+                    Individuo ind = new Individuo(this.CAMINOS);
+                    if(this.individuosNp.get(j).getEvaluacion()>this.individuosNp.get(i).getEvaluacion())
                     {
-                        
-                        obj.getGeneracion().add(obj.getIndividuosNp().get(j));
+                        this.generacion.add(this.individuosNp.get(j));                        
                     }
                     else
                     {
                         pos = i;
                         //this.generacion.add(this.individuos.get(i));
                     }
-                }*/
- /*if(pos != -1)
+                }
+                if(pos != -1)
                 {
-                    obj.getGeneracion().add(obj.getIndividuosNp().get(pos));
+                    this.generacion.add(this.individuosNp.get(pos));                    
                 }
                 
             }
             
         }
-        obj.burbuja();
-        obj.eliminarRepetidos();*/
-            }
-        }
+        OrdenarIndividuos(0,this.individuos.size()-1);
+        //obj.eliminarRepetidos();                    
     }
 
     public void GenerarIndividuos(int num) {
@@ -225,53 +232,144 @@ public class AlgoritmoDiferencial {
         return this.individuos.get(pos);
     }
 
-    public void Recombinar(Individuo padre, Individuo madre) {
+    public Individuo Recombinar(Individuo padre, Individuo madre) {
         //Recombinacion basada en un punto
         Individuo hijo = new Individuo(padre.getCAMINOS());
         Individuo hijo2 = new Individuo(madre.getCAMINOS());
         for (int i = 0; i < padre.getEntradas_individuo().size(); i++) {
             if (i < padre.getCAMINOS() / 2) {
-                hijo.getEntradas_individuo().add(padre.getEntradas_individuo().get(i));
-                hijo2.getEntradas_individuo().add(madre.getEntradas_individuo().get(i));
+                Entradas entrada_1 = new Entradas(this.ENTRADAS,this.SUPERIOR,this.INFERIOR);
+                entrada_1.setValores((ArrayList<Integer>) padre.getEntradas_individuo().get(i).getValores().clone());
+                entrada_1.setEntradas((ArrayList<String>) padre.getEntradas_individuo().get(i).getEntradas().clone());
+                entrada_1.setCamino_cubierto(padre.getEntradas_individuo().get(i).getCamino_cubierto());
+                Entradas entrada_2 = new Entradas(this.ENTRADAS,this.SUPERIOR,this.INFERIOR);
+                entrada_2.setValores((ArrayList<Integer>) madre.getEntradas_individuo().get(i).getValores().clone());
+                entrada_2.setEntradas((ArrayList<String>) madre.getEntradas_individuo().get(i).getEntradas().clone());
+                entrada_2.setCamino_cubierto(madre.getEntradas_individuo().get(i).getCamino_cubierto());
+                hijo.getEntradas_individuo().add(entrada_1);                
+                hijo2.getEntradas_individuo().add(entrada_2);
             } else {
-                hijo.getEntradas_individuo().add(madre.getEntradas_individuo().get(i));
-                hijo2.getEntradas_individuo().add(padre.getEntradas_individuo().get(i));
+                Entradas entrada_1 = new Entradas(this.ENTRADAS,this.SUPERIOR,this.INFERIOR);
+                entrada_1.setValores((ArrayList<Integer>) madre.getEntradas_individuo().get(i).getValores().clone());
+                entrada_1.setEntradas((ArrayList<String>) madre.getEntradas_individuo().get(i).getEntradas().clone());
+                entrada_1.setCamino_cubierto(madre.getEntradas_individuo().get(i).getCamino_cubierto());
+                Entradas entrada_2 = new Entradas(this.ENTRADAS,this.SUPERIOR,this.INFERIOR);
+                entrada_2.setValores((ArrayList<Integer>) padre.getEntradas_individuo().get(i).getValores().clone());
+                entrada_2.setEntradas((ArrayList<String>) padre.getEntradas_individuo().get(i).getEntradas().clone());
+                entrada_2.setCamino_cubierto(padre.getEntradas_individuo().get(i).getCamino_cubierto());
+                hijo.getEntradas_individuo().add(entrada_1);                
+                hijo2.getEntradas_individuo().add(entrada_2);
             }
         }
         hijo.caminos_posibles = padre.caminos_posibles;
         hijo.caminos_cubiertos = padre.caminos_cubiertos;
         hijo2.caminos_posibles = madre.caminos_posibles;
         hijo2.caminos_cubiertos = madre.caminos_cubiertos;
-        Document doc_copy = (Document) this.doc.cloneNode(true);
+        Document doc_copy_1 = (Document) this.doc.cloneNode(true);
+        Document doc_copy_2 = (Document) this.doc.cloneNode(true);
         Mutar(hijo);
         Mutar(hijo2);
-        hijo.EvaluarIndividuo(doc);
-        hijo2.EvaluarIndividuo(doc);
+        hijo.EvaluarIndividuo(doc_copy_1);
+        hijo2.EvaluarIndividuo(doc_copy_2);
         individuos.add(hijo);
         individuos.add(hijo2);
+        if(hijo.getEvaluacion() > hijo2.getEvaluacion())
+        {
+            return hijo;
+        }
+        else
+        {
+            return hijo2;
+        }
     }
 
     public void Mutar(Individuo ind) {
-        int entradaMutada = (int) Math.random() * ind.getEntradas_individuo().size();
+        int entradaMutada = (int) (Math.random() * (ind.getEntradas_individuo().size()-1));
         //System.out.println(ind.getEntradas_individuo().size()+ "--" + entradaMutada);
         int valor = 0;
         for (int i = 0; i < ind.getEntradas_individuo().get(entradaMutada).getValores().size(); i++) {
-                    System.out.println("Por aquí pase");
+                    //System.out.println("Por aquí pase");
             if (SUPERIOR < 0) {
-                        System.out.println("Por aquí tambien");
+                        //System.out.println("Por aquí tambien");
                 valor = INFERIOR + (int) (Math.random() * (INFERIOR - SUPERIOR));
                 ind.getEntradas_individuo().get(entradaMutada).getValores().set(i, valor);
             } else {
-                        System.out.println("y por aquí");
+                        //System.out.println("y por aquí");
                 valor = (int) (Math.random() * SUPERIOR + INFERIOR);
                 ind.getEntradas_individuo().get(entradaMutada).getValores().set(i, valor);
             }
         }
-        ;
+        
     }
 
     public int NumeroEntradas() {
         NodeList lectura = this.doc.getElementsByTagName("Leer");
         return lectura.getLength();
     }
+    public void OrdenarIndividuos(int izq, int der) {
+        //individuos = (ArrayList<Individuo>) individuos;
+        Individuo pivote = (Individuo) individuos.get(izq); // tomamos primer elemento como pivote
+        int i = izq; // i realiza la búsqueda de izquierda a derecha
+        int j = der; // j realiza la búsqueda de derecha a izquierda
+        Individuo ind;
+        int aux;
+
+        while (i < j) {            // mientras no se crucen las búsquedas
+            while (individuos.get(i).getEvaluacion() <= pivote.getEvaluacion() && i < j) {
+                i++; // busca elemento mayor que pivote
+            }
+            while (individuos.get(j).getEvaluacion() > pivote.getEvaluacion()) {
+                j--;         // busca elemento menor que pivote
+            }
+            if (i < j) {
+                ind = (Individuo) individuos.get(i); // si no se han cruzado                      
+                //aux= A[i];                  // los intercambia
+                individuos.set(i, individuos.get(j));
+                //A[i]=A[j];
+                individuos.set(j, ind);
+                //A[j]=aux;
+            }
+        }
+        individuos.set(izq, individuos.get(j));
+        //A[izq]=A[j]; // se coloca el pivote en su lugar de forma que tendremos
+        individuos.set(j, pivote);
+        //A[j]=pivote; // los menores a su izquierda y los mayores a su derecha
+        if (izq < j - 1) {
+            OrdenarIndividuos(izq, j - 1); // ordenamos subarray izquierdo
+        }
+        if (j + 1 < der) {
+            OrdenarIndividuos(j + 1, der); // ordenamos subarray derecho
+        }        
+    }
+    /*public void eliminarRepetidos()
+    {
+        ArrayList<Individuo> listaind = new ArrayList();
+        listaind.add(this.generacion.get(0));
+        int tam = 0;
+        for (int i = 1; i < this.generacion.size(); i++) 
+        {
+            if(this.generacion.get(i).getX0()!= listaind.get(tam).getX0() &&
+                       this.generacion.get(i).getX1()!= listaind.get(tam).getX1() &&
+                       this.generacion.get(i).getX2()!= listaind.get(tam).getX2() &&
+                       this.generacion.get(i).getX3()!= listaind.get(tam).getX3() &&
+                       this.generacion.get(i).getX4()!= listaind.get(tam).getX4() &&
+                       this.generacion.get(i).getX5()!= listaind.get(tam).getX5() &&
+                       this.generacion.get(i).getX6()!= listaind.get(tam).getX6() &&
+                       this.generacion.get(i).getX7()!= listaind.get(tam).getX7() &&
+                       this.generacion.get(i).getX8()!= listaind.get(tam).getX8() &&
+                       this.generacion.get(i).getX9()!= listaind.get(tam).getX9() &&
+                       this.generacion.get(i).getX10()!= listaind.get(tam).getX10() &&
+                       this.generacion.get(i).getX11()!= listaind.get(tam).getX11() &&
+                       this.generacion.get(i).getBeneficio()!= listaind.get(tam).getBeneficio() &&
+                       this.generacion.get(i).getCosto()!= listaind.get(tam).getCosto() &&
+                       this.generacion.get(i).getGanancia()!= listaind.get(tam).getGanancia())
+                    {
+                        Individuo obj = new Individuo();
+                        obj = reemplazo(this.generacion.get(i));
+                        listaind.add(obj);
+                        tam++;
+                    }
+        }
+        setGeneracion(listaind);
+    }*/
 }

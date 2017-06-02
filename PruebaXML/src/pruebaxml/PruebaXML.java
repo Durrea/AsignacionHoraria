@@ -34,7 +34,7 @@ public class PruebaXML {
             System.out.println();
         }*/
         AlgoritmoDiferencial obj = new AlgoritmoDiferencial(4,70,-70);
-        obj.GenerarIndividuos(obj.getPOBLACION());
+        //obj.GenerarIndividuos(obj.getPOBLACION());
         /*for(int i=0;i<obj.getIndividuos().size();i++)
         {
             for(int j = 0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
@@ -48,7 +48,8 @@ public class PruebaXML {
             System.out.println();
             System.out.println();
         }*/
-        obj.EvaluarIndividuos(obj.getPOBLACION());
+        //obj.EvaluarIndividuos(obj.getPOBLACION());
+        obj.AlgoritmoDiferencial();
         for(int i=0;i<obj.getIndividuos().size();i++)
         {
             for(int j=0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
@@ -64,7 +65,7 @@ public class PruebaXML {
             System.out.println();
         }
         
-        Individuo padre = obj.SeleccionarIndividuo();
+        /*Individuo padre = obj.SeleccionarIndividuo();
         Individuo madre = obj.SeleccionarIndividuo();
         obj.Recombinar(padre, madre);
         System.out.println(".....");
@@ -81,7 +82,7 @@ public class PruebaXML {
             }
             System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
             System.out.println();
-        }
+        }*/
     }
     
 }
