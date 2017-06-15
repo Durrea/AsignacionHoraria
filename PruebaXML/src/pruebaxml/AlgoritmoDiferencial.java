@@ -51,7 +51,7 @@ public class AlgoritmoDiferencial {
         this.doc = cargarXML();
         this.ENTRADAS = NumeroEntradas();
         this.individuosNp = new ArrayList();
-        this.CR = 0.9;
+        this.CR = 0.8;
     }
 
     public ArrayList<Individuo> getIndividuosNp() {
@@ -115,7 +115,8 @@ public class AlgoritmoDiferencial {
         int g = 0;
         GenerarIndividuos(this.POBLACION);
         EvaluarIndividuos(this.POBLACION);
-        int MAX_GEN = 30;
+        int MAX_GEN = 5;
+        int NUM_HIJOS = 5;
         int NP = this.POBLACION;
         Random rnd = new Random();
 
@@ -129,7 +130,7 @@ public class AlgoritmoDiferencial {
                 int jrand = (int) (rnd.nextDouble() * 11 + 0);
                 this.individuosNp.clear();
                 
-                for (int j = 0; j < 12; j++) {
+                for (int j = 0; j < NUM_HIJOS; j++) {
                     
                     Individuo np = new Individuo(this.CAMINOS);
                     if((rnd.nextDouble()*1+0) < this.CR || j == jrand)
@@ -267,8 +268,8 @@ public class AlgoritmoDiferencial {
         hijo2.caminos_cubiertos = madre.caminos_cubiertos;
         Document doc_copy_1 = (Document) this.doc.cloneNode(true);
         Document doc_copy_2 = (Document) this.doc.cloneNode(true);
-        Mutar(hijo);
-        Mutar(hijo2);
+        //Mutar(hijo);
+        //Mutar(hijo2);
         hijo.EvaluarIndividuo(doc_copy_1);
         hijo2.EvaluarIndividuo(doc_copy_2);
         individuos.add(hijo);

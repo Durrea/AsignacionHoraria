@@ -1,39 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <Inicio resultado_condicion="NULL">
-	<Leer resultado_condicion="NULL" valor="a">
-		<Leer resultado_condicion="NULL" valor="b">
-			<Leer resultado_condicion="NULL" valor="c">
-				<Leer resultado_condicion="NULL" valor="d">
-					<Condicional resultado_condicion="NULL" valor="a &lt; b">
-						<Proceso resultado_condicion="YES" valor="I2">
-							<Condicional resultado_condicion="NULL" valor="c != 5">
-								<Proceso resultado_condicion="YES" valor="I5">
-									<Proceso resultado_condicion="NULL" valor="I7">									
-									</Proceso>	
-								</Proceso>
-								<Proceso resultado_condicion="NO" valor="I6">
-									<Proceso resultado_condicion="NULL" valor="I7">									
-									</Proceso>
-								</Proceso>
-							</Condicional>
-						</Proceso>
-						<Proceso resultado_condicion="NO" valor="I3">
-							<Proceso resultado_condicion="NULL" valor="I8">
-								<Condicional resultado_condicion="NULL" valor="d &gt;= 8">
-									<Proceso resultado_condicion="YES" valor="I6">
-										<Proceso resultado_condicion="NULL" valor="I7">									
-										</Proceso>	
-									</Proceso>
-									<Proceso resultado_condicion="NO" valor="I10">
-										<Proceso resultado_condicion="NULL" valor="I11">
-										</Proceso>
-									</Proceso>
-								</Condicional>
-							</Proceso>							
-						</Proceso>
+	<Leer resultado_condicion="NULL" valor="P">
+		<Leer resultado_condicion="NULL" valor="Q">
+			<Condicional resultado_condicion="NULL" valor="(P+Q) &gt; 10">
+				<Proceso resultado_condicion="YES" valor="Print Large">
+					<Condicional resultado_condicion="NULL" valor="P &gt; 50">
+						<Proceso resultado_condicion="YES" valor="Print P Large"></Proceso>
+						<Proceso resultado_condicion="NO" valor="NADA"></Proceso>
 					</Condicional>
-				</Leer>
-			</Leer>
+				</Proceso>
+				<Proceso resultado_condicion="NO" valor="NADA">
+					<Condicional resultado_condicion="NULL" valor="P &gt; 50">
+						<Proceso resultado_condicion="YES" valor="Print P Large"></Proceso>
+						<Proceso resultado_condicion="NO" valor="NADA"></Proceso>
+					</Condicional>
+				</Proceso>
+			</Condicional>
 		</Leer>
 	</Leer>				
 </Inicio>

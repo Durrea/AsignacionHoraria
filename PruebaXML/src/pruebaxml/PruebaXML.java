@@ -33,7 +33,7 @@ public class PruebaXML {
             System.out.println();
             System.out.println();
         }*/
-        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(4,70,-70);
+        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(5,80,-80);
         //obj.GenerarIndividuos(obj.getPOBLACION());
         /*for(int i=0;i<obj.getIndividuos().size();i++)
         {
