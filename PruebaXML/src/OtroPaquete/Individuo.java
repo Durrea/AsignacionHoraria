@@ -26,7 +26,7 @@ public class Individuo {
     private double evaluacion;
     public ArrayList<String> caminos;
     public ArrayList<String> caminos_cubiertos;
-    
+
     public Individuo(int caminos) {
         this.CAMINOS = caminos;
         entradas_individuo = new ArrayList();
@@ -61,8 +61,6 @@ public class Individuo {
         this.caminos_cubiertos = caminos_cubiertos;
     }
 
-    
-
     public int getCAMINOS() {
         return CAMINOS;
     }
@@ -80,15 +78,21 @@ public class Individuo {
     }
 
     public void CargarCaminos() {
-        this.caminos.add("RAMA4-RAMA2-RAMA3-RAMA5-");
+        /*this.caminos.add("RAMA4-RAMA2-RAMA3-RAMA5-");
         this.caminos.add("RAMA4-RAMA2-RAMA3-RAMA6-");
         this.caminos.add("RAMA4-RAMA2-RAMA4-RAMA1-RAMA3-RAMA5-");
-        this.caminos.add("RAMA4-RAMA2-RAMA4-RAMA1-RAMA3-RAMA6-");
+        this.caminos.add("RAMA4-RAMA2-RAMA4-RAMA1-RAMA3-RAMA6-");*/
+        this.caminos.add("RAMA1-");
+        this.caminos.add("RAMA2-");
+        this.caminos.add("RAMA3-");
+        this.caminos.add("RAMA4-");
+        this.caminos.add("RAMA5-");
+        this.caminos.add("RAMA6-");
     }
 
     public void cargarCaminosCubiertos() {
         for (int i = 0; i < this.entradas_individuo.size(); i++) {
-            this.caminos_cubiertos.add(funcionAuxiliar(this.entradas_individuo.get(i)));
+            funcionAuxiliar(this.entradas_individuo.get(i));
         }
     }
 
@@ -136,7 +140,7 @@ public class Individuo {
     }
 
     public Individuo clone() {
-        
+
         Individuo clon = new Individuo(this.CAMINOS);
         clon.entradas_individuo = (ArrayList<Integer>) this.entradas_individuo.clone();
         clon.caminos = (ArrayList<String>) this.caminos.clone();
@@ -146,15 +150,15 @@ public class Individuo {
     }
 
     public void EvaluarIndividuo() {
-        
+
         cargarCaminosCubiertos();
-        
+
         int count1 = 0;
         int count2 = 0;
         int count3 = 0;
         int count4 = 0;
 
-        for (int j = 0; j < caminos_cubiertos.size(); j++) {
+        /*for (int j = 0; j < caminos_cubiertos.size(); j++) {
             if (caminos.get(0).equalsIgnoreCase(caminos_cubiertos.get(j).toString())) {
                 //System.out.println("Camino 1");
                 count1 = 1;
@@ -171,12 +175,13 @@ public class Individuo {
                 //System.out.println("Camino 4");
                 count4 = 1;
             }
-        }
+        }*/
 
-        this.setEvaluacion(count1 + count2 + count3 + count4);
+        this.setEvaluacion(caminos_cubiertos.size()/caminos.size());
     }
 
-    public String funcionAuxiliar(int number) {
+    public void funcionAuxiliar(int number) {
+        //ArrayList<String> ramas = new ArrayList<>();
         int value = 0;
         int sum = 0;
         int pos = 1;
@@ -184,15 +189,18 @@ public class Individuo {
         String camino = "";
         do {
             //System.out.println("RAMA 4");
-            camino = camino + "RAMA4-";
+            //camino = camino + "RAMA4-";
+            addUnique(caminos_cubiertos, "RAMA4-");
             int digit = number % 10;
             if (pos % 2 == 0) {
                 //System.out.println("RAMA 1");
-                camino = camino + "RAMA1-";
+                //camino = camino + "RAMA1-";
+                addUnique(caminos_cubiertos, "RAMA1-");
                 value = 3 * digit;
             } else {
                 //System.out.println("RAMA 2");
-                camino = camino + "RAMA2-";
+                //camino = camino + "RAMA2-";
+                addUnique(caminos_cubiertos, "RAMA2-");
                 value = digit;
             }
             sum = sum + value;
@@ -200,19 +208,28 @@ public class Individuo {
             pos = pos + 1;
         } while (number > 0);
         //System.out.println("RAMA 3");
-        camino = camino + "RAMA3-";
+        //camino = camino + "RAMA3-";
+        addUnique(caminos_cubiertos, "RAMA3-");
         result = sum & 11;
         if (result == 10) {
             //System.out.println("RAMA 5");
-            camino = camino + "RAMA5-";
+            //camino = camino + "RAMA5-";
+            addUnique(caminos_cubiertos, "RAMA5-");
             result = 1;
         } else {
             //System.out.println("RAMA 6");
-            camino = camino + "RAMA6-";
+            //camino = camino + "RAMA6-";
+            addUnique(caminos_cubiertos, "RAMA6-");
         }
 
         //System.out.println("Camino :" + camino);
+        //return ramas;
+    }
 
-        return camino;
+    public void addUnique(ArrayList<String> lista, String elemento) {
+
+        if (!lista.contains(elemento)) {
+            lista.add(elemento);
+        }
     }
 }
