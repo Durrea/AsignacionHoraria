@@ -30,14 +30,16 @@ public class AlgoritmoDiferencial {
     private ArrayList<Individuo> individuos;
     private ArrayList<Individuo> individuosNp;
     private ArrayList<Individuo> generacion;
-    private int CAMINOS;
-    private int ENTRADAS;
-    private int SUPERIOR;
-    private int INFERIOR;
+    public int CAMINOS;
+    public int ENTRADAS;
+    public int SUPERIOR;
+    public int INFERIOR;
     public Document doc;
     private ArrayList<String> caminos;
     public ArrayList<Integer> caminos_cubiertos;
     public double CR;
+    public int MAX_GEN;
+    public int NUM_HIJOS;
 
     public AlgoritmoDiferencial(int POBLACION, int superior, int inferior) {
         this.POBLACION = POBLACION;
@@ -115,8 +117,6 @@ public class AlgoritmoDiferencial {
         int g = 0;
         GenerarIndividuos(this.POBLACION);
         EvaluarIndividuos(this.POBLACION);
-        int MAX_GEN = 20;        
-        int NUM_HIJOS = 5;
         int NP = this.POBLACION;
         Random rnd = new Random();
 

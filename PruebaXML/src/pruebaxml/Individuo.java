@@ -97,6 +97,7 @@ public class Individuo {
             System.out.println("Camino "+i+" valor "+this.caminos_cubiertos.get(i));
         }*/               
         this.evaluacion = cubiertos;
+        this.evaluacion = this.evaluacion / this.CAMINOS;
         //System.out.println("Evaluacion: "+this.evaluacion);
     }
     public void CalcularEntradas(Document doc, int num_entradas, int superior, int inferior)

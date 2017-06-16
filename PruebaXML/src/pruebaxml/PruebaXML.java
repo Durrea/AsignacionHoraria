@@ -21,10 +21,10 @@ public class PruebaXML {
     public static void main(String[] args) throws XPathExpressionException, FileNotFoundException {
         // TODO code application logic here        
         //AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
-        /*Memetico obj_memetico = new Memetico();
+        Memetico obj_memetico = new Memetico();
         obj_memetico.POBLACION = 7;
-        obj_memetico.SUPERIOR = 10;
-        obj_memetico.INFERIOR = 0;
+        obj_memetico.SUPERIOR = 80;
+        obj_memetico.INFERIOR = -80;
         obj_memetico.NUM_HIJOS = 3;
         obj_memetico.ITE_BUSQUEDA_LOCAL = 3;
         obj_memetico.CRITERIO_MEMETICO = 6;
@@ -33,17 +33,6 @@ public class PruebaXML {
         {
             for(int j=0;j<result.get(i).getEntradas_individuo().size();j++)
             {
-                System.out.println("Valor: "+individuo_prueba.getEntradas_individuo().get(i).getEntradas().get(j));
-            }
-            System.out.println();
-            System.out.println();
-        }*/
-        //obj.GenerarIndividuos(obj.getPOBLACION());
-        /*for(int i=0;i<obj.getIndividuos().size();i++)
-        {
-            for(int j = 0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
-            {
-                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
                 for(int k = 0;k<result.get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
                 {
                     System.out.print(result.get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
@@ -53,8 +42,10 @@ public class PruebaXML {
             }
             System.out.println("Evaluacion: "+result.get(i).getEvaluacion());
             System.out.println();
-        }*/
- /*AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
+        }
+        /*AlgoritmoDiferencial obj = new AlgoritmoDiferencial(3,80,-50);
+        obj.MAX_GEN = 10;
+        obj.NUM_HIJOS = 4;
         obj.AlgoritmoDiferencial();
         for(int i=0;i<obj.getIndividuos().size();i++)
         {

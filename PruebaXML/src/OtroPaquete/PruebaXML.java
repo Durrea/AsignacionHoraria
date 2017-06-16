@@ -27,8 +27,10 @@ public class PruebaXML {
         obj_memetico.SUPERIOR = 99;
         obj_memetico.INFERIOR = 0;
         obj_memetico.NUM_HIJOS = 10;
-        obj_memetico.ITE_BUSQUEDA_LOCAL = 40;
-        obj_memetico.CRITERIO_MEMETICO = 50;
+        obj_memetico.ITE_BUSQUEDA_LOCAL = 20;
+        obj_memetico.CRITERIO_MEMETICO = 30;
+        obj_memetico.PRESERVE = 0.35;
+        obj_memetico.VALOR_T = 0.1;
         ArrayList<Individuo> result = obj_memetico.run();
         for(int i=0;i<result.size();i++)
         {
@@ -40,38 +42,6 @@ public class PruebaXML {
             System.out.println();
             System.out.println();
         }
-        //obj.GenerarIndividuos(obj.getPOBLACION());
-        /*for(int i=0;i<obj.getIndividuos().size();i++)
-        {
-            for(int j = 0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
-            {
-                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
-                for(int k = 0;k<result.get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
-                {
-                    System.out.print(result.get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
-                            " "+result.get(i).getEntradas_individuo().get(j).getValores().get(k));
-                }
-                System.out.println();                
-            }
-            System.out.println("Evaluacion: "+result.get(i).getEvaluacion());
-            System.out.println();
-        }*/
- /*AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
-        obj.AlgoritmoDiferencial();
-        for(int i=0;i<obj.getIndividuos().size();i++)
-        {
-            for(int j=0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
-            {
-                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
-                {
-                    System.out.print(obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
-                            " "+obj.getIndividuos().get(i).getEntradas_individuo().get(j).getValores().get(k));
-                }
-                System.out.println();                
-            }
-            System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
-            System.out.println();
-        } */
     }
 
 }

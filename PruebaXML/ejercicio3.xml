@@ -9,7 +9,14 @@
 							<Proceso resultado_condicion="YES" valor="sum = sum + value">
 								<Proceso resultado_condicion="YES" valor="number = number / 10">
 									<Proceso resultado_condicion="YES" valor="pos = pos + 1">
-								
+										<Condicional resultado_condicion="NULL" valor="number &gt; 0">
+											<Proceso resultado_condicion="YES" valor="value = 3 * digit">
+												
+											</Proceso>
+											<Proceso resultado_condicion="NO" valor="value = 3 * digit">
+												
+											</Proceso>
+										</Condicional>
 									</Proceso>								
 								</Proceso>
 							</Proceso>	
@@ -18,7 +25,16 @@
 							<Proceso resultado_condicion="YES" valor="sum = sum + value">
 								<Proceso resultado_condicion="YES" valor="number = number / 10">
 									<Proceso resultado_condicion="YES" valor="pos = pos + 1">
-								
+										<Condicional resultado_condicion="NULL" valor="number &gt; 0">
+											<Proceso resultado_condicion="YES" valor="value = 3 * digit">
+												
+											</Proceso>
+											<Proceso resultado_condicion="NO" valor="value = 3 * digit">
+												<Proceso resultado_condicion="YES" valor="digit = number % 10">
+													
+												</Proceso>
+											</Proceso>
+										</Condicional>
 									</Proceso>								
 								</Proceso>
 							</Proceso>	
