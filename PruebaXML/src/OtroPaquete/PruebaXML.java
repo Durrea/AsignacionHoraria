@@ -23,12 +23,12 @@ public class PruebaXML {
         // TODO code application logic here        
         //AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
         Memetico obj_memetico = new Memetico();
-        obj_memetico.POBLACION = 7;
-        obj_memetico.SUPERIOR = 10;
+        obj_memetico.POBLACION = 30;
+        obj_memetico.SUPERIOR = 99;
         obj_memetico.INFERIOR = 0;
-        obj_memetico.NUM_HIJOS = 3;
-        obj_memetico.ITE_BUSQUEDA_LOCAL = 3;
-        obj_memetico.CRITERIO_MEMETICO = 6;
+        obj_memetico.NUM_HIJOS = 10;
+        obj_memetico.ITE_BUSQUEDA_LOCAL = 40;
+        obj_memetico.CRITERIO_MEMETICO = 50;
         ArrayList<Individuo> result = obj_memetico.run();
         for(int i=0;i<result.size();i++)
         {
