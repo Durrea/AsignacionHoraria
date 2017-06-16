@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pruebaxml;
+package OtroPaquete;
 
+import pruebaxml.*;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import javax.xml.xpath.XPathExpressionException;
@@ -21,7 +22,7 @@ public class PruebaXML {
     public static void main(String[] args) throws XPathExpressionException, FileNotFoundException {
         // TODO code application logic here        
         //AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
-        /*Memetico obj_memetico = new Memetico();
+        Memetico obj_memetico = new Memetico();
         obj_memetico.POBLACION = 7;
         obj_memetico.SUPERIOR = 10;
         obj_memetico.INFERIOR = 0;
@@ -33,11 +34,12 @@ public class PruebaXML {
         {
             for(int j=0;j<result.get(i).getEntradas_individuo().size();j++)
             {
-                System.out.println("Valor: "+individuo_prueba.getEntradas_individuo().get(i).getEntradas().get(j));
+                System.out.println("Valor: "+ result.get(i).getEntradas_individuo().get(j));
             }
+            System.out.println("Evaluacion: "+ result.get(i).getEvaluacion());
             System.out.println();
             System.out.println();
-        }*/
+        }
         //obj.GenerarIndividuos(obj.getPOBLACION());
         /*for(int i=0;i<obj.getIndividuos().size();i++)
         {
@@ -70,7 +72,6 @@ public class PruebaXML {
             System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
             System.out.println();
         } */
-
     }
 
 }

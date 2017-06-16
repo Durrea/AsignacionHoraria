@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pruebaxml;
+package OtroPaquete;
 
+import pruebaxml.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -26,7 +27,7 @@ public class Memetico {
     public int SUPERIOR;
     public int INFERIOR;
     public ArrayList<String> caminos;
-    public ArrayList<Integer> caminos_cubiertos;
+    public ArrayList<String> caminos_cubiertos;
     public Document doc;
     public int ITE_BUSQUEDA_LOCAL;
     public int NUM_HIJOS;
@@ -41,8 +42,7 @@ public class Memetico {
         this.caminos_cubiertos = new ArrayList();
         this.caminos = cargarCaminos();
         this.CAMINOS = this.caminos.size();
-        this.doc = cargarXML();
-        this.ENTRADAS = NumeroEntradas();
+        this.ENTRADAS = 1;
     }
 
     public ArrayList<Individuo> run() {
@@ -63,24 +63,19 @@ public class Memetico {
     }
 
     public ArrayList<Individuo> GenerarPoblacionInicial(int num) {
-        Document doc_copy = (Document) this.doc.cloneNode(true);
         for (int i = 0; i < num; i++) {
             Individuo ind = new Individuo(this.CAMINOS);
-            ind.caminos_posibles = this.caminos;
-            ind.caminos_cubiertos = this.caminos_cubiertos;
-            ind.CalcularEntradas(doc_copy, this.ENTRADAS, SUPERIOR, INFERIOR);
-            ind.EvaluarIndividuo(doc_copy);
+            ind.CalcularEntradas(this.ENTRADAS, SUPERIOR, INFERIOR);
+            ind.EvaluarIndividuo();
             ind = BusquedaLocal(ind);
             this.individuos.add(ind);
-            doc_copy = (Document) this.doc.cloneNode(true);
         }
         return this.individuos;
     }
 
     public Individuo BusquedaLocal(Individuo individuo) {
         for (int i = 0; i < this.ITE_BUSQUEDA_LOCAL; i++) {
-            Document doc_copy = (Document) doc.cloneNode(true);
-            Individuo nuevo = individuo.GenerarVecindario(individuo, CAMINOS, SUPERIOR, doc_copy);
+            Individuo nuevo = individuo.GenerarVecindario(individuo, CAMINOS, SUPERIOR);
             if (nuevo.getEvaluacion() > individuo.getEvaluacion()) {
                 individuo = nuevo;
             }
@@ -106,14 +101,13 @@ public class Memetico {
     public ArrayList<Individuo> GenerarNuevaPoblacion(ArrayList<Individuo> pop) {
         ArrayList<Individuo> buffer = (ArrayList<Individuo>) pop.clone();
         ArrayList<Individuo> hijos = new ArrayList();
-        Document doc_copy = (Document) this.doc.cloneNode(true);
         for (int i = 0; i < this.NUM_HIJOS; i++) {
             int limite = buffer.size() - 1;
             int k = (int) (Math.random() * limite);
             int j = (int) (Math.random() * limite);
             Individuo ind_recombinado = Recombinar(buffer.get(k).clone(), buffer.get(j).clone());
             Mutar(ind_recombinado);
-            ind_recombinado.EvaluarIndividuo(doc_copy);
+            ind_recombinado.EvaluarIndividuo();
             hijos.add(ind_recombinado);
         }
 
@@ -141,12 +135,10 @@ public class Memetico {
             newpop.add(individuo);
         }
         for (int i = preserved; i < population.size(); i++) {
-            Document doc_copy = (Document) this.doc.cloneNode(true);
             Individuo ind = new Individuo(this.CAMINOS);
-            ind.caminos_posibles = this.caminos;
             ind.caminos_cubiertos = this.caminos_cubiertos;
-            ind.CalcularEntradas(doc_copy, this.ENTRADAS, SUPERIOR, INFERIOR);
-            ind.EvaluarIndividuo(doc_copy);
+            ind.CalcularEntradas(this.ENTRADAS, SUPERIOR, INFERIOR);
+            ind.EvaluarIndividuo();
             ind = BusquedaLocal(ind);
             newpop.add(ind);
         }
@@ -160,39 +152,28 @@ public class Memetico {
         Individuo hijo2 = new Individuo(madre.getCAMINOS());
         for (int i = 0; i < padre.getEntradas_individuo().size(); i++) {
             if (i < padre.getCAMINOS() / 2) {
-                Entradas entrada_1 = new Entradas(this.ENTRADAS, this.SUPERIOR, this.INFERIOR);
-                entrada_1.setValores((ArrayList<Integer>) padre.getEntradas_individuo().get(i).getValores().clone());
-                entrada_1.setEntradas((ArrayList<String>) padre.getEntradas_individuo().get(i).getEntradas().clone());
-                entrada_1.setCamino_cubierto(padre.getEntradas_individuo().get(i).getCamino_cubierto());
-                Entradas entrada_2 = new Entradas(this.ENTRADAS, this.SUPERIOR, this.INFERIOR);
-                entrada_2.setValores((ArrayList<Integer>) madre.getEntradas_individuo().get(i).getValores().clone());
-                entrada_2.setEntradas((ArrayList<String>) madre.getEntradas_individuo().get(i).getEntradas().clone());
-                entrada_2.setCamino_cubierto(madre.getEntradas_individuo().get(i).getCamino_cubierto());
-                hijo.getEntradas_individuo().add(entrada_1);
-                hijo2.getEntradas_individuo().add(entrada_2);
+                int entrada1;
+                int entrada2;
+                entrada1 = padre.getEntradas_individuo().get(i);
+                entrada2 = madre.getEntradas_individuo().get(i);
+                hijo.getEntradas_individuo().add(entrada1);
+                hijo2.getEntradas_individuo().add(entrada2);
             } else {
-                Entradas entrada_1 = new Entradas(this.ENTRADAS, this.SUPERIOR, this.INFERIOR);
-                entrada_1.setValores((ArrayList<Integer>) madre.getEntradas_individuo().get(i).getValores().clone());
-                entrada_1.setEntradas((ArrayList<String>) madre.getEntradas_individuo().get(i).getEntradas().clone());
-                entrada_1.setCamino_cubierto(madre.getEntradas_individuo().get(i).getCamino_cubierto());
-                Entradas entrada_2 = new Entradas(this.ENTRADAS, this.SUPERIOR, this.INFERIOR);
-                entrada_2.setValores((ArrayList<Integer>) padre.getEntradas_individuo().get(i).getValores().clone());
-                entrada_2.setEntradas((ArrayList<String>) padre.getEntradas_individuo().get(i).getEntradas().clone());
-                entrada_2.setCamino_cubierto(padre.getEntradas_individuo().get(i).getCamino_cubierto());
-                hijo.getEntradas_individuo().add(entrada_1);
-                hijo2.getEntradas_individuo().add(entrada_2);
+                int entrada1;
+                int entrada2;
+                entrada1 = padre.getEntradas_individuo().get(i);
+                entrada2 = madre.getEntradas_individuo().get(i);
+                hijo.getEntradas_individuo().add(entrada2);
+                hijo2.getEntradas_individuo().add(entrada1);
             }
         }
-        hijo.caminos_posibles = padre.caminos_posibles;
-        hijo.caminos_cubiertos = padre.caminos_cubiertos;
-        hijo2.caminos_posibles = madre.caminos_posibles;
-        hijo2.caminos_cubiertos = madre.caminos_cubiertos;
-        Document doc_copy_1 = (Document) this.doc.cloneNode(true);
-        Document doc_copy_2 = (Document) this.doc.cloneNode(true);
+
+        hijo.caminos_cubiertos = (ArrayList<String>) padre.caminos_cubiertos.clone();
+        hijo2.caminos_cubiertos = (ArrayList<String>) madre.caminos_cubiertos.clone();
         //Mutar(hijo);
         //Mutar(hijo2);
-        hijo.EvaluarIndividuo(doc_copy_1);
-        hijo2.EvaluarIndividuo(doc_copy_2);
+        hijo.EvaluarIndividuo();
+        hijo2.EvaluarIndividuo();
         //individuos.add(hijo);
         //individuos.add(hijo2);
         if (hijo.getEvaluacion() > hijo2.getEvaluacion()) {
@@ -206,17 +187,12 @@ public class Memetico {
         int entradaMutada = (int) (Math.random() * (ind.getEntradas_individuo().size() - 1));
         //System.out.println(ind.getEntradas_individuo().size()+ "--" + entradaMutada);
         int valor = 0;
-        for (int i = 0; i < ind.getEntradas_individuo().get(entradaMutada).getValores().size(); i++) {
-            //System.out.println("Por aquí pase");
-            if (SUPERIOR < 0) {
-                //System.out.println("Por aquí tambien");
-                valor = INFERIOR + (int) (Math.random() * (INFERIOR - SUPERIOR));
-                ind.getEntradas_individuo().get(entradaMutada).getValores().set(i, valor);
-            } else {
-                //System.out.println("y por aquí");
-                valor = (int) (Math.random() * SUPERIOR + INFERIOR);
-                ind.getEntradas_individuo().get(entradaMutada).getValores().set(i, valor);
-            }
+        if (SUPERIOR < 0) {
+            valor = INFERIOR + (int) (Math.random() * (INFERIOR - SUPERIOR));
+            ind.getEntradas_individuo().set(entradaMutada,valor);
+        } else {
+            valor = (int) (Math.random() * SUPERIOR + INFERIOR);
+            ind.getEntradas_individuo().set(entradaMutada,valor);
         }
 
     }
@@ -293,46 +269,52 @@ public class Memetico {
         return individuos;
     }
 
-    public Document cargarXML() {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        Document documento = null;
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            documento = (Document) builder.parse(new File("prueba.xml"));
-        } catch (Exception spe) {
-            System.out.println(spe.getMessage());
-        }
-        return documento;
-    }
-
     public ArrayList<String> cargarCaminos() {
         ArrayList<String> caminos = new ArrayList();
-        File archivo = null;
-        FileReader fr = null;
-        BufferedReader br = null;
-
-        try {
-            // Apertura del fichero y creacion de BufferedReader para poder
-            // hacer una lectura comoda (disponer del metodo readLine()).
-            archivo = new File("caminos.txt");
-            fr = new FileReader(archivo);
-            br = new BufferedReader(fr);
-
-            // Lectura del fichero
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                caminos.add(linea);
-                this.caminos_cubiertos.add(0);
-            }
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        Individuo obj = new Individuo(CAMINOS);
+        obj.CargarCaminos();
+        caminos = (ArrayList<String>) obj.getCaminos().clone();
         return caminos;
     }
 
-    public int NumeroEntradas() {
-        NodeList lectura = this.doc.getElementsByTagName("Leer");
-        return lectura.getLength();
+
+    public String funcionAuxiliar(int number) {
+        int value = 0;
+        int sum = 0;
+        int pos = 1;
+        int result = 0;
+        String camino = "";
+        do {
+            //System.out.println("RAMA 4");
+            camino = camino + "RAMA4-";
+            int digit = number % 10;
+            if (pos % 2 == 0) {
+                //System.out.println("RAMA 1");
+                camino = camino + "RAMA1-";
+                value = 3 * digit;
+            } else {
+                //System.out.println("RAMA 2");
+                camino = camino + "RAMA2-";
+                value = digit;
+            }
+            sum = sum + value;
+            number = number / 10;
+            pos = pos + 1;
+        } while (number > 0);
+        //System.out.println("RAMA 3");
+        camino = camino + "RAMA3-";
+        result = sum & 11;
+        if (result == 10) {
+            //System.out.println("RAMA 5");
+            camino = camino + "RAMA5-";
+            result = 1;
+        } else {
+            //System.out.println("RAMA 6");
+            camino = camino + "RAMA6-";
+        }
+
+        System.out.println("Camino :" + camino);
+
+        return camino;
     }
 }
