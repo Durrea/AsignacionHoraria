@@ -6,6 +6,7 @@
 package pruebaxml;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import javax.xml.xpath.XPathExpressionException;
 
 /**
@@ -18,37 +19,31 @@ public class PruebaXML {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws XPathExpressionException, FileNotFoundException {
-        // TODO code application logic here
-        
-        //XML obj = new XML();
-        //obj.cargarArchivo();
-        /*Individuo individuo_prueba = new Individuo(6);
-        individuo_prueba.EvaluarIndividuo(null);
-        for(int i=0;i<individuo_prueba.getEntradas_individuo().size();i++)
+        // TODO code application logic here        
+        //AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
+        /*Memetico obj_memetico = new Memetico();
+        obj_memetico.POBLACION = 7;
+        obj_memetico.SUPERIOR = 10;
+        obj_memetico.INFERIOR = 0;
+        obj_memetico.NUM_HIJOS = 3;
+        obj_memetico.ITE_BUSQUEDA_LOCAL = 3;
+        obj_memetico.CRITERIO_MEMETICO = 6;
+        ArrayList<Individuo> result = obj_memetico.run();
+        for(int i=0;i<result.size();i++)
         {
-            for(int j = 0;j<individuo_prueba.getEntradas_individuo().get(i).getEntradas().size();j++)
+            for(int j=0;j<result.get(i).getEntradas_individuo().size();j++)
             {
-                System.out.println("Valor: "+individuo_prueba.getEntradas_individuo().get(i).getEntradas().get(j));
-            }
-            System.out.println();
-            System.out.println();
-        }*/
-        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(4,70,-70);
-        //obj.GenerarIndividuos(obj.getPOBLACION());
-        /*for(int i=0;i<obj.getIndividuos().size();i++)
-        {
-            for(int j = 0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
-            {
-                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
+                for(int k = 0;k<result.get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
                 {
-                    System.out.println(obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().get(k)
-                    + obj.getIndividuos().get(i).getEntradas_individuo().get(j).getValores().get(k));
+                    System.out.print(result.get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
+                            " "+result.get(i).getEntradas_individuo().get(j).getValores().get(k));
                 }
+                System.out.println();                
             }
-            System.out.println();
+            System.out.println("Evaluacion: "+result.get(i).getEvaluacion());
             System.out.println();
         }*/
-        //obj.EvaluarIndividuos(obj.getPOBLACION());
+        AlgoritmoDiferencial obj = new AlgoritmoDiferencial(2,80,-50);
         obj.AlgoritmoDiferencial();
         for(int i=0;i<obj.getIndividuos().size();i++)
         {
@@ -63,26 +58,7 @@ public class PruebaXML {
             }
             System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
             System.out.println();
-        }
-        
-        /*Individuo padre = obj.SeleccionarIndividuo();
-        Individuo madre = obj.SeleccionarIndividuo();
-        obj.Recombinar(padre, madre);
-        System.out.println(".....");
-        for(int i=0;i<obj.getIndividuos().size();i++)
-        {
-            for(int j=0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
-            {
-                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
-                {
-                    System.out.print(obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
-                            " "+obj.getIndividuos().get(i).getEntradas_individuo().get(j).getValores().get(k));
-                }
-                System.out.println();                
-            }
-            System.out.println("Evaluacion: "+obj.getIndividuos().get(i).getEvaluacion());
-            System.out.println();
-        }*/
+        }                
     }
     
 }

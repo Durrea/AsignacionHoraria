@@ -115,7 +115,7 @@ public class AlgoritmoDiferencial {
         int g = 0;
         GenerarIndividuos(this.POBLACION);
         EvaluarIndividuos(this.POBLACION);
-        int MAX_GEN = 30;
+        int MAX_GEN = 20;
         int NP = this.POBLACION;
         Random rnd = new Random();
 
@@ -267,8 +267,8 @@ public class AlgoritmoDiferencial {
         hijo2.caminos_cubiertos = madre.caminos_cubiertos;
         Document doc_copy_1 = (Document) this.doc.cloneNode(true);
         Document doc_copy_2 = (Document) this.doc.cloneNode(true);
-        Mutar(hijo);
-        Mutar(hijo2);
+        //Mutar(hijo);
+        //Mutar(hijo2);
         hijo.EvaluarIndividuo(doc_copy_1);
         hijo2.EvaluarIndividuo(doc_copy_2);
         individuos.add(hijo);

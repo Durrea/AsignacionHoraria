@@ -266,4 +266,58 @@ public class Individuo {
         }
         return num_caminos_cubiertos;
     }
+    public Individuo GenerarVecindario(Individuo individuo, int numvecinos, int superior, Document doc)
+    {
+        ArrayList<Individuo> vecindario = new ArrayList();        
+        int posicion_mejor = -1;
+        superior = superior /10;
+        for(int i=0;i<numvecinos;i++)
+        {            
+            Individuo ind = new Individuo(individuo.CAMINOS);
+            ind = individuo.clone();            
+            int entrada = (int) (Math.random()*ind.entradas_individuo.size()-1);
+            int valor = (int)(Math.random() * ind.entradas_individuo.get(entrada).getValores().size()-1);
+            int operador = (int)(Math.random()*1);//0 para suma y 1 para resta
+            int numero = (int) (Math.random()*superior);
+            
+            if(operador == 0)
+            {
+                //int v = ind.entradas_individuo.get(entrada).getValores().get(valor)+numero;
+                ind.entradas_individuo.get(entrada).getValores().set(valor, ind.entradas_individuo.get(entrada).getValores().get(valor)+numero);
+                //System.out.println("Valor generado: "+v);
+            }
+            else
+            {
+                //int v = ind.entradas_individuo.get(entrada).getValores().get(valor)-numero;
+                ind.entradas_individuo.get(entrada).getValores().set(valor, ind.entradas_individuo.get(entrada).getValores().get(valor)-numero);
+                //System.out.println("Valor generado: "+v);
+            }
+            ind.EvaluarIndividuo(doc);
+            if(posicion_mejor == -1)
+            {
+                vecindario.add(ind);
+                posicion_mejor = i;
+            }
+            else
+            {
+                vecindario.add(ind);
+                if(vecindario.get(i).evaluacion > vecindario.get(posicion_mejor).evaluacion)
+                {
+                    posicion_mejor = i;
+                }
+            }            
+        }
+        Individuo ind_retorno = vecindario.get(posicion_mejor).clone();
+        return ind_retorno;
+        
+    }
+    public Individuo clone()
+    {
+        Individuo nuevo = new Individuo(this.CAMINOS);
+        nuevo.caminos = (ArrayList<String>) this.caminos.clone();
+        nuevo.caminos_cubiertos = (ArrayList<Integer>) this.caminos_cubiertos.clone();
+        nuevo.caminos_posibles = (ArrayList<String>) this.caminos_posibles.clone();
+        nuevo.entradas_individuo = (ArrayList<Entradas>) this.entradas_individuo.clone();
+        return nuevo;        
+    }
 }

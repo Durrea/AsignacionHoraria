@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Inicio resultado_condicion="NULL">
+	<Leer resultado_condicion="NULL" valor="number">
+		<Proceso resultado_condicion="YES" valor="sum = 0">
+			<Proceso resultado_condicion="YES" valor="pos = 1">
+				<Proceso resultado_condicion="YES" valor="digit = number % 10">
+					<Condicional resultado_condicion="NULL" valor="(pos % 2) == 0">
+						<Proceso resultado_condicion="YES" valor="value = 3 * digit">
+							<Proceso resultado_condicion="YES" valor="sum = sum + value">
+								<Proceso resultado_condicion="YES" valor="number = number / 10">
+									<Proceso resultado_condicion="YES" valor="pos = pos + 1">
+								
+									</Proceso>								
+								</Proceso>
+							</Proceso>	
+						</Proceso>
+						<Proceso resultado_condicion="NO" valor="value = digit">
+							<Proceso resultado_condicion="YES" valor="sum = sum + value">
+								<Proceso resultado_condicion="YES" valor="number = number / 10">
+									<Proceso resultado_condicion="YES" valor="pos = pos + 1">
+								
+									</Proceso>								
+								</Proceso>
+							</Proceso>	
+						</Proceso>
+					</Condicional>
+				</Proceso>	
+			</Proceso>
+		</Proceso>
+	</Leer>	
+</Inicio>
