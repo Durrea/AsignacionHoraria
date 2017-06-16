@@ -33,6 +33,17 @@ public class PruebaXML {
         {
             for(int j=0;j<result.get(i).getEntradas_individuo().size();j++)
             {
+                System.out.println("Valor: "+individuo_prueba.getEntradas_individuo().get(i).getEntradas().get(j));
+            }
+            System.out.println();
+            System.out.println();
+        }*/        
+        //obj.GenerarIndividuos(obj.getPOBLACION());
+        /*for(int i=0;i<obj.getIndividuos().size();i++)
+        {
+            for(int j = 0;j<obj.getIndividuos().get(i).getEntradas_individuo().size();j++)
+            {
+                for(int k = 0;k<obj.getIndividuos().get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
                 for(int k = 0;k<result.get(i).getEntradas_individuo().get(j).getEntradas().size();k++)
                 {
                     System.out.print(result.get(i).getEntradas_individuo().get(j).getEntradas().get(k)+
